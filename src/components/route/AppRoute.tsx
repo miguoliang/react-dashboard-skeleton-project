@@ -28,14 +28,13 @@ const AppRoute = ({
 
   const handleLayoutChange = useCallback(() => {
     dispatch(setCurrentRouteKey(routeKey));
-
     if (props.layout && props.layout !== layoutType) {
       dispatch(setPreviousLayout(layoutType));
       dispatch(setLayout(props.layout));
     }
 
     if (!props.layout && previousLayout && layoutType !== previousLayout) {
-      dispatch(setLayout(previousLayout));
+      dispatch(setLayout(layoutType));
       dispatch(setPreviousLayout(previousLayout));
     }
   }, [dispatch, layoutType, previousLayout, props.layout, routeKey]);
