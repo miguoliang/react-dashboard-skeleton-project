@@ -1,12 +1,12 @@
 import React from "react";
 import { Avatar, Dropdown, DropdownItem } from "components/ui";
 import withHeaderItem from "utils/hoc/withHeaderItem";
-import useAuth from "utils/hooks/useAuth";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { HiOutlineCog, HiOutlineLogout, HiOutlineUser } from "react-icons/hi";
 import { FiActivity } from "react-icons/fi";
 import { useAppSelector } from "store/hooks";
+import { useAuth } from "react-oidc-context";
 
 const dropdownItemList = [
   {
@@ -31,7 +31,7 @@ export const UserDropdown = ({ className }: { className: string }) => {
     (state) => state.auth.user,
   );
 
-  const { signOut } = useAuth();
+  const auth = useAuth();
 
   const UserAvatar = (
     <div className={classNames(className, "flex items-center gap-2")}>
@@ -71,7 +71,11 @@ export const UserDropdown = ({ className }: { className: string }) => {
           </DropdownItem>
         ))}
         <DropdownItem dropdownItemVariant="divider" />
-        <DropdownItem onClick={signOut} eventKey="Sign Out" className="gap-2">
+        <DropdownItem
+          onClick={() => auth.signoutRedirect()}
+          eventKey="Sign Out"
+          className="gap-2"
+        >
           <span className="text-xl opacity-50">
             <HiOutlineLogout />
           </span>

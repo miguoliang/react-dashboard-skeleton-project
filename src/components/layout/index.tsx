@@ -3,8 +3,8 @@ import { Loading } from "components/shared";
 import useDirection from "utils/hooks/useDirection";
 import useLocale from "utils/hooks/useLocale";
 import { RootState } from "../../store";
-import useAuth from "utils/hooks/useAuth";
 import { useAppSelector } from "store/hooks";
+import { useAuth } from "react-oidc-context";
 
 const layouts: Record<
   string,
@@ -23,18 +23,18 @@ const Layout = () => {
     (state: RootState) => state.theme.layout.type,
   );
 
-  const { authenticated } = useAuth();
-
   useDirection();
 
   useLocale();
 
+  const auth = useAuth();
+
   const AppLayout = useMemo(() => {
-    if (authenticated) {
+    if (auth.isAuthenticated) {
       return layouts[layoutType];
     }
     return lazy(() => import("./AuthLayout"));
-  }, [layoutType, authenticated]);
+  }, [layoutType, auth.isAuthenticated]);
 
   return (
     <Suspense
