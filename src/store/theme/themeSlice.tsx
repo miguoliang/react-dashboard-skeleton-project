@@ -60,7 +60,7 @@ export const themeSlice = createSlice({
     },
     setMode: (state, action: PayloadAction<ThemeMode>) => {
       const availableColorNav = availableNavColorLayouts.includes(
-        state.layout.type
+        state.layout.type,
       );
 
       if (
@@ -89,7 +89,7 @@ export const themeSlice = createSlice({
       }
 
       const availableColorNav = availableNavColorLayouts.includes(
-        action.payload
+        action.payload,
       );
 
       if (availableColorNav && state.mode === "light") {
@@ -123,7 +123,7 @@ export const themeSlice = createSlice({
         }
 
         const availableColorNav = availableNavColorLayouts.includes(
-          state.layout.type
+          state.layout.type,
         );
 
         if (availableColorNav && state.mode === "light") {

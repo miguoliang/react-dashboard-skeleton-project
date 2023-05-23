@@ -25,7 +25,7 @@ const useResponsive = () => {
         comparator === "larger"
           ? currentWindowWidth > value
           : currentWindowWidth < value,
-      ])
+      ]),
     );
   };
 

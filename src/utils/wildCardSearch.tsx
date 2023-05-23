@@ -3,7 +3,7 @@ type Item = Record<string, any>;
 export default function wildCardSearch(
   list: Item[],
   input: string,
-  specifyKey?: string
+  specifyKey?: string,
 ): Item[] {
   const searchText = (item: Item): boolean => {
     for (const key in item) {

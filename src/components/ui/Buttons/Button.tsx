@@ -61,7 +61,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             `h-${CONTROL_SIZES.lg}`,
             icon && !children
               ? `w-${CONTROL_SIZES.lg} ${sizeIconClass} text-2xl`
-              : "px-8 py-2 text-base"
+              : "px-8 py-2 text-base",
           );
           break;
         case "sm":
@@ -69,7 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             `h-${CONTROL_SIZES.sm}`,
             icon && !children
               ? `w-${CONTROL_SIZES.sm} ${sizeIconClass} text-lg`
-              : "px-3 py-2 text-sm"
+              : "px-3 py-2 text-sm",
           );
           break;
         case "xs":
@@ -77,7 +77,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             `h-${CONTROL_SIZES.xs}`,
             icon && !children
               ? `w-${CONTROL_SIZES.xs} ${sizeIconClass} text-base`
-              : "px-3 py-1 text-xs"
+              : "px-3 py-1 text-xs",
           );
           break;
         default:
@@ -85,7 +85,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             `h-${CONTROL_SIZES.md}`,
             icon && !children
               ? `w-${CONTROL_SIZES.md} ${sizeIconClass} text-xl`
-              : "px-8 py-2"
+              : "px-8 py-2",
           );
           break;
       }
@@ -181,7 +181,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       `radius-${shape}`,
       getButtonSize(),
       className,
-      block ? "w-full" : ""
+      block ? "w-full" : "",
     );
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -228,7 +228,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {renderChildren()}
       </button>
     );
-  }
+  },
 );
 
 export default Button;

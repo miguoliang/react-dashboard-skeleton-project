@@ -144,7 +144,7 @@ const BasePicker = forwardRef<HTMLInputElement, BasePickerProps>(
             },
           },
         ],
-      }
+      },
     );
 
     useRootClose(() => closeDropdown(), {
@@ -186,7 +186,7 @@ const BasePicker = forwardRef<HTMLInputElement, BasePickerProps>(
         </div>
       </>
     );
-  }
+  },
 );
 
 export default BasePicker;

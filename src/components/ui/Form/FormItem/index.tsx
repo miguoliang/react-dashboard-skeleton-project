@@ -69,13 +69,13 @@ const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
       "form-item",
       formItemLayout,
       className,
-      invalid ? "invalid" : ""
+      invalid ? "invalid" : "",
     );
 
     const formLabelClass = classNames(
       "form-label",
       label && getFormLabelLayoutClass(),
-      labelClass
+      labelClass,
     );
 
     const formLabelStyle = () => {
@@ -128,7 +128,7 @@ const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 export default FormItem;

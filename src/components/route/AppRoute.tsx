@@ -20,10 +20,10 @@ const AppRoute = ({
   const dispatch = useAppDispatch();
 
   const layoutType = useAppSelector(
-    (state: RootState) => state.theme.layout.type
+    (state: RootState) => state.theme.layout.type,
   );
   const previousLayout = useAppSelector(
-    (state: RootState) => state.theme.layout.previousType
+    (state: RootState) => state.theme.layout.previousType,
   );
 
   const handleLayoutChange = useCallback(() => {

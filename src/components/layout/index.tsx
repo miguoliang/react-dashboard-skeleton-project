@@ -19,7 +19,9 @@ const layouts: Record<
 };
 
 const Layout = () => {
-  const layoutType = useAppSelector((state: RootState) => state.theme.layout.type);
+  const layoutType = useAppSelector(
+    (state: RootState) => state.theme.layout.type,
+  );
 
   const { authenticated } = useAuth();
 

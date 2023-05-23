@@ -91,7 +91,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
       onGroupChange,
       groupValue,
       readOnly,
-    ]
+    ],
   );
 
   useEffect(() => {
@@ -111,7 +111,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
     labelDisabledClass,
     className,
     `${"inline-flex"}`,
-    `${radioGutter ? "m" + (vertical ? "b-" : "r-") + radioGutter : ""}`
+    `${radioGutter ? "m" + (vertical ? "b-" : "r-") + radioGutter : ""}`,
   );
 
   return (
@@ -134,7 +134,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
         <span
           className={classNames(
             "ltr:ml-2 rtl:mr-2",
-            disabled ? "opacity-50" : ""
+            disabled ? "opacity-50" : "",
           )}
         >
           {children}

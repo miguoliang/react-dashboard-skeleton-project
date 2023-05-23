@@ -29,7 +29,7 @@ const ActionLink = (props: ActionLinkProps) => {
     className: classNames(
       themeColor && textTheme,
       "hover:underline",
-      className
+      className,
     ),
   };
 

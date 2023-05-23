@@ -8,7 +8,7 @@ const THead = React.forwardRef(
       asElement?: keyof JSX.IntrinsicElements;
       className?: string;
     } & Record<string, any>,
-    ref: ForwardedRef<any>
+    ref: ForwardedRef<any>,
   ) => {
     const {
       children,
@@ -26,9 +26,9 @@ const THead = React.forwardRef(
         ref,
         ...rest,
       },
-      children
+      children,
     );
-  }
+  },
 );
 
 export default THead;

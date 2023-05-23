@@ -47,12 +47,12 @@ export default function getDayProps(props: {
     hasValue &&
     (Array.isArray(value)
       ? value.some((val) =>
-          isSameDate(dayjs(val).toDate(), dayjs(date).toDate())
+          isSameDate(dayjs(val).toDate(), dayjs(date).toDate()),
         )
       : isSameDate(dayjs(date).toDate(), dayjs(value).toDate()));
   const { inRange, lastInRange, firstInRange, selectedInRange } = getRangeProps(
     date,
-    range || [null, null]
+    range || [null, null],
   );
 
   return {

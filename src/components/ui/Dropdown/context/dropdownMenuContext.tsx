@@ -29,7 +29,7 @@ export function useDropdownMenuContext(menuRef?: any): DropdownMenuContextType {
     (element?: HTMLElement | null, props?: object) => {
       setItems((items) => [...items, { element, props }]);
     },
-    []
+    [],
   );
 
   const unregisterItem = useCallback((id: string) => {
@@ -54,7 +54,7 @@ export function useDropdownMenuContext(menuRef?: any): DropdownMenuContextType {
         focusSelf();
       }
     },
-    [items, focusSelf]
+    [items, focusSelf],
   );
 
   const lookupNextActiveItemIndex = useCallback(
@@ -66,7 +66,7 @@ export function useDropdownMenuContext(menuRef?: any): DropdownMenuContextType {
       }
       return null;
     },
-    [items]
+    [items],
   );
 
   const focusItemAt = useCallback(
@@ -87,7 +87,7 @@ export function useDropdownMenuContext(menuRef?: any): DropdownMenuContextType {
         }
       }
     },
-    [items, focusItem, focusSelf, lookupNextActiveItemIndex]
+    [items, focusItem, focusSelf, lookupNextActiveItemIndex],
   );
 
   const openMenu = useCallback(() => {

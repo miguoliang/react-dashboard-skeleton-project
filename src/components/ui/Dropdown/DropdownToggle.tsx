@@ -78,12 +78,12 @@ const DropdownToggle = React.forwardRef<HTMLDivElement, DropdownToggleProps>(
       toggleClass,
       className,
       toggleClassName,
-      disabled && disabledClass
+      disabled && disabledClass,
     );
 
     const dropdownToggleDefaultClass = classNames(
       dropdownToggleClass,
-      "dropdown-toggle-default"
+      "dropdown-toggle-default",
     );
 
     if (renderTitle) {
@@ -103,7 +103,7 @@ const DropdownToggle = React.forwardRef<HTMLDivElement, DropdownToggleProps>(
         </span>
       </div>
     );
-  }
+  },
 );
 
 export default DropdownToggle;

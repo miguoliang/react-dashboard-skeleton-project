@@ -28,7 +28,7 @@ const dropdownItemList = [
 
 export const UserDropdown = ({ className }: { className: string }) => {
   const { avatar, userName, authority, email } = useAppSelector(
-    (state) => state.auth.user
+    (state) => state.auth.user,
   );
 
   const { signOut } = useAuth();

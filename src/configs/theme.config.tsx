@@ -1,9 +1,4 @@
-import {
-  Direction,
-  LayoutType,
-  NavMode,
-  ThemeMode,
-} from "../constants/theme.constant";
+import { Direction, LayoutType, NavMode, ThemeMode } from "../constants/theme.constant";
 import { Size } from "../components/ui/utils/constant";
 
 /**

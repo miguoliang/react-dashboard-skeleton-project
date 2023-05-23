@@ -84,10 +84,10 @@ const TimeInput = forwardRef<HTMLInputElement, TimeInputProps>((props, ref) => {
   const secondsRef = useRef<HTMLInputElement>(null);
   const amPmRef = useRef<HTMLInputElement>(null);
   const [time, setTime] = useState(
-    getTimeValues(value || defaultValue, format, amLabel, pmLabel)
+    getTimeValues(value || defaultValue, format, amLabel, pmLabel),
   );
   const [_value, setValue] = useState<Date | null | undefined>(
-    value || defaultValue
+    value || defaultValue,
   );
 
   useDidUpdate(() => {
@@ -113,7 +113,7 @@ const TimeInput = forwardRef<HTMLInputElement, TimeInputProps>((props, ref) => {
       timeWithChange.seconds,
       format,
       pmLabel,
-      timeWithChange.amPm
+      timeWithChange.amPm,
     );
     setValue(newDate);
     typeof onChange === "function" && onChange(newDate);

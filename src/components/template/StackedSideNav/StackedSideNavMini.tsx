@@ -68,7 +68,7 @@ const StackedSideNavMini = (props: {
         onChange(includedRouteTree);
       }
     },
-    includedRouteTree ? [includedRouteTree.key] : []
+    includedRouteTree ? [includedRouteTree.key] : [],
   );
 
   return (

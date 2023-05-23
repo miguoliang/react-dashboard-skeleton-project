@@ -101,7 +101,7 @@ const NotificationToggle = ({
 
 export const Notification = ({ className }: { className: string }) => {
   const [notificationList, setNotificationList] = useState<NotificaitonData[]>(
-    []
+    [],
   );
   const [unreadNotification, setUnreadNotification] = useState(false);
   const [noResult, setNoResult] = useState(false);
@@ -163,7 +163,7 @@ export const Notification = ({ className }: { className: string }) => {
         setUnreadNotification(false);
       }
     },
-    [notificationList]
+    [notificationList],
   );
 
   return (
@@ -224,7 +224,7 @@ export const Notification = ({ className }: { className: string }) => {
             <div
               className={classNames(
                 "flex items-center justify-center",
-                notificationHeight
+                notificationHeight,
               )}
             >
               <Spinner size={40} />
@@ -234,7 +234,7 @@ export const Notification = ({ className }: { className: string }) => {
             <div
               className={classNames(
                 "flex items-center justify-center",
-                notificationHeight
+                notificationHeight,
               )}
             >
               <div className="text-center">

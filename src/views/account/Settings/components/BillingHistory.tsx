@@ -96,7 +96,7 @@ const BillingHistory = ({
                   <Th key={header.id} colSpan={header.colSpan}>
                     {flexRender(
                       header.column.columnDef.header,
-                      header.getContext()
+                      header.getContext(),
                     )}
                   </Th>
                 );
@@ -113,7 +113,7 @@ const BillingHistory = ({
                     <Td key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </Td>
                   );

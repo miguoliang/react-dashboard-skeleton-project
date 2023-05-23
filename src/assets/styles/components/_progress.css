@@ -1,13 +1,16 @@
 .progress {
     @apply inline-block;
 
-    &.circle {
-        @apply relative w-full;
-    }
+&
+.circle {
+    @apply relative w-full;
+}
 
-    &.line {
-        @apply relative w-full flex items-center;
-    }
+&
+.line {
+    @apply relative w-full flex items-center;
+}
+
 }
 
 .progress-bg {
@@ -16,9 +19,11 @@
 
 .progress-info {
 
-    &.line {
-        @apply ltr:ml-2 rtl:mr-2;
-    }
+&
+.line {
+    @apply ltr:ml-2 rtl:mr-2;
+}
+
 }
 
 .progress-inner {

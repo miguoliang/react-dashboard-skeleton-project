@@ -1,13 +1,15 @@
 .apexcharts-tooltip {
     @apply !shadow-lg;
 
-    &.apexcharts-theme-light {
-       @apply !border !border-gray-200 dark:!border-gray-600 !bg-white dark:!bg-gray-600;
+&
+.apexcharts-theme-light {
+    @apply !border !border-gray-200 dark:!border-gray-600 !bg-white dark:!bg-gray-600;
 
-        .apexcharts-tooltip-title {
-            @apply !border-b-0 !bg-transparent;
-        }
-    }
+.apexcharts-tooltip-title {
+    @apply !border-b-0 !bg-transparent;
+}
+
+}
 }
 
 .apexcharts-canvas {
@@ -31,10 +33,12 @@
 }
 
 .apexcharts-text {
-    tspan { 
-        @apply !fill-gray-500 dark:!fill-gray-400;
-    }
-} 
+
+tspan {
+    @apply !fill-gray-500 dark:!fill-gray-400;
+}
+
+}
 
 .apexcharts-menu-item {
     @apply text-left

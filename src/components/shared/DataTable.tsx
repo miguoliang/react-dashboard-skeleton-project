@@ -22,7 +22,6 @@ import {
 } from "components/ui";
 import TableRowSkeleton from "./loaders/TableRowSkeleton";
 import Loading from "./Loading";
-import { PageSizeOption } from "../../views/ui-components/navigation/Pagination/PageSize";
 import {
   ColumnDef,
   flexRender,
@@ -38,6 +37,11 @@ import { CheckboxProps } from "../ui/Checkbox/Checkbox";
 import { PaginationChangeHandler } from "../ui/Pagination/Pagers";
 import { Table as ReactTable } from "@tanstack/table-core/build/lib/types";
 import { SelectChangeHandler } from "components/ui/Select/Select";
+
+export type PageSizeOption = {
+  value: number;
+  label: string;
+};
 
 type IndeterminateCheckboxProps = Partial<{
   indeterminate: boolean;
@@ -82,7 +86,7 @@ const IndeterminateCheckbox = (props: IndeterminateCheckboxProps) => {
 
 export type DataTableCheckBoxChangeHandler<T = any> = (
   checked: boolean,
-  rows: Row<T> | Row<T>[]
+  rows: Row<T> | Row<T>[],
 ) => void;
 
 export type DataTableProps = {
@@ -144,14 +148,14 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
           ({
             value: number,
             label: `${number} / page`,
-          } as PageSizeOption)
+          } as PageSizeOption),
       ),
-    [pageSizes]
+    [pageSizes],
   );
 
   const handleCheckBoxChange: DataTableCheckBoxChangeHandler = (
     checked,
-    row
+    row,
   ) => {
     if (!loading) {
       onCheckBoxChange?.(checked, row);
@@ -160,7 +164,7 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
 
   const handleIndeterminateCheckBoxChange: DataTableCheckBoxChangeHandler = (
     checked,
-    rows
+    rows,
   ) => {
     if (!loading) {
       onIndeterminateCheckBoxChange?.(checked, rows);
@@ -198,7 +202,7 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
               onIndeterminateCheckBoxChange={(e) => {
                 handleIndeterminateCheckBoxChange(
                   e.target.checked,
-                  table.getRowModel().rows
+                  table.getRowModel().rows,
                 );
               }}
             />
@@ -263,13 +267,13 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
                         className={classNames(
                           header.column.getCanSort() &&
                             "cursor-pointer select-none point",
-                          loading && "pointer-events-none"
+                          loading && "pointer-events-none",
                         )}
                         onClick={header.column.getToggleSortingHandler()}
                       >
                         {flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                         {header.column.getCanSort() && (
                           <Sorter sort={header.column.getIsSorted()} />
@@ -302,7 +306,7 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
                         <Td key={cell.id}>
                           {flexRender(
                             cell.column.columnDef.cell,
-                            cell.getContext()
+                            cell.getContext(),
                           )}
                         </Td>
                       );

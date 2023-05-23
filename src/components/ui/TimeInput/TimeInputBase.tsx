@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const TimeINputBase = () => {
-    return <div>TimeINputBase</div>
-}
+  return <div>TimeINputBase</div>;
+};
 
-export default TimeINputBase
+export default TimeINputBase;

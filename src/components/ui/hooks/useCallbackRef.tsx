@@ -11,7 +11,7 @@ function useCallbackRef(cb: any) {
     () =>
       (...args: any) =>
         cbRef.current?.(...args),
-    []
+    [],
   );
 }
 

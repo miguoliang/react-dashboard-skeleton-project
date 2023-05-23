@@ -37,7 +37,7 @@ type MonthProps = {
     | "sunday";
   onDayKeyDown?: (
     date: { rowIndex: number; cellIndex: number; date: dayjs.ConfigType },
-    event: React.KeyboardEvent
+    event: React.KeyboardEvent,
   ) => void;
   daysRefs?: (HTMLButtonElement | null)[][];
   hideOutOfMonthDates?: boolean;
@@ -89,7 +89,7 @@ const Month = forwardRef<HTMLTableElement, MonthProps>((props, ref) => {
   const weekdays = getWeekdaysNames(
     finalLocale,
     firstDayOfWeek,
-    weekdayLabelFormat
+    weekdayLabelFormat,
   ).map((weekday) => (
     <th className="week-day-cell" key={weekday}>
       <span className="week-day-cell-content">{weekday}</span>
@@ -125,7 +125,7 @@ const Month = forwardRef<HTMLTableElement, MonthProps>((props, ref) => {
 
           return !dayProps.disabled && !dayProps.outOfMonth;
         }) || dayjs(month).startOf("month").toDate(),
-    []
+    [],
   );
 
   const rows = days.map((row, rowIndex) => {

@@ -1,3 +1,3 @@
-import StatusIcon from './StatusIcon'
+import StatusIcon from "./StatusIcon";
 
-export default StatusIcon
+export default StatusIcon;

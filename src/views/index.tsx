@@ -17,7 +17,7 @@ const { authenticatedEntryPath } = appConfig;
 
 const AllRoutes = (props: PageContainerProps) => {
   const userAuthority = useAppSelector(
-    (state: RootState) => state.auth.user.authority
+    (state: RootState) => state.auth.user.authority,
   );
 
   return (

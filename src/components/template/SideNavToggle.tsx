@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "store/hooks";
 
 export const SideNavToggle = ({ className }: { className: string }) => {
   const sideNavCollapse = useAppSelector(
-    (state) => state.theme.layout.sideNavCollapse
+    (state) => state.theme.layout.sideNavCollapse,
   );
   const dispatch = useAppDispatch();
 

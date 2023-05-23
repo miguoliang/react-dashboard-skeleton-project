@@ -58,7 +58,7 @@ const HighlightedText = ({
     <span
       className={classNames(
         "font-semibold text-gray-900 dark:text-gray-100",
-        className
+        className,
       )}
     >
       {children}

@@ -59,7 +59,7 @@ const Header = (props: HeaderProps) => {
     <div
       className={classNames(
         className,
-        "picker-header flex items-center justify-between mb-2"
+        "picker-header flex items-center justify-between mb-2",
       )}
       {...rest}
     >
@@ -67,14 +67,14 @@ const Header = (props: HeaderProps) => {
       <div
         className={classNames(
           renderCenter && "justify-between w-full",
-          "flex items-center rtl:flex-row-reverse"
+          "flex items-center rtl:flex-row-reverse",
         )}
       >
         <Button
           type="button"
           variant="plain"
           className={classNames(
-            !hasPrevious && renderCenter && "opacity-0 cursor-default"
+            !hasPrevious && renderCenter && "opacity-0 cursor-default",
           )}
           size="sm"
           icon={<HiChevronLeft />}
@@ -88,7 +88,7 @@ const Header = (props: HeaderProps) => {
           type="button"
           variant="plain"
           className={classNames(
-            !hasNext && renderCenter && "opacity-0 cursor-default"
+            !hasNext && renderCenter && "opacity-0 cursor-default",
           )}
           size="sm"
           icon={<HiChevronRight />}

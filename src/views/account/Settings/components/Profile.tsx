@@ -117,7 +117,7 @@ const Profile = ({
   const onSetFormFile = (
     form: FormikProps<any>,
     field: FieldInputProps<string>,
-    file: File[] | FileList | null
+    file: File[] | FileList | null,
   ) => {
     form.setFieldValue(field.name, URL.createObjectURL(first(file) as File));
   };
@@ -228,7 +228,7 @@ const Profile = ({
                         Control: CustomControl,
                       }}
                       value={langOptions.filter(
-                        (option) => option.value === values.lang
+                        (option) => option.value === values.lang,
                       )}
                       onChange={(option) =>
                         form.setFieldValue(field.name, option?.value)

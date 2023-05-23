@@ -1,13 +1,16 @@
 .drawer-content {
     @apply bg-white dark:bg-gray-800 shadow-xl absolute flex flex-col;
 
-    &.vertical {
-        @apply h-full;
-    }
+&
+.vertical {
+    @apply h-full;
+}
 
-    &.horizontal {
-        @apply w-full;
-    }
+&
+.horizontal {
+    @apply w-full;
+}
+
 }
 
 .drawer-header {
@@ -23,9 +26,12 @@
 }
 
 .drawer-open {
-    &.drawer-lock-scroll {
-        @apply overflow-hidden;
-    }
+
+&
+.drawer-lock-scroll {
+    @apply overflow-hidden;
+}
+
 }
 
 .drawer-overlay {

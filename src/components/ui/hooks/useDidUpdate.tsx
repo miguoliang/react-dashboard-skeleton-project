@@ -3,7 +3,7 @@ import { FunctionType } from "../../../constants/types";
 
 export default function useDidUpdate(
   callback: FunctionType,
-  dependencies: any[]
+  dependencies: any[],
 ) {
   const mounted = useRef(false);
 
@@ -11,7 +11,7 @@ export default function useDidUpdate(
     () => () => {
       mounted.current = false;
     },
-    []
+    [],
   );
 
   useEffect(() => {

@@ -10,7 +10,7 @@ import { useConfig } from "../ConfigProvider";
 
 export type MenuItemSelectEventHandler = (
   eventKey?: string,
-  event?: MouseEvent<Element>
+  event?: MouseEvent<Element>,
 ) => void;
 
 const MenuItem = React.forwardRef(
@@ -27,7 +27,7 @@ const MenuItem = React.forwardRef(
       style?: CSSProperties;
       variant?: NavMode;
     } & Record<string, any>,
-    ref: ForwardedRef<any>
+    ref: ForwardedRef<any>,
   ) => {
     const {
       asElement: Component = "li",
@@ -52,7 +52,7 @@ const MenuItem = React.forwardRef(
       isActive && menuItemActiveClass,
       disabled && disabledClass,
       !disabled && menuItemHoverClass,
-      className
+      className,
     );
 
     const handleOnClick: MouseEventHandler = (e) => {
@@ -68,9 +68,9 @@ const MenuItem = React.forwardRef(
         onClick: handleOnClick,
         ...rest,
       },
-      children
+      children,
     );
-  }
+  },
 );
 
 export default MenuItem;

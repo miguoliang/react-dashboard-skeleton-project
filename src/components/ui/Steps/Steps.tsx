@@ -48,7 +48,7 @@ const Steps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
         itemProps.status = status;
         itemProps.className = classNames(
           itemProps.className,
-          "steps-item-active"
+          "steps-item-active",
         );
       } else if (index < current) {
         itemProps.status = "complete";

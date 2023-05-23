@@ -40,7 +40,7 @@ const TimelineAvatar = ({ data }: { data: LogEvent }) => {
 
   const defaultAvatarProps = useMemo(
     () => ({ size: 30, shape: "circle" } as AvatarProps),
-    []
+    [],
   );
 
   if (avatarType.includes(data.type)) {

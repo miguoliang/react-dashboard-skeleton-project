@@ -138,7 +138,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     closable ? "justify-between" : "",
     closable && !title ? "items-center" : "",
     rounded ? "rounded-lg" : "",
-    className
+    className,
   );
 
   if (display === "hide") {

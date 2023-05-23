@@ -8,7 +8,7 @@ const TFoot = React.forwardRef(
       className?: string;
       asElement?: keyof JSX.IntrinsicElements;
     } & Record<string, any>,
-    ref: ForwardedRef<any>
+    ref: ForwardedRef<any>,
   ) => {
     const {
       children,
@@ -26,9 +26,9 @@ const TFoot = React.forwardRef(
         ref,
         ...rest,
       },
-      children
+      children,
     );
-  }
+  },
 );
 
 export default TFoot;

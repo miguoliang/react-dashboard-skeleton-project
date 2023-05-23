@@ -48,7 +48,7 @@ const TabNav = forwardRef<
     !disabled &&
       !isSelected &&
       `hover:text-${color} dark:hover:text-${themeColor}-100`,
-    className
+    className,
   );
 
   return (

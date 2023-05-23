@@ -25,7 +25,7 @@ const Prev = (props: {
   const pagerPrevClass = classNames(
     pagerClass.default,
     "pagination-pager-prev",
-    disabled ? pagerClass.disabled : pagerClass.inactive
+    disabled ? pagerClass.disabled : pagerClass.inactive,
   );
 
   return (

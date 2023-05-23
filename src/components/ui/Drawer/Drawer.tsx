@@ -86,7 +86,7 @@ const Drawer = (props: DrawerProps) => {
         base: classNames(
           "drawer-overlay",
           overlayClassName,
-          !showBackdrop && "bg-transparent"
+          !showBackdrop && "bg-transparent",
         ),
         afterOpen: "drawer-overlay-after-open",
         beforeClose: "drawer-overlay-before-close",
@@ -95,7 +95,7 @@ const Drawer = (props: DrawerProps) => {
       bodyOpenClassName={classNames(
         "drawer-open",
         lockScroll && "drawer-lock-scroll",
-        bodyOpenClassName
+        bodyOpenClassName,
       )}
       ariaHideApp={false}
       isOpen={isOpen}

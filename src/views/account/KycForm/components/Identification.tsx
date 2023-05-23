@@ -116,7 +116,7 @@ const DocumentUploadField = (props: {
   const onSetFormFile = (
     form: FormikProps<any>,
     field: FieldInputProps<any>,
-    file: File[] | FileList
+    file: File[] | FileList,
   ) => {
     form.setFieldValue(field.name, URL.createObjectURL(file[0]));
   };
@@ -268,7 +268,7 @@ const Identification = ({
                                       <SvgIcon
                                         className={classNames(
                                           "text-4xl ltr:mr-3 rtl:ml-3",
-                                          active && textTheme
+                                          active && textTheme,
                                         )}
                                       >
                                         <DocumentTypeIcon type={value} />
@@ -303,7 +303,7 @@ const Identification = ({
                           />
                           <span>{desc}</span>
                         </li>
-                      )
+                      ),
                     )}
                   </ul>
                 </div>

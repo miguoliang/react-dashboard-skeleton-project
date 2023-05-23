@@ -31,7 +31,7 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
         console.log("toggle submenu");
         onToggle?.(eventKey || "", e);
       },
-      [eventKey, onToggle]
+      [eventKey, onToggle],
     );
 
     const dropdownMenuDefaultClass = `dropdown-menu`;
@@ -40,12 +40,12 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
     const dropdownMenuClass = classNames(
       dropdownMenuDefaultClass,
       dropdownMenuPositionClass,
-      className
+      className,
     );
 
     const dropdownSubmenuClass = classNames(
       dropdownMenuDefaultClass,
-      "dropdown-submenu"
+      "dropdown-submenu",
     );
 
     const dropdownSubmenu = (
@@ -83,7 +83,7 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
         {...rest}
       />
     );
-  }
+  },
 );
 
 export default DropdownMenu;

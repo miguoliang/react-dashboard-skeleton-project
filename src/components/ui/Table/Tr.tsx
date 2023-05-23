@@ -8,7 +8,7 @@ const Tr = React.forwardRef(
       asElement?: keyof JSX.IntrinsicElements;
       className?: string;
     } & Record<string, any>,
-    ref: ForwardedRef<any>
+    ref: ForwardedRef<any>,
   ) => {
     const { children, asElement: Component = "tr", className, ...rest } = props;
 
@@ -21,8 +21,8 @@ const Tr = React.forwardRef(
         ref,
         ...rest,
       },
-      children
+      children,
     );
-  }
+  },
 );
 export default Tr;

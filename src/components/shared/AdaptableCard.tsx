@@ -45,12 +45,12 @@ const AdaptableCard = (props: AdaptableCardProps) => {
           `${
             !isLastChild ? "border-b pb-6" : ""
           } py-4 md:border-gray-200 md:dark:border-gray-600 rounded-br-none rounded-bl-none`,
-        type !== "modern" && shadow && "rounded-none shadow-none border-0"
+        type !== "modern" && shadow && "rounded-none shadow-none border-0",
       )}
       {...rest}
       bodyClass={classNames(
         type === "modern" ? "card-gutterless" : "",
-        bodyClass
+        bodyClass,
       )}
     >
       {children}

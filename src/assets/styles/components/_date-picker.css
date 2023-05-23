@@ -9,6 +9,7 @@
 .date-picker-header-label {
     @apply cursor-pointer mx-0.5 select-none text-gray-900 dark:text-gray-100;
 }
+
 .date-picker-current-month {
     @apply text-gray-700 dark:text-gray-100;
 }
@@ -120,6 +121,7 @@
 .year-picker-cell {
     @apply text-center py-2 rounded-lg font-semibold;
 }
+
 .month-picker-cell-disabled,
 .year-picker-cell-disabled {
     @apply opacity-30 bg-gray-300 cursor-not-allowed;

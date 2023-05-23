@@ -26,7 +26,7 @@ const GrowShrinkTag = forwardRef<HTMLDivElement, GrowShrinkTagProps>(
           "gap-1 font-bold border-0",
           growShrinkColor(value, "text"),
           growShrinkColor(value, "bg"),
-          className
+          className,
         )}
       >
         {value !== 0 && (
@@ -41,7 +41,7 @@ const GrowShrinkTag = forwardRef<HTMLDivElement, GrowShrinkTagProps>(
         </span>
       </Tag>
     );
-  }
+  },
 );
 
 export default GrowShrinkTag;

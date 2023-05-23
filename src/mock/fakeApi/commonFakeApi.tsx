@@ -5,7 +5,7 @@ import { Server } from "miragejs/server";
 export default function commonFakeApi(server: Server, apiPrefix: string) {
   server.get(
     `${apiPrefix}/notification/list`,
-    (schema) => schema.db.notificationListData
+    (schema) => schema.db.notificationListData,
   );
 
   server.get(`${apiPrefix}/notification/count`, ({ db }) => {
@@ -19,7 +19,7 @@ export default function commonFakeApi(server: Server, apiPrefix: string) {
     const body = JSON.parse(requestBody);
     const { query } = body;
     const searchData = schema.db.searchQueryPoolData.filter(
-      (elm: SearchQuery) => typeof elm !== "function"
+      (elm: SearchQuery) => typeof elm !== "function",
     );
     const result = wildCardSearch(searchData, query, "title");
     const categories: string[] = [];

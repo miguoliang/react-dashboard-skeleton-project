@@ -54,7 +54,7 @@ const getTopRouteKey = (navTree: NavigationTree[], key: string) => {
 
 function useMenuActive(
   navTree: NavigationTree | NavigationTree[],
-  key: string
+  key: string,
 ) {
   console.log("key", key);
   const activeRoute = useMemo(() => {

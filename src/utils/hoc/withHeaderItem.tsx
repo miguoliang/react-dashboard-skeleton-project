@@ -7,7 +7,7 @@ const withHeaderItem =
     props: Record<string, any> & {
       className?: string;
       hoverable?: boolean;
-    }
+    },
   ) => {
     const { className, hoverable = true } = props;
 
@@ -16,7 +16,7 @@ const withHeaderItem =
       className: classNames(
         "header-action-item",
         hoverable && "header-action-item-hoverable",
-        className
+        className,
       ),
     });
   };

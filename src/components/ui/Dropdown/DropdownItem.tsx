@@ -36,7 +36,7 @@ const DropdownItem = (
     style?: React.CSSProperties;
     submenu?: ReactElement<DropdownMenuProps>;
     trigger?: "click" | "hover" | "context";
-  } & Record<string, any>
+  } & Record<string, any>,
 ) => {
   const {
     asElement: Component = "li",
@@ -84,7 +84,7 @@ const DropdownItem = (
       onSelect?.(eventKey || "", e);
       menu?.onSelect?.(eventKey || "", e);
     },
-    [eventKey, onSelect, menu]
+    [eventKey, onSelect, menu],
   );
 
   const handleClick: MouseEventHandler = useCallback(
@@ -99,7 +99,7 @@ const DropdownItem = (
         activate(e);
       }
     },
-    [disabled, submenu, openSubmenuIfExists, activate]
+    [disabled, submenu, openSubmenuIfExists, activate],
   );
 
   const handleMouseOver = useCallback(() => {
@@ -152,7 +152,7 @@ const DropdownItem = (
         ...(variant === "custom" ? menuItemEventHandlers : {}),
         ...rest,
       },
-      (variant === "header" || variant === "custom") && children
+      (variant === "header" || variant === "custom") && children,
     );
   }
 

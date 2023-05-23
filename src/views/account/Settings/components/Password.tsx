@@ -42,14 +42,14 @@ const validationSchema = Yup.object().shape({
     .matches(/^[A-Za-z0-9_-]*$/, "Only Letters & Numbers Allowed"),
   confirmNewPassword: Yup.string().oneOf(
     [Yup.ref("newPassword"), null],
-    "Password not match"
+    "Password not match",
   ),
 });
 
 const Password = ({ data = [] }: { data?: LoginHistory[] }) => {
   const onFormSubmit = (
     values: FormikValues,
-    setSubmitting: (_: boolean) => void
+    setSubmitting: (_: boolean) => void,
   ) => {
     toast.push(<Notification title={"Password updated"} type="success" />, {
       placement: "top-center",
@@ -151,7 +151,7 @@ const Password = ({ data = [] }: { data?: LoginHistory[] }) => {
                 className={classNames(
                   "flex items-center px-4 py-6",
                   !isLastChild(data, index) &&
-                    "border-b border-gray-200 dark:border-gray-600"
+                    "border-b border-gray-200 dark:border-gray-600",
                 )}
               >
                 <div className="flex items-center">

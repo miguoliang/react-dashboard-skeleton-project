@@ -26,7 +26,7 @@ const CloseButton = React.forwardRef<HTMLSpanElement, CloseButtonProps>(
       "close-btn",
       defaultStyle && "close-btn-default",
       absolute && closeButtonAbsoluteClass,
-      className
+      className,
     );
 
     return (
@@ -39,7 +39,7 @@ const CloseButton = React.forwardRef<HTMLSpanElement, CloseButtonProps>(
         <HiX className={svgClass} />
       </span>
     );
-  }
+  },
 );
 
 export default CloseButton;

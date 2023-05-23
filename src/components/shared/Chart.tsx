@@ -45,7 +45,7 @@ const Chart = (props: ApexChartProps) => {
   const setLegendOffset = useCallback(() => {
     if (chartRef.current) {
       const legend = chartRef.current.querySelectorAll(
-        "div.apexcharts-legend"
+        "div.apexcharts-legend",
       )[0] as HTMLElement;
       if (direction === "rtl") {
         legend.style.right = "auto";

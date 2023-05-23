@@ -11,7 +11,7 @@ const TabList = forwardRef<HTMLDivElement, JSX.IntrinsicElements["div"]>(
     const tabListClass = classNames(
       "tab-list",
       `tab-list-${variant}`,
-      className
+      className,
     );
 
     return (
@@ -19,7 +19,7 @@ const TabList = forwardRef<HTMLDivElement, JSX.IntrinsicElements["div"]>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 export default TabList;

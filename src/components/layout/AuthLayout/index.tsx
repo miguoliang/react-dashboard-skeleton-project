@@ -6,7 +6,7 @@ import { useAppSelector } from "store/hooks";
 
 const AuthLayout = (props: Record<string, any>) => {
   const layoutType = useAppSelector(
-    (state: RootState) => state.theme.layout.type
+    (state: RootState) => state.theme.layout.type,
   );
 
   return (

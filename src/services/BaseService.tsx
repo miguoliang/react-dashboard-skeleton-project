@@ -1,8 +1,7 @@
 import axios from "axios";
 import appConfig from "configs/app.config";
 import { REQUEST_HEADER_AUTH_KEY, TOKEN_TYPE } from "constants/api.constant";
-import { PERSIST_STORE_NAME } from "constants/app.constant";
-import deepParseJson from "utils/deepParseJson";
+import { REDIRECT_URL_KEY } from "constants/app.constant";
 import store from "../store";
 import { onSignOutSuccess } from "../store/auth/sessionSlice";
 
@@ -15,14 +14,16 @@ const BaseService = axios.create({
 
 BaseService.interceptors.request.use(
   (config) => {
-    const rawPersistData = localStorage.getItem(PERSIST_STORE_NAME);
-    const persistData = deepParseJson(rawPersistData);
+    const { auth } = store.getState();
 
-    let accessToken = persistData.auth.session.token;
+    const accessToken = auth.accessToken;
 
     if (!accessToken) {
-      const { auth } = store.getState();
-      accessToken = auth.session.token;
+      const url = `${
+        appConfig.unAuthenticatedEntryPath
+      }&${REDIRECT_URL_KEY}=${encodeURIComponent(location.origin)}`;
+      window.location.replace(url);
+      return Promise.reject("Unauthorized!");
     }
 
     if (accessToken) {
@@ -33,7 +34,7 @@ BaseService.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 BaseService.interceptors.response.use(
@@ -46,7 +47,7 @@ BaseService.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default BaseService;

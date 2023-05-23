@@ -208,7 +208,7 @@ const personalInformation = ({
                           form={form}
                           options={genderOptions}
                           value={genderOptions.filter(
-                            (gender) => gender.value === values.gender
+                            (gender) => gender.value === values.gender,
                           )}
                           onChange={(gender) =>
                             form.setFieldValue(field.name, gender?.value)
@@ -220,7 +220,7 @@ const personalInformation = ({
                   <FormItem
                     label="Marital Status"
                     invalid={Boolean(
-                      errors.maritalStatus && touched.maritalStatus
+                      errors.maritalStatus && touched.maritalStatus,
                     )}
                     errorMessage={errors.maritalStatus}
                   >
@@ -238,7 +238,7 @@ const personalInformation = ({
                           form={form}
                           options={statusOptions}
                           value={statusOptions.filter(
-                            (status) => status.value === values.maritalStatus
+                            (status) => status.value === values.maritalStatus,
                           )}
                           onChange={(status) =>
                             form.setFieldValue(field.name, status?.value)
@@ -267,7 +267,7 @@ const personalInformation = ({
                         form={form}
                         options={countryList}
                         value={countryList.filter(
-                          (country) => country.value === values.nationality
+                          (country) => country.value === values.nationality,
                         )}
                         onChange={(country) =>
                           form.setFieldValue(field.name, country?.value)
@@ -281,7 +281,7 @@ const personalInformation = ({
                     label="Phone Number"
                     invalid={Boolean(
                       (errors.dialCode && touched.dialCode) ||
-                        (errors.phoneNumber && touched.phoneNumber)
+                        (errors.phoneNumber && touched.phoneNumber),
                     )}
                     errorMessage="Please enter your phone number"
                   >
@@ -305,7 +305,7 @@ const personalInformation = ({
                             form={form}
                             options={countryList}
                             value={countryList.filter(
-                              (country) => country.value === values.dialCode
+                              (country) => country.value === values.dialCode,
                             )}
                             onChange={(country) =>
                               form.setFieldValue(field.name, country?.value)

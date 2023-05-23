@@ -43,8 +43,8 @@ export function injectReducer(key: string, reducer: Reducer) {
         base,
         locale,
         ...asyncReducers,
-      })
-    )
+      }),
+    ),
   );
   persistor.persist();
 }

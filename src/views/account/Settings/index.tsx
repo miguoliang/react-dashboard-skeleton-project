@@ -10,7 +10,7 @@ import { settingData } from "../../../mock/data/accountData";
 const Profile = lazy(() => import("./components/Profile"));
 const Password = lazy(() => import("./components/Password"));
 const NotificationSetting = lazy(
-  () => import("./components/NotificationSetting")
+  () => import("./components/NotificationSetting"),
 );
 const Integration = lazy(() => import("./components/Integration"));
 const Billing = lazy(() => import("./components/Billing"));
@@ -34,7 +34,7 @@ const Settings = () => {
   const location = useLocation();
 
   const path = location.pathname.substring(
-    location.pathname.lastIndexOf("/") + 1
+    location.pathname.lastIndexOf("/") + 1,
   );
 
   const onTabChange = (val: string) => {

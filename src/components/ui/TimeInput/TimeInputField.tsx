@@ -20,7 +20,7 @@ type TimeInputFieldProps = CustomRefElementProps<
     onChange?: (
       value: string,
       triggerShift: boolean,
-      forceTriggerShift?: boolean
+      forceTriggerShift?: boolean,
     ) => void;
     setValue?: (value: string) => void;
     withSeparator?: boolean;
@@ -76,8 +76,8 @@ const TimeInputField = forwardRef<HTMLInputElement, TimeInputFieldProps>(
           clamp(
             parseInt(event.currentTarget.value, 10) + 1,
             min,
-            max
-          ).toString()
+            max,
+          ).toString(),
         );
 
         if (value !== padded) {
@@ -91,8 +91,8 @@ const TimeInputField = forwardRef<HTMLInputElement, TimeInputFieldProps>(
           clamp(
             parseInt(event.currentTarget.value, 10) - 1,
             min,
-            max
-          ).toString()
+            max,
+          ).toString(),
         );
 
         if (value !== padded) {
@@ -131,7 +131,7 @@ const TimeInputField = forwardRef<HTMLInputElement, TimeInputFieldProps>(
         {withSeparator && <span> : </span>}
       </>
     );
-  }
+  },
 );
 
 export default TimeInputField;

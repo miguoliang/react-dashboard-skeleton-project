@@ -85,7 +85,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
           menuControl.closeMenu?.();
         }
       },
-      [onClose, onOpen, onToggle, open, menuControl]
+      [onClose, onOpen, onToggle, open, menuControl],
     );
 
     const handleClick: MouseEventHandler = useCallback(
@@ -96,7 +96,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         }
         handleToggle();
       },
-      [disabled, handleToggle]
+      [disabled, handleToggle],
     );
 
     const handleMouseEnter = useCallback(() => {
@@ -124,7 +124,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         triggerTarget,
         overlayTarget,
         disabled: !open,
-      }
+      },
     );
 
     const dropdownProps = {
@@ -140,25 +140,25 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     if (arrayIndexOf("click", trigger)) {
       toggleEventHandlers.onClick = chainedFunction(
         handleClick,
-        toggleEventHandlers.onClick
+        toggleEventHandlers.onClick,
       );
     }
 
     if (arrayIndexOf("context", trigger)) {
       toggleEventHandlers.onContextMenu = chainedFunction(
         handleClick,
-        onContextMenu
+        onContextMenu,
       );
     }
 
     if (arrayIndexOf("hover", trigger)) {
       dropdownProps.onMouseEnter = chainedFunction(
         handleMouseEnter,
-        onMouseEnter
+        onMouseEnter,
       );
       dropdownProps.onMouseLeave = chainedFunction(
         handleMouseLeave,
-        onMouseLeave
+        onMouseLeave,
       );
     }
 
@@ -202,7 +202,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         </div>
       </DropdownContext.Provider>
     );
-  }
+  },
 );
 
 export default Dropdown;

@@ -7,7 +7,7 @@ export const getLogs = createAsyncThunk(
   async (data: { filter: boolean; activityIndex: number }) => {
     const response = await apiGetAccountLogData(data);
     return response.data;
-  }
+  },
 );
 
 export const filterLogs = createAsyncThunk(
@@ -15,7 +15,7 @@ export const filterLogs = createAsyncThunk(
   async (data: { activityIndex: number; filter: boolean }) => {
     const response = await apiGetAccountLogData(data);
     return response.data;
-  }
+  },
 );
 
 const dataSlice = createSlice({

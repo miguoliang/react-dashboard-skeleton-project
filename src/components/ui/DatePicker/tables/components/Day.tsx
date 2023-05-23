@@ -114,7 +114,7 @@ const Day = forwardRef<
         lastInRange &&
           !disabled &&
           "ltr:rounded-tr-lg ltr:rounded-br-lg rtl:rounded-tl-lg rtl:rounded-bl-lg",
-        className
+        className,
       )}
     >
       {typeof renderDay === "function"

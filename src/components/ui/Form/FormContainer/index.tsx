@@ -30,7 +30,7 @@ const FormContainer = (props: FormContainerProps) => {
               className={classNames(
                 "form-container",
                 context.layout,
-                className
+                className,
               )}
             >
               {children}

@@ -17,7 +17,7 @@ const getHighlightedRegion = (
     name: string;
     color: string;
   }[],
-  defaultMapColor: string
+  defaultMapColor: string,
 ) => {
   if (data.length > 0 || name) {
     for (let i = 0; i < data.length; i++) {
@@ -36,7 +36,7 @@ const getRegionHoverColor = (
     name: string;
     color: string;
   }[],
-  defaultMapColor = ""
+  defaultMapColor = "",
 ) => {
   if (data.length > 0 || name) {
     for (let i = 0; i < data.length; i++) {
@@ -56,7 +56,7 @@ const getRegionValue = (
     color: string;
   }[],
   suffix = "",
-  prefix = ""
+  prefix = "",
 ) => {
   if (data.length > 0 || name) {
     for (let i = 0; i < data.length; i++) {
@@ -102,7 +102,7 @@ const MapChart = (props: MapChartProps) => {
                 geography={geo}
                 onMouseEnter={() => {
                   setTooltipContent?.(
-                    getRegionValue(geoName, data, suffix, prefix)
+                    getRegionValue(geoName, data, suffix, prefix),
                   );
                 }}
                 onMouseLeave={() => {
@@ -112,7 +112,7 @@ const MapChart = (props: MapChartProps) => {
                 fill={getHighlightedRegion(
                   geoName,
                   data,
-                  mode === "dark" ? twColor.gray["500"] : twColor.gray["100"]
+                  mode === "dark" ? twColor.gray["500"] : twColor.gray["100"],
                 )}
                 stroke={
                   mode === "dark" ? twColor.gray["600"] : twColor.gray["300"]
@@ -124,7 +124,7 @@ const MapChart = (props: MapChartProps) => {
                       data,
                       mode === "dark"
                         ? twColor.gray["500"]
-                        : twColor.gray["100"]
+                        : twColor.gray["100"],
                     ),
                     outline: "none",
                   },

@@ -70,14 +70,14 @@ const AddressForm = (props: {
     (name: string) => {
       return get(errors, name);
     },
-    [errors]
+    [errors],
   );
 
   const getTouched = useCallback(
     (name: string) => {
       return get(touched, name);
     },
-    [touched]
+    [touched],
   );
 
   return (
@@ -102,7 +102,7 @@ const AddressForm = (props: {
                 form={form}
                 options={countryList}
                 value={countryList.filter(
-                  (c) => c.value === get(values, countryName)
+                  (c) => c.value === get(values, countryName),
                 )}
                 onChange={(c) => form.setFieldValue(field.name, c?.value)}
               />
@@ -112,7 +112,7 @@ const AddressForm = (props: {
         <FormItem
           label="Address Line 1"
           invalid={Boolean(
-            getError(addressLine1Name) && getTouched(addressLine1Name)
+            getError(addressLine1Name) && getTouched(addressLine1Name),
           )}
           errorMessage={getError(addressLine1Name)}
         >
@@ -129,7 +129,7 @@ const AddressForm = (props: {
         <FormItem
           label="Address Line 2"
           invalid={Boolean(
-            getError(addressLine2Name) && getTouched(addressLine2Name)
+            getError(addressLine2Name) && getTouched(addressLine2Name),
           )}
           errorMessage={getError(addressLine2Name)}
         >
@@ -221,7 +221,7 @@ const AddressInformation = ({
   const onCheck = (
     value: any,
     field: FieldInputProps<any>,
-    form: FormikProps<any>
+    form: FormikProps<any>,
   ) => {
     form.setFieldValue(field.name, value);
   };

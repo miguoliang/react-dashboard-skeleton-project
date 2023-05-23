@@ -5,9 +5,11 @@
 .notification-content {
     @apply p-4 flex;
 
-    &.no-child {
-        @apply items-center;
-    }
+&
+.no-child {
+    @apply items-center;
+}
+
 }
 
 .notification-title {

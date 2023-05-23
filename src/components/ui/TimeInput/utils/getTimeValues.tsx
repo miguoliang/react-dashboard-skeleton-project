@@ -5,7 +5,7 @@ export function getTimeValues(
   value: dayjs.ConfigType,
   format: string,
   amLabel: string,
-  pmLabel: string
+  pmLabel: string,
 ) {
   if (!(value instanceof Date)) {
     return { hours: "", minutes: "", seconds: "", amPm: "" };

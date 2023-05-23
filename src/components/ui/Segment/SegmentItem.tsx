@@ -34,7 +34,7 @@ const SegmentItem = forwardRef<
     switch (size) {
       case "lg":
         sizeClass = classNames(
-          `h-${CONTROL_SIZES.lg} md:px-8 py-2 px-4 text-base`
+          `h-${CONTROL_SIZES.lg} md:px-8 py-2 px-4 text-base`,
         );
         break;
       case "sm":
@@ -84,7 +84,7 @@ const SegmentItem = forwardRef<
         active && "segment-item-active",
         disabled && "segment-item-disabled",
         getSegmentSize(),
-        className
+        className,
       )}
       onClick={onSegmentItemClick}
       {...rest}

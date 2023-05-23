@@ -43,7 +43,7 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
           <BsFillCaretLeftFill
             className={classNames(
               arrowDefaultClass,
-              "-left-2 top-1/2 transform -translate-y-1/2"
+              "-left-2 top-1/2 transform -translate-y-1/2",
             )}
           />
         );
@@ -82,7 +82,7 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
           <BsFillCaretRightFill
             className={classNames(
               arrowDefaultClass,
-              "-right-2 top-1/2 transform -translate-y-1/2"
+              "-right-2 top-1/2 transform -translate-y-1/2",
             )}
           />
         );

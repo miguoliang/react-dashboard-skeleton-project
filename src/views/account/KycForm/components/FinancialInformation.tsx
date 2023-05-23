@@ -32,12 +32,12 @@ const excludedOccupation = ["unemployed", "student", "retired"];
 
 const validationSchema = Yup.object().shape({
   taxResident: Yup.string().required(
-    "Please select your country of tax resident"
+    "Please select your country of tax resident",
   ),
   tin: Yup.string().when("noTin", {
     is: false,
     then: Yup.string().required(
-      "Please enter your Taxpayer Identification number (TIN)"
+      "Please enter your Taxpayer Identification number (TIN)",
     ),
     otherwise: (schema) => schema,
   }),
@@ -49,17 +49,17 @@ const validationSchema = Yup.object().shape({
   noTin: Yup.bool(),
   occupation: Yup.string().required("Please choose your occupation"),
   annualIncome: Yup.string().required(
-    "Please tell us your annual income range"
+    "Please tell us your annual income range",
   ),
   sourceOfWealth: Yup.string().required(
-    "Please tell us the source of funds use in this account"
+    "Please tell us the source of funds use in this account",
   ),
   companyInformation: Yup.object().when("occupation", {
     is: (value: string) => value && !excludedOccupation.includes(value),
     then: Yup.object().shape({
       companyName: Yup.string().required("Please enter your company name"),
       contactNumber: Yup.string().required(
-        "Please enter your company contact number"
+        "Please enter your company contact number",
       ),
       country: Yup.string().required("Please select country"),
       addressLine1: Yup.string().required("Please enter your address"),
@@ -176,7 +176,7 @@ const FinancialInformation = ({
                     <FormItem
                       label="Tax resident of"
                       invalid={Boolean(
-                        errors.taxResident && touched.taxResident
+                        errors.taxResident && touched.taxResident,
                       )}
                       errorMessage={errors.taxResident}
                     >
@@ -194,7 +194,7 @@ const FinancialInformation = ({
                             form={form}
                             options={countryList}
                             value={countryList.filter(
-                              (country) => country.value === values.taxResident
+                              (country) => country.value === values.taxResident,
                             )}
                             onChange={(country) =>
                               form.setFieldValue(field.name, country?.value)
@@ -207,7 +207,7 @@ const FinancialInformation = ({
                       <FormItem
                         label="Please provide an appropriate reason if no TIN"
                         invalid={Boolean(
-                          errors.noTinReason && touched.noTinReason
+                          errors.noTinReason && touched.noTinReason,
                         )}
                         errorMessage={errors.noTinReason}
                       >
@@ -225,7 +225,8 @@ const FinancialInformation = ({
                               form={form}
                               options={noTinReasonOption}
                               value={noTinReasonOption.filter(
-                                (reason) => reason.value === +values.noTinReason
+                                (reason) =>
+                                  reason.value === +values.noTinReason,
                               )}
                               onChange={(reason) =>
                                 form.setFieldValue(field.name, reason?.value)
@@ -279,7 +280,7 @@ const FinancialInformation = ({
                           form={form}
                           options={occupationOptions}
                           value={occupationOptions.filter(
-                            (status) => status.value === values.occupation
+                            (status) => status.value === values.occupation,
                           )}
                           onChange={(status) =>
                             form.setFieldValue(field.name, status?.value)
@@ -300,7 +301,7 @@ const FinancialInformation = ({
                             }
                             errorMessage={getIn(
                               errors,
-                              "companyInformation.companyName"
+                              "companyInformation.companyName",
                             )}
                           >
                             <Field
@@ -316,7 +317,7 @@ const FinancialInformation = ({
                             invalid={Boolean(
                               errors.companyInformation &&
                                 errors.companyInformation.contactNumber &&
-                                touched.companyInformation?.contactNumber
+                                touched.companyInformation?.contactNumber,
                             )}
                             errorMessage={
                               errors.companyInformation &&
@@ -355,7 +356,7 @@ const FinancialInformation = ({
                             }
                             errorMessage={getIn(
                               errors,
-                              "companyInformation.country"
+                              "companyInformation.country",
                             )}
                           >
                             <Field name="companyInformation.country">
@@ -376,8 +377,8 @@ const FinancialInformation = ({
                                       c.value ===
                                       getIn(
                                         values,
-                                        "companyInformation.country"
-                                      )
+                                        "companyInformation.country",
+                                      ),
                                   )}
                                   onChange={(c) =>
                                     form.setFieldValue(field.name, c?.value)
@@ -391,13 +392,13 @@ const FinancialInformation = ({
                             invalid={
                               getIn(
                                 errors,
-                                "companyInformation.addressLine1"
+                                "companyInformation.addressLine1",
                               ) &&
                               getIn(touched, "companyInformation.addressLine1")
                             }
                             errorMessage={getIn(
                               errors,
-                              "companyInformation.addressLine1"
+                              "companyInformation.addressLine1",
                             )}
                           >
                             <Field
@@ -415,13 +416,13 @@ const FinancialInformation = ({
                             invalid={
                               getIn(
                                 errors,
-                                "companyInformation.addressLine2"
+                                "companyInformation.addressLine2",
                               ) &&
                               getIn(touched, "companyInformation.addressLine2")
                             }
                             errorMessage={getIn(
                               errors,
-                              "companyInformation.addressLine2"
+                              "companyInformation.addressLine2",
                             )}
                           >
                             <Field
@@ -440,7 +441,7 @@ const FinancialInformation = ({
                             }
                             errorMessage={getIn(
                               errors,
-                              "companyInformation.city"
+                              "companyInformation.city",
                             )}
                           >
                             <Field
@@ -461,7 +462,7 @@ const FinancialInformation = ({
                             }
                             errorMessage={getIn(
                               errors,
-                              "companyInformation.state"
+                              "companyInformation.state",
                             )}
                           >
                             <Field
@@ -480,7 +481,7 @@ const FinancialInformation = ({
                             }
                             errorMessage={getIn(
                               errors,
-                              "companyInformation.zipCode"
+                              "companyInformation.zipCode",
                             )}
                           >
                             <Field
@@ -498,7 +499,7 @@ const FinancialInformation = ({
                     <FormItem
                       label="Annual Income"
                       invalid={Boolean(
-                        errors.annualIncome && touched.annualIncome
+                        errors.annualIncome && touched.annualIncome,
                       )}
                       errorMessage={errors.annualIncome}
                     >
@@ -516,7 +517,7 @@ const FinancialInformation = ({
                             form={form}
                             options={annualIncomeOptions}
                             value={annualIncomeOptions.filter(
-                              (status) => status.value === values.annualIncome
+                              (status) => status.value === values.annualIncome,
                             )}
                             onChange={(status) =>
                               form.setFieldValue(field.name, status?.value)
@@ -528,7 +529,7 @@ const FinancialInformation = ({
                     <FormItem
                       label="Source of Wealth"
                       invalid={Boolean(
-                        errors.sourceOfWealth && touched.sourceOfWealth
+                        errors.sourceOfWealth && touched.sourceOfWealth,
                       )}
                       errorMessage={errors.sourceOfWealth}
                     >
@@ -546,7 +547,8 @@ const FinancialInformation = ({
                             form={form}
                             options={sourceOfWealthOptions}
                             value={sourceOfWealthOptions.filter(
-                              (status) => status.value === values.sourceOfWealth
+                              (status) =>
+                                status.value === values.sourceOfWealth,
                             )}
                             onChange={(status) =>
                               form.setFieldValue(field.name, status?.value)

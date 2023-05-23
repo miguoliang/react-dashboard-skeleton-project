@@ -25,7 +25,7 @@ const Addon = React.forwardRef<HTMLDivElement, AddonProps>((props, ref) => {
   const addonClass = classNames(
     "input-addon",
     `input-addon-${inputAddonSize} h-${CONTROL_SIZES[inputAddonSize]}`,
-    className
+    className,
   );
 
   return (

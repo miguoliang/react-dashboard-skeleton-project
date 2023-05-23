@@ -27,7 +27,7 @@ const FormRow = (props: {
       className={classNames(
         "grid md:grid-cols-3 gap-4 py-8",
         border && "border-b border-gray-200 dark:border-gray-600",
-        alignCenter && "items-center"
+        alignCenter && "items-center",
       )}
     >
       <div className="font-semibold">{label}</div>

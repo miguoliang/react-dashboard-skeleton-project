@@ -100,7 +100,7 @@ const VerticalMenuContent = (props: VerticalMenuContentProps) => {
                   userAuthority={userAuthority}
                   direction={direction}
                 />
-              )
+              ),
             )}
           </MenuGroup>
         );

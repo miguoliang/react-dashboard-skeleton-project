@@ -1,5 +1,5 @@
 .badge {
-    @apply rounded-full px-2 py-0.5 text-xs bg-red-500 text-white;   
+    @apply rounded-full px-2 py-0.5 text-xs bg-red-500 text-white;
 }
 
 .badge-dot {
@@ -11,13 +11,13 @@
 }
 
 .badge-inner {
-    @apply 
-        absolute z-10 
-        transform
-        top-0
-        ltr:translate-x-2/4 
-        rtl:-translate-x-2/4 
-        -translate-y-2/4  
-        ltr:right-0 
-        rtl:left-0;
+    @apply
+    absolute z-10
+    transform
+    top-0
+    ltr:translate-x-2/4
+    rtl:-translate-x-2/4
+    -translate-y-2/4
+    ltr:right-0
+    rtl:left-0;
 }

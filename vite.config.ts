@@ -22,7 +22,7 @@ export default defineConfig({
       include: ["**/*.md"],
     },
   },
-  server: { open: true, port: 3000 },
+  server: { open: true, port: 3000, host: "localhost" },
   define: {
     "process.env": `"{}"`,
   },

@@ -1,10 +1,10 @@
-import { combineReducers } from '@reduxjs/toolkit'
-import session from './sessionSlice'
-import user from './userSlice'
+import { combineReducers } from "@reduxjs/toolkit";
+import session from "./sessionSlice";
+import user from "./userSlice";
 
 const reducer = combineReducers({
-    session,
-    user,
-})
+  session,
+  user,
+});
 
-export default reducer
+export default reducer;

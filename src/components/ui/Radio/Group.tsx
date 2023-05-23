@@ -37,7 +37,7 @@ const Group = React.forwardRef<HTMLDivElement, GroupProps>((props, ref) => {
       setValue(nextValue);
       onChange?.(nextValue, e);
     },
-    [onChange, setValue]
+    [onChange, setValue],
   );
 
   const contextValue = useMemo(
@@ -50,13 +50,13 @@ const Group = React.forwardRef<HTMLDivElement, GroupProps>((props, ref) => {
       radioGutter,
       onChange: onRadioGroupChange,
     }),
-    [disabled, onRadioGroupChange, vertical, name, color, radioGutter, value]
+    [disabled, onRadioGroupChange, vertical, name, color, radioGutter, value],
   );
 
   const radioGroupClass = classNames(
     "radio-group",
     vertical && "vertical",
-    className
+    className,
   );
 
   const groupChild = () => {

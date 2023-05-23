@@ -20,7 +20,7 @@ const DefaultLoading = forwardRef(
           ref,
           className: classNames(
             className,
-            !customLoader && "flex items-center justify-center h-full"
+            !customLoader && "flex items-center justify-center h-full",
           ),
         },
         children,
@@ -28,12 +28,12 @@ const DefaultLoading = forwardRef(
           <>{customLoader}</>
         ) : (
           <Spinner className={spinnerClass} size={40} />
-        )
+        ),
       );
     } else {
       return <>{children}</>;
     }
-  }
+  },
 );
 
 type LoadingProps = {
@@ -75,9 +75,9 @@ const CoveredLoading = forwardRef(
             <Spinner className={spinnerClass} size={40} />
           )}
         </div>
-      )
+      ),
     );
-  }
+  },
 );
 
 const Loading = (props: LoadingProps) => {

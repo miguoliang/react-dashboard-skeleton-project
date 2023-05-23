@@ -4,7 +4,7 @@ import { getStartOfWeek } from "./getStartOfWeek";
 export function getWeekdaysNames(
   locale: string,
   firstDayOfWeek = "monday",
-  format = "dd"
+  format = "dd",
 ) {
   const names = [];
   const date = getStartOfWeek(new Date(), firstDayOfWeek);

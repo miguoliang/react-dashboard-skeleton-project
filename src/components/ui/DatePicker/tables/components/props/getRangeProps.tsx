@@ -3,7 +3,7 @@ import { isSameDate } from "../../../utils";
 
 export default function getRangeProps(
   date: dayjs.ConfigType,
-  range: [dayjs.ConfigType, dayjs.ConfigType]
+  range: [dayjs.ConfigType, dayjs.ConfigType],
 ) {
   const hasRange =
     Array.isArray(range) && range.every((val) => val instanceof Date);

@@ -57,7 +57,7 @@ const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
           }, 400);
         }
       },
-      [onClose, clear, triggerByToast]
+      [onClose, clear, triggerByToast],
     );
 
     const notificationClass = classNames("notification", className);
@@ -76,7 +76,7 @@ const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
         <div
           className={classNames(
             "notification-content",
-            !children && "no-child"
+            !children && "no-child",
           )}
         >
           {type && !customIcon ? (
@@ -108,7 +108,7 @@ const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 export default Notification;

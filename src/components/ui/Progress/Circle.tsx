@@ -11,7 +11,7 @@ const Circle = (
     width: string | number;
     children: React.ReactNode;
     trailColor: string;
-  }>
+  }>,
 ) => {
   const {
     strokeWidth = 1,

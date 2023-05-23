@@ -67,7 +67,7 @@ const MonthTable = (props: MonthTableProps) => {
             !disabled &&
             `bg-${themeColor}-${primaryColorLevel} text-white month-picker-cell-active`,
           !active && !disabled && "hover:bg-gray-100",
-          disabled && "month-picker-cell-disabled"
+          disabled && "month-picker-cell-disabled",
         )}
         disabled={disabled}
         onMouseDown={(event) => preventFocus && event.preventDefault()}

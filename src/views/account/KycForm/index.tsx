@@ -10,27 +10,27 @@ import { injectReducer } from "store";
 injectReducer("accountDetailForm", reducer);
 
 const PersonalInformation = lazy(
-  () => import("./components/PersonalInformation")
+  () => import("./components/PersonalInformation"),
 );
 const Identification = lazy(() => import("./components/Identification"));
 const AddressInformation = lazy(
-  () => import("./components/AddressInformation")
+  () => import("./components/AddressInformation"),
 );
 const FinancialInformation = lazy(
-  () => import("./components/FinancialInformation")
+  () => import("./components/FinancialInformation"),
 );
 const AccountReview = lazy(() => import("./components/AccountReview"));
 
 const DetailForm = () => {
   const dispatch = useAppDispatch();
   const stepStatus = useAppSelector(
-    (state) => state.accountDetailForm.data.stepStatus
+    (state) => state.accountDetailForm.data.stepStatus,
   );
   const currentStep = useAppSelector(
-    (state) => state.accountDetailForm.state.currentStep
+    (state) => state.accountDetailForm.state.currentStep,
   );
   const formData = useAppSelector(
-    (state) => state.accountDetailForm.data.formData
+    (state) => state.accountDetailForm.data.formData,
   );
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const DetailForm = () => {
       setStepStatus({
         [currentStep]: { status: "complete" },
         [nextStep]: { status: "current" },
-      })
+      }),
     );
     dispatch(setCurrentStep(nextStep));
   };
@@ -56,7 +56,7 @@ const DetailForm = () => {
 
   const currentStepStatus = useMemo(
     () => stepStatus[currentStep].status,
-    [stepStatus, currentStep]
+    [stepStatus, currentStep],
   );
 
   return (

@@ -59,7 +59,7 @@ const RangeCalendar = forwardRef<HTMLDivElement, RangeCalendarProps>(
 
     const shouldHighlightDate = (
       date: dayjs.ConfigType,
-      modifiers?: Record<string, boolean>
+      modifiers?: Record<string, boolean>,
     ) => {
       if (pickedDate instanceof Date && hoveredDay instanceof Date) {
         const result = [hoveredDay, pickedDate];
@@ -76,7 +76,7 @@ const RangeCalendar = forwardRef<HTMLDivElement, RangeCalendarProps>(
 
     const isPickedDateFirstInRange = (
       date: dayjs.ConfigType,
-      modifiers?: Record<string, boolean>
+      modifiers?: Record<string, boolean>,
     ) => {
       if (pickedDate instanceof Date && hoveredDay instanceof Date) {
         const result = [hoveredDay, pickedDate];
@@ -89,7 +89,7 @@ const RangeCalendar = forwardRef<HTMLDivElement, RangeCalendarProps>(
 
     const isPickedDateLastInRange = (
       date: dayjs.ConfigType,
-      modifiers?: Record<string, boolean>
+      modifiers?: Record<string, boolean>,
     ) => {
       if (pickedDate instanceof Date && hoveredDay instanceof Date) {
         const result = [hoveredDay, pickedDate];
@@ -118,7 +118,7 @@ const RangeCalendar = forwardRef<HTMLDivElement, RangeCalendarProps>(
         {...rest}
       />
     );
-  }
+  },
 );
 
 RangeCalendar.defaultProps = {

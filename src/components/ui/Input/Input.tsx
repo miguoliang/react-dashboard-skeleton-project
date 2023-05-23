@@ -90,7 +90,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     !prefix && !suffix ? className : "",
     disabled && "input-disabled",
     isInvalid && "input-invalid",
-    textArea && "input-textarea"
+    textArea && "input-textarea",
   );
 
   const prefixNode = useRef<HTMLElement | null>(null);

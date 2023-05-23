@@ -38,7 +38,7 @@ const Integration = () => {
   const handleToggle = (
     bool: boolean,
     name: string,
-    category: "installed" | "available"
+    category: "installed" | "available",
   ) => {
     setData((prevState) => {
       const nextState = cloneDeep(prevState);
@@ -48,7 +48,7 @@ const Integration = () => {
             app.active = !bool;
           }
           return app;
-        }
+        },
       );
       nextState[category] = nextCategoryValue;
       return nextState;
@@ -57,7 +57,7 @@ const Integration = () => {
 
   const onViewIntegrationOpen = (
     details: IntegrationData,
-    installed: boolean
+    installed: boolean,
   ) => {
     setViewIntegration(true);
     setIntegrationDetails({ ...details, installed });
@@ -73,7 +73,7 @@ const Integration = () => {
       setData((prevState: typeof settingIntegrationData) => {
         const nextState = cloneDeep(prevState);
         const nextAvailableApp = prevState.available?.filter(
-          (app) => app.name !== details?.name
+          (app) => app.name !== details?.name,
         );
         nextState.available = nextAvailableApp;
         details && nextState.installed?.push(details);

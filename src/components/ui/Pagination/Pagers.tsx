@@ -134,7 +134,7 @@ const Pagers = (props: PagerProps) => {
       }
       onChange({ pageIndex: newPage, pageSize: 10 });
     },
-    [currentPage, onChange]
+    [currentPage, onChange],
   );
 
   const getPages = useMemo(() => {
@@ -173,7 +173,7 @@ const Pagers = (props: PagerProps) => {
   const getPagerClass = (index: number) => {
     return classNames(
       pagerClass.default,
-      currentPage === index ? pagerClass.active : pagerClass.inactive
+      currentPage === index ? pagerClass.active : pagerClass.inactive,
     );
   };
 

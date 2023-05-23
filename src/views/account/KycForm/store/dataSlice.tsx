@@ -6,7 +6,7 @@ export const getForm = createAsyncThunk(
   async () => {
     const response = await apiGetAccountFormData();
     return response.data;
-  }
+  },
 );
 
 const dataSlice = createSlice({

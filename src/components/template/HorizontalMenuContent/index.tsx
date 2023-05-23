@@ -50,7 +50,7 @@ const HorizontalMenuContent = ({
                       <DropdownMenu
                         title={t(
                           secondarySubNav.translateKey,
-                          secondarySubNav.title
+                          secondarySubNav.title,
                         )}
                       >
                         {secondarySubNav.subMenu.map((tertiarySubNav) => (

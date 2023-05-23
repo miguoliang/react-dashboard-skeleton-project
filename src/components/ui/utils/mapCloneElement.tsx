@@ -16,7 +16,7 @@ function map(children: any | any[], func: FunctionType, context?: any) {
 function mapCloneElement(
   children: any | any[],
   func: FunctionType,
-  context?: any
+  context?: any,
 ) {
   return map(
     children,
@@ -25,7 +25,7 @@ function mapCloneElement(
         key: index,
         ...func(child, index),
       }),
-    context
+    context,
   );
 }
 

@@ -56,7 +56,7 @@ const ColorBadge = ({
   themeColor: string;
 }) => {
   const primaryColorLevel = useAppSelector(
-    (state) => state.theme.primaryColorLevel
+    (state) => state.theme.primaryColorLevel,
   );
 
   return (
@@ -114,7 +114,7 @@ const ThemeSwitcher = () => {
 
   const themeColor = useAppSelector((state) => state.theme.themeColor);
   const primaryColorLevel = useAppSelector(
-    (state) => state.theme.primaryColorLevel
+    (state) => state.theme.primaryColorLevel,
   );
 
   const onThemeColorChange: SelectChangeHandler<ColorListOption> = (option) => {
@@ -123,7 +123,7 @@ const ThemeSwitcher = () => {
   };
 
   const onThemeColorLevelChange: SelectChangeHandler<ColorLevelListOption> = (
-    option
+    option,
   ) => {
     const { primaryColorLevel } = useConfig();
     dispatch(setThemeColorLevel(option?.value ?? primaryColorLevel));
@@ -145,7 +145,7 @@ const ThemeSwitcher = () => {
         size="sm"
         options={colorLevelList}
         value={colorLevelList.filter(
-          (color) => color.value === primaryColorLevel
+          (color) => color.value === primaryColorLevel,
         )}
         onChange={onThemeColorLevelChange}
       />

@@ -85,11 +85,11 @@ const Dialog = (props: DialogProps) => {
       }}
       portalClassName={classNames(
         "dialog-portal",
-        getClassName(portalClassName)
+        getClassName(portalClassName),
       )}
       bodyOpenClassName={classNames(
         "dialog-open",
-        getClassName(bodyOpenClassName)
+        getClassName(bodyOpenClassName),
       )}
       ariaHideApp={false}
       isOpen={isOpen}
@@ -113,7 +113,7 @@ const Dialog = (props: DialogProps) => {
 
 function getClassName(
   className?: string | Modal.Classes | null,
-  type?: keyof Modal.Classes
+  type?: keyof Modal.Classes,
 ): string {
   if (className === null) {
     return "";

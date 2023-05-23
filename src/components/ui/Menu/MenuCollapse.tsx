@@ -14,7 +14,7 @@ import { HiChevronDown } from "react-icons/hi";
 
 export type MenuCollapseEventHandler = (
   collapse: boolean,
-  event: MouseEvent<HTMLDivElement>
+  event: MouseEvent<HTMLDivElement>,
 ) => void;
 
 type MenuCollapseProps = {
@@ -77,7 +77,7 @@ const MenuCollapse = (props: MenuCollapseProps) => {
   const menuCollapseItemClass = classNames(
     "menu-collapse-item",
     `menu-collapse-item-${variant}`,
-    className
+    className,
   );
 
   return (

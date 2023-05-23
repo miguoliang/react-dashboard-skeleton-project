@@ -14,7 +14,7 @@ const SvgIcon = forwardRef<HTMLSpanElement, JSX.IntrinsicElements["span"]>(
         {children}
       </span>
     );
-  }
+  },
 );
 
 export default SvgIcon;

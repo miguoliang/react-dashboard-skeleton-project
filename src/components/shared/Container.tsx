@@ -8,7 +8,7 @@ const Container = forwardRef(
       children?: React.ReactNode;
       asElement?: keyof JSX.IntrinsicElements;
     } & Record<string, any>,
-    ref: ForwardedRef<any>
+    ref: ForwardedRef<any>,
   ) => {
     const {
       className,
@@ -23,9 +23,9 @@ const Container = forwardRef(
         className: classNames("container mx-auto", className),
         ...rest,
       },
-      children
+      children,
     );
-  }
+  },
 );
 
 export default Container;

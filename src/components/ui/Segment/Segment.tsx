@@ -46,7 +46,7 @@ const Segment = forwardRef<
       }
       onChange?.(value);
     },
-    [setValue, selectionType]
+    [setValue, selectionType],
   );
 
   return (

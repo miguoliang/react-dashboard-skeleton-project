@@ -40,7 +40,7 @@ const CategoryTitle = ({
     <h6
       className={classNames(
         "text-gray-900 uppercase tracking-wide font-semibold text-sm lg:text-xs",
-        className
+        className,
       )}
     >
       {children}
@@ -51,10 +51,10 @@ const CategoryTitle = ({
 const LogFilter = () => {
   const dispatch = useAppDispatch();
   const selectedType = useAppSelector(
-    (state) => state.accountActivityLog.state.selectedType
+    (state) => state.accountActivityLog.state.selectedType,
   );
   const activityIndex = useAppSelector(
-    (state) => state.accountActivityLog.data.activityIndex
+    (state) => state.accountActivityLog.data.activityIndex,
   );
 
   const onFilterChange = useCallback(
@@ -65,7 +65,7 @@ const LogFilter = () => {
       }
       dispatch(setSelected(selected));
     },
-    [dispatch, activityIndex]
+    [dispatch, activityIndex],
   );
 
   return (

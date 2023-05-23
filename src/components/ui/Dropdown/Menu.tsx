@@ -16,7 +16,7 @@ import { CustomRefElementProps, Placement } from "../utils/constant";
 
 export type DropdownMenuItemClickEventHandler = (
   eventKey: string,
-  event: React.MouseEvent
+  event: React.MouseEvent,
 ) => void;
 
 type DropdownMenuProps = CustomRefElementProps<

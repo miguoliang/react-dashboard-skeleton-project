@@ -41,7 +41,7 @@ const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
     setScale(
       avatarNodeWidth - 8 < avatarChildrenWidth
         ? (avatarNodeWidth - 8) / avatarChildrenWidth
-        : 1
+        : 1,
     );
   };
 
@@ -64,7 +64,7 @@ const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
     "avatar",
     `avatar-${shape}`,
     typeof size === "string" ? `avatar-${size}` : "",
-    className
+    className,
   );
 
   if (src) {

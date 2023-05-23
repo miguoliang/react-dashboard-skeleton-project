@@ -51,7 +51,7 @@ const YearTable = (props: YearProps) => {
             !disabled &&
             `bg-${themeColor}-${primaryColorLevel} text-white year-picker-cell-active`,
           !active && !disabled && "hover:bg-gray-100",
-          disabled && "year-picker-cell-disabled"
+          disabled && "year-picker-cell-disabled",
         )}
       >
         {formatYear(year, yearLabelFormat)}
@@ -64,7 +64,7 @@ const YearTable = (props: YearProps) => {
       <Header
         label={`${formatYear(range[0], yearLabelFormat)} - ${formatYear(
           range[range.length - 1],
-          yearLabelFormat
+          yearLabelFormat,
         )}`}
         hasPrevious={typeof minYear === "number" ? minYear < range[0] : true}
         hasNext={

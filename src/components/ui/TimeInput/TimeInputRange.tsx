@@ -147,7 +147,7 @@ const TimeInputRange = forwardRef<HTMLInputElement, TimeInputRangeProps>(
         </div>
       </Input>
     );
-  }
+  },
 );
 
 export default TimeInputRange;

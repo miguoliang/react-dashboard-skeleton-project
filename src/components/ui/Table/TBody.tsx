@@ -8,7 +8,7 @@ const TBody = React.forwardRef(
       className?: string;
       asElement?: keyof JSX.IntrinsicElements;
     } & Record<string, any>,
-    ref: ForwardedRef<any>
+    ref: ForwardedRef<any>,
   ) => {
     const {
       children,
@@ -26,9 +26,9 @@ const TBody = React.forwardRef(
         ref,
         ...rest,
       },
-      children
+      children,
     );
-  }
+  },
 );
 
 export default TBody;

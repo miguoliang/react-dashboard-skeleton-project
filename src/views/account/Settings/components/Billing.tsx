@@ -53,7 +53,7 @@ const Billing = () => {
       <Notification title={"Billing information updated"} type="success" />,
       {
         placement: "top-center",
-      }
+      },
     );
     setSubmitting(false);
   };
@@ -71,7 +71,7 @@ const Billing = () => {
   const onCardUpdate = (
     cardValue: PaymentMethod,
     form: FormikProps<any>,
-    field: FieldInputProps<string>
+    field: FieldInputProps<string>,
   ) => {
     let paymentMethodsValue = form.values[field.name];
 
@@ -83,7 +83,7 @@ const Billing = () => {
 
     if (
       !paymentMethodsValue.some(
-        (card: PaymentMethod) => card.cardId === cardValue.cardId
+        (card: PaymentMethod) => card.cardId === cardValue.cardId,
       )
     ) {
       paymentMethodsValue.push(cardValue);
@@ -152,7 +152,7 @@ const Billing = () => {
                       className={classNames(
                         "flex items-center justify-between p-4",
                         !isLastChild(values.paymentMethods || [], index) &&
-                          "border-b border-gray-200 dark:border-gray-600"
+                          "border-b border-gray-200 dark:border-gray-600",
                       )}
                     >
                       <div className="flex items-center">
@@ -217,7 +217,7 @@ const Billing = () => {
                       className={classNames(
                         "flex items-center justify-between p-4",
                         !isLastChild(values.otherMethod || [], index) &&
-                          "border-b border-gray-200 dark:border-gray-600"
+                          "border-b border-gray-200 dark:border-gray-600",
                       )}
                     >
                       <div className="flex items-center">

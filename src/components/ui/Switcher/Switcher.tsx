@@ -46,7 +46,7 @@ const Switcher = forwardRef<
   const { themeColor, primaryColorLevel } = useConfig();
 
   const [switcherChecked, setSwitcherChecked] = useState<boolean>(
-    defaultChecked || checked || false
+    defaultChecked || checked || false,
   );
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const Switcher = forwardRef<
     switcherChecked &&
       `switcher-checked bg-${switcherColor} dark:bg-${switcherColor}`,
     disabled && "switcher-disabled",
-    className
+    className,
   );
 
   return (
@@ -88,7 +88,7 @@ const Switcher = forwardRef<
             "switcher-toggle-loading",
             switcherChecked
               ? "switcher-checked-loading"
-              : "switcher-uncheck-loading"
+              : "switcher-uncheck-loading",
           )}
         />
       ) : (

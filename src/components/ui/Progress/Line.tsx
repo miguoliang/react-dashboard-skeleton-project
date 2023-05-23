@@ -9,14 +9,14 @@ const Line = (
     strokeColor: string;
     direction: "top" | "bottom" | "left" | "right";
     trailColor: string;
-  }>
+  }>,
 ) => {
   const { percent, size, children, strokeColor } = props;
 
   const progressBackgroundClass = classNames(
     "progress-bg",
     size === "sm" ? "h-1.5" : "h-2",
-    `bg-${strokeColor}`
+    `bg-${strokeColor}`,
   );
 
   return (

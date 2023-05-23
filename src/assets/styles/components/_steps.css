@@ -1,17 +1,21 @@
 .steps {
     @apply flex justify-between items-center;
 
-    &.steps-vertical {
-        @apply flex-col items-start
-    }
+&
+.steps-vertical {
+    @apply flex-col items-start
+}
+
 }
 
 .step-item {
     @apply flex items-center;
 
-    &.step-item-vertical {
-        @apply items-start flex-col; 
-    }
+&
+.step-item-vertical {
+    @apply items-start flex-col;
+}
+
 }
 
 .step-item-wrapper {
@@ -22,13 +26,16 @@
     min-width: 2.25rem;
     @apply text-lg rounded-full w-9 h-9 flex items-center justify-center font-semibold;
 
-    &.step-item-icon-pending {
-        @apply border-2 border-gray-300 dark:border-gray-600;
-    }
+&
+.step-item-icon-pending {
+    @apply border-2 border-gray-300 dark:border-gray-600;
+}
 
-    &.step-item-icon-current {
-        @apply border-2;
-    }
+&
+.step-item-icon-current {
+    @apply border-2;
+}
+
 }
 
 .step-item-content {
@@ -38,9 +45,11 @@
 .step-item-title {
     @apply whitespace-nowrap font-bold block text-gray-600 dark:text-gray-300;
 
-    &.step-item-title-error {
-        @apply text-red-500;
-    }
+&
+.step-item-title-error {
+    @apply text-red-500;
+}
+
 }
 
 .step-item-icon-error {
@@ -55,13 +64,16 @@
     height: 2px;
     @apply w-full ml-2.5 rtl:mr-2.5;
 
-    &.inactive {
-        @apply bg-gray-200 dark:bg-gray-600;
-    }
+&
+.inactive {
+    @apply bg-gray-200 dark:bg-gray-600;
+}
 
-    &.step-connect-vertical {
-        min-height: 3.5rem;
-        width: 2px;
-        @apply ltr:ml-4 rtl:mr-4;
-    }
+&
+.step-connect-vertical {
+    min-height: 3.5rem;
+    width: 2px;
+    @apply ltr:ml-4 rtl:mr-4;
+}
+
 }

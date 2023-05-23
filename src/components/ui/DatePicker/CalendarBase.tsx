@@ -129,7 +129,7 @@ const CalendarBase = forwardRef<HTMLDivElement, CalendarBaseProps>(
       direction: "down" | "up" | "right" | "left",
       monthIndex: number,
       payload: any,
-      n = 1
+      n = 1,
     ) => {
       const changeRow = ["down", "up"].includes(direction);
 
@@ -161,7 +161,7 @@ const CalendarBase = forwardRef<HTMLDivElement, CalendarBaseProps>(
         cellIndex: number;
         date: dayjs.ConfigType;
       },
-      event: React.KeyboardEvent
+      event: React.KeyboardEvent,
     ) => {
       switch (event.key) {
         case "ArrowDown": {
@@ -295,7 +295,7 @@ const CalendarBase = forwardRef<HTMLDivElement, CalendarBaseProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 export default CalendarBase;

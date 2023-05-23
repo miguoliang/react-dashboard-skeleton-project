@@ -37,7 +37,7 @@ const useMessages = (msgKey?: string) => {
       }
       return key;
     },
-    [messages]
+    [messages],
   );
 
   const push = useCallback(
@@ -46,7 +46,7 @@ const useMessages = (msgKey?: string) => {
       setMessages([...messages, { ...message, key, visible: true }]);
       return key;
     },
-    [messages, msgKey]
+    [messages, msgKey],
   );
 
   const removeAll = useCallback(() => {
@@ -64,14 +64,14 @@ const useMessages = (msgKey?: string) => {
             elm.visible = false;
           }
           return elm;
-        })
+        }),
       );
 
       setTimeout(() => {
         setMessages(messages.filter((msg) => msg.visible));
       }, 50);
     },
-    [messages, getKey]
+    [messages, getKey],
   );
 
   return { messages, push, removeAll, remove };
@@ -142,7 +142,7 @@ export const ToastWrapper = React.forwardRef<
           ? React.cloneElement<ToastProps>(item.node, {
               ...toastProps,
               onClose: chainedFunction(item.node.props.onClose, () =>
-                remove(item.key)
+                remove(item.key),
               ),
               className: classNames(item.node.props.className),
             })
@@ -194,7 +194,7 @@ export const ToastWrapperInstance = (props: ToastWrapperProps) => {
     }
 
     const { unmount } = renderElement(
-      <ToastWrapper {...rest} ref={wrapperRef} callback={renderCallback} />
+      <ToastWrapper {...rest} ref={wrapperRef} callback={renderCallback} />,
     );
   });
 };
@@ -204,5 +204,5 @@ export const toastDefaultProps: ToastWrapperProps = {
   offsetX: 30,
   offsetY: 30,
   transitionType: "scale",
-  block: false,
+  block: false
 };

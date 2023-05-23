@@ -1,10 +1,10 @@
 import ConfigProvider, {
-    ConfigContext,
-    ConfigConsumer,
-    useConfig,
-    defaultConfig,
-} from './ConfigProvider'
+  ConfigConsumer,
+  ConfigContext,
+  defaultConfig,
+  useConfig,
+} from "./ConfigProvider";
 
-export { ConfigContext, ConfigConsumer, useConfig, defaultConfig }
+export { ConfigContext, ConfigConsumer, useConfig, defaultConfig };
 
-export default ConfigProvider
+export default ConfigProvider;

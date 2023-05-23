@@ -12,7 +12,7 @@ const Table = React.forwardRef(
       borderlessRow?: boolean;
       overflow?: boolean;
     },
-    ref: ForwardedRef<any>
+    ref: ForwardedRef<any>,
   ) => {
     const {
       borderlessRow = false,
@@ -30,7 +30,7 @@ const Table = React.forwardRef(
       hoverCapable && "table-hover",
       compact && "table-compact",
       borderlessRow && "borderless-row",
-      className
+      className,
     );
 
     return (
@@ -42,11 +42,11 @@ const Table = React.forwardRef(
             ref,
             ...rest,
           },
-          children
+          children,
         )}
       </div>
     );
-  }
+  },
 );
 
 export default Table;

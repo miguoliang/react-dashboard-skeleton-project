@@ -51,7 +51,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     const progressClass = classNames(
       "progress",
       className,
-      variant === "circle" ? "circle" : "line"
+      variant === "circle" ? "circle" : "line",
     );
 
     const renderProgress = (direction: "top" | "right" | "bottom" | "left") => {
@@ -92,7 +92,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
         {renderProgress("left")}
       </div>
     );
-  }
+  },
 );
 
 export default Progress;

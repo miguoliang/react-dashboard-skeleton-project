@@ -13,7 +13,7 @@ import { isEqual } from "lodash";
 
 export type CheckboxGroupChangeEventHandler = (
   itemValues: any[],
-  event: ChangeEventHandler<HTMLInputElement>
+  event: ChangeEventHandler<HTMLInputElement>,
 ) => void;
 
 type GroupProps = Partial<{
@@ -52,7 +52,7 @@ const Group = React.forwardRef<HTMLDivElement, GroupProps>((props, ref) => {
       setValue(nextValue);
       onChange?.(nextValue, event);
     },
-    [onChange, setValue, value]
+    [onChange, setValue, value],
   );
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const Group = React.forwardRef<HTMLDivElement, GroupProps>((props, ref) => {
       color,
       onChange: onCheckboxGroupChange,
     }),
-    [vertical, onCheckboxGroupChange, name, color, value]
+    [vertical, onCheckboxGroupChange, name, color, value],
   );
 
   return (

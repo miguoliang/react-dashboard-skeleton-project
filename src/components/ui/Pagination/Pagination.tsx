@@ -42,11 +42,11 @@ const Pagination = (props: PaginationProps) => {
     (paginationState: PaginationState) => {
       return paginationState.pageIndex;
     },
-    [getInternalPageCount]
+    [getInternalPageCount],
   );
 
   const [internalCurrentPage, setInternalCurrentPage] = useState(
-    currentPage ? currentPage : 1
+    currentPage ? currentPage : 1,
   );
 
   useEffect(() => {

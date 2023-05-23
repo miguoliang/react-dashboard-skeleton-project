@@ -9,9 +9,11 @@
 .tab-nav {
     @apply font-semibold flex items-center justify-center transition duration-200 ease-in-out cursor-pointer;
 
-    &.tab-nav-disabled {
-        @apply opacity-60 cursor-not-allowed;
-    }
+&
+.tab-nav-disabled {
+    @apply opacity-60 cursor-not-allowed;
+}
+
 }
 
 .tab-nav-underline {

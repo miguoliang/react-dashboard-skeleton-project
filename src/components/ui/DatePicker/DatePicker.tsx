@@ -122,7 +122,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     const inputRef = useRef<HTMLInputElement>();
 
     const [lastValidValue, setLastValidValue] = useState<typeof defaultValue>(
-      defaultValue ?? null
+      defaultValue ?? null,
     );
 
     const [_value, setValue] = useControllableState({
@@ -132,7 +132,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     });
 
     const [calendarMonth, setCalendarMonth] = useState(
-      _value || defaultMonth || new Date()
+      _value || defaultMonth || new Date(),
     );
 
     const [focused, setFocused] = useState(false);
@@ -156,7 +156,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
       if (value instanceof Date && !focused) {
         setInputState(
-          capitalize(dayjs(value).locale(finalLocale).format(dateFormat))
+          capitalize(dayjs(value).locale(finalLocale).format(dateFormat)),
         );
       }
     }, [value, focused, themeLocale]);
@@ -164,7 +164,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     useEffect(() => {
       if (defaultValue instanceof Date && inputState && !focused) {
         setInputState(
-          capitalize(dayjs(_value).locale(finalLocale).format(dateFormat))
+          capitalize(dayjs(_value).locale(finalLocale).format(dateFormat)),
         );
       }
     }, [themeLocale]);
@@ -175,8 +175,8 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         capitalize(
           dayjs(date as dayjs.ConfigType)
             .locale(finalLocale)
-            .format(dateFormat)
-        )
+            .format(dateFormat),
+        ),
       );
       closePickerOnChange && closeDropdown();
       window.setTimeout(() => inputRef.current?.focus(), 0);
@@ -208,7 +208,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         setValue(date);
         setLastValidValue(date);
         setInputState(
-          capitalize(dayjs(date).locale(finalLocale).format(dateFormat))
+          capitalize(dayjs(date).locale(finalLocale).format(dateFormat)),
         );
         setCalendarMonth(date);
       } else {
@@ -303,7 +303,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         />
       </BasePicker>
     );
-  }
+  },
 );
 
 export default DatePicker;

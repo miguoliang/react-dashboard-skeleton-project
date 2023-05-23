@@ -40,7 +40,7 @@ function onEventListener(
   target: Element,
   eventType: any,
   listener: (this: Element, ev: any) => any,
-  options = false
+  options = false,
 ) {
   target.addEventListener(eventType, listener, options);
 
@@ -61,7 +61,7 @@ function useRootClose(
     disabled: boolean;
     triggerTarget: HTMLElement | React.RefObject<HTMLElement>;
     overlayTarget: HTMLElement | React.RefObject<HTMLElement>;
-  }
+  },
 ) {
   const handleDocumentMouseDown = useCallback(
     (event: MouseEvent | KeyboardEvent) => {
@@ -84,7 +84,7 @@ function useRootClose(
 
       onRootClose(event);
     },
-    [onRootClose, triggerTarget, overlayTarget]
+    [onRootClose, triggerTarget, overlayTarget],
   );
 
   useEffect(() => {
@@ -98,7 +98,7 @@ function useRootClose(
       doc(),
       "mousedown",
       handleDocumentMouseDown,
-      true
+      true,
     );
 
     return () => {

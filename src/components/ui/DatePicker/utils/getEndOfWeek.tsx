@@ -1,6 +1,6 @@
 export function getEndOfWeek(
   date: string | number | Date,
-  firstDayOfWeek = "monday"
+  firstDayOfWeek = "monday",
 ) {
   const value = new Date(date);
   const day = value.getDay();

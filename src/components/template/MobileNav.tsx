@@ -8,7 +8,7 @@ import useResponsive from "utils/hooks/useResponsive";
 import { useAppSelector } from "store/hooks";
 
 const VerticalMenuContent = lazy(
-  () => import("components/template/VerticalMenuContent")
+  () => import("components/template/VerticalMenuContent"),
 );
 
 const MobileNavToggle = withHeaderItem(NavToggle);
@@ -26,16 +26,16 @@ const MobileNav = () => {
 
   const themeColor = useAppSelector((state) => state.theme.themeColor);
   const primaryColorLevel = useAppSelector(
-    (state) => state.theme.primaryColorLevel
+    (state) => state.theme.primaryColorLevel,
   );
   const navMode = useAppSelector((state) => state.theme.navMode);
   const mode = useAppSelector((state) => state.theme.mode);
   const direction = useAppSelector((state) => state.theme.direction);
   const currentRouteKey = useAppSelector(
-    (state) => state.base.common.currentRouteKey
+    (state) => state.base.common.currentRouteKey,
   );
   const sideNavCollapse = useAppSelector(
-    (state) => state.theme.layout.sideNavCollapse
+    (state) => state.theme.layout.sideNavCollapse,
   );
   const userAuthority = useAppSelector((state) => state.auth.user.authority);
 

@@ -30,7 +30,7 @@ type DateTableProps = {
       cellIndex: number;
       date: dayjs.ConfigType;
     },
-    event: React.KeyboardEvent
+    event: React.KeyboardEvent,
   ) => void;
   onMonthChange?: (date: dayjs.ConfigType) => void;
   enableHeaderLabel?: boolean;
@@ -104,7 +104,7 @@ const DateTable = (props: DateTableProps) => {
             }
             onPrevious={() =>
               onMonthChange?.(
-                dayjs(month).subtract(paginateBy, "months").toDate()
+                dayjs(month).subtract(paginateBy, "months").toDate(),
               )
             }
             className={className}

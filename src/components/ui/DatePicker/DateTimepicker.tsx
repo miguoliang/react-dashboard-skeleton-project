@@ -94,14 +94,14 @@ const DateTimepicker = forwardRef<HTMLInputElement, DateTimepickerProps>(
     });
 
     const [calendarMonth, setCalendarMonth] = useState(
-      _value || defaultMonth || new Date()
+      _value || defaultMonth || new Date(),
     );
 
     const [focused, setFocused] = useState(false);
     const [inputState, setInputState] = useState(
       _value instanceof Date
         ? capitalize(dayjs(_value).locale(finalLocale).format(dateFormat))
-        : ""
+        : "",
     );
 
     const closeDropdown = () => {
@@ -140,7 +140,7 @@ const DateTimepicker = forwardRef<HTMLInputElement, DateTimepickerProps>(
       }
       closePickerOnChange &&
         setInputState(
-          capitalize(dayjs(date).locale(finalLocale).format(dateFormat))
+          capitalize(dayjs(date).locale(finalLocale).format(dateFormat)),
         );
       closePickerOnChange && closeDropdown();
       window.setTimeout(() => inputRef.current?.focus(), 0);
@@ -172,7 +172,7 @@ const DateTimepicker = forwardRef<HTMLInputElement, DateTimepickerProps>(
       setLastValidValue(date);
       closePickerOnChange &&
         setInputState(
-          capitalize(dayjs(date).locale(finalLocale).format(dateFormat))
+          capitalize(dayjs(date).locale(finalLocale).format(dateFormat)),
         );
       setCalendarMonth(date);
     };
@@ -186,26 +186,26 @@ const DateTimepicker = forwardRef<HTMLInputElement, DateTimepickerProps>(
         time.getHours(),
         time.getMinutes(),
         time.getSeconds(),
-        time.getMilliseconds()
+        time.getMilliseconds(),
       );
       setValue(newDateTime);
 
       if (!value && !closePickerOnChange) {
         setInputState(
-          capitalize(dayjs(newDateTime).locale(finalLocale).format(dateFormat))
+          capitalize(dayjs(newDateTime).locale(finalLocale).format(dateFormat)),
         );
       }
 
       closePickerOnChange &&
         setInputState(
-          capitalize(dayjs(newDateTime).locale(finalLocale).format(dateFormat))
+          capitalize(dayjs(newDateTime).locale(finalLocale).format(dateFormat)),
         );
       closePickerOnChange && closeDropdown();
     };
 
     const handleOk = () => {
       setInputState(
-        capitalize(dayjs(_value).locale(finalLocale).format(dateFormat))
+        capitalize(dayjs(_value).locale(finalLocale).format(dateFormat)),
       );
       closeDropdown();
       window.setTimeout(() => inputRef.current?.focus(), 0);
@@ -276,7 +276,7 @@ const DateTimepicker = forwardRef<HTMLInputElement, DateTimepickerProps>(
         </div>
       </BasePicker>
     );
-  }
+  },
 );
 
 export default DateTimepicker;

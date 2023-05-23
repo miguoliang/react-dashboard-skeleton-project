@@ -79,7 +79,7 @@ const DatePickerRange = forwardRef<HTMLInputElement, DatePickerRangeProps>(
     const inputRef = useRef<HTMLInputElement>();
 
     const [_value, setValue] = useState<DateRange | undefined>(
-      value || defaultValue || [null, null]
+      value || defaultValue || [null, null],
     );
 
     const handleValueChange = (range: DateRange) => {
@@ -165,7 +165,7 @@ const DatePickerRange = forwardRef<HTMLInputElement, DatePickerRangeProps>(
         />
       </BasePicker>
     );
-  }
+  },
 );
 
 export default DatePickerRange;
