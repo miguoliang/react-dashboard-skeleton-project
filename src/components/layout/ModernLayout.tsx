@@ -3,7 +3,6 @@ import Header from "components/template/Header";
 import SidePanel from "components/template/SidePanel";
 import UserDropdown from "components/template/UserDropdown";
 import LanguageSelector from "components/template/LanguageSelector";
-import Notification from "components/template/Notification";
 import SideNavToggle from "components/template/SideNavToggle";
 import MobileNav from "components/template/MobileNav";
 import Search from "components/template/Search";
@@ -57,8 +56,6 @@ const HeaderActionsEnd = () => {
   return (
     <>
       <LanguageSelector />
-      <Notification />
-      <SidePanel />
       {isAuthenticated ? (
         <UserDropdown hoverable={false} />
       ) : (

@@ -5,6 +5,16 @@ import { Routes } from "./types";
 
 const appsRoute: Routes = [
   {
+    key: "dataSource.list",
+    path: `${APP_PREFIX_PATH}/data-source/list`,
+    component: React.lazy(() => import("views/dataSource/List")),
+    authority: [ADMIN, USER],
+    meta: {
+      header: "Data Source",
+      headerContainer: true,
+    },
+  },
+  {
     key: "appsAccount.settings",
     path: `${APP_PREFIX_PATH}/account/settings/:tab`,
     component: React.lazy(() => import("views/account/Settings")),
