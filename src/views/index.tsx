@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { Loading } from "components/shared";
 import { protectedRoutes, publicRoutes } from "configs/routes.config";
-import appConfig from "configs/app.config";
 import PageContainer, {
   PageContainerProps,
 } from "components/template/PageContainer";
@@ -10,32 +9,18 @@ import ProtectedRoute from "components/route/ProtectedRoute";
 import PublicRoute from "components/route/PublicRoute";
 import AuthorityGuard from "components/route/AuthorityGuard";
 import AppRoute from "components/route/AppRoute";
-import { RootState } from "../store";
-import { useAppSelector } from "store/hooks";
-
-const { authenticatedEntryPath } = appConfig;
+import { APP_PREFIX_PATH } from "../constants/route.constant";
 
 const AllRoutes = (props: PageContainerProps) => {
-  const userAuthority = useAppSelector(
-    (state: RootState) => state.auth.user.authority,
-  );
-
   return (
     <Routes>
-      <Route path="/" element={<ProtectedRoute />}>
-        <Route
-          path="/"
-          element={<Navigate replace to={authenticatedEntryPath} />}
-        />
+      <Route path={APP_PREFIX_PATH} element={<ProtectedRoute />}>
         {protectedRoutes.map((route, index) => (
           <Route
             key={route.key + index}
             path={route.path}
             element={
-              <AuthorityGuard
-                userAuthority={userAuthority}
-                authority={route.authority}
-              >
+              <AuthorityGuard userAuthority={[]} authority={route.authority}>
                 <PageContainer {...props} {...route.meta}>
                   <AppRoute
                     routeKey={route.key}
@@ -47,7 +32,6 @@ const AllRoutes = (props: PageContainerProps) => {
             }
           />
         ))}
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       <Route path="/" element={<PublicRoute />}>
         {publicRoutes.map((route) => (
@@ -64,6 +48,7 @@ const AllRoutes = (props: PageContainerProps) => {
           />
         ))}
       </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

@@ -1,2 +1,2 @@
 export const ROOT = "/";
-export const APP_PREFIX_PATH = "/";
+export const APP_PREFIX_PATH = "/dashboard";

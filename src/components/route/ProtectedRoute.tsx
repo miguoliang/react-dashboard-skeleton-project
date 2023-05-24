@@ -12,7 +12,6 @@ const ProtectedRoute = () => {
       !auth.activeNavigator &&
       !auth.isLoading
     ) {
-      debugger;
       auth.signinRedirect();
     }
   }, [
