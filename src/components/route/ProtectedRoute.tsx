@@ -1,24 +1,26 @@
 import React from "react";
-import appConfig from "configs/app.config";
-import { REDIRECT_URL_KEY } from "constants/app.constant";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "react-oidc-context";
-
-const { unAuthenticatedEntryPath } = appConfig;
+import { Outlet } from "react-router-dom";
+import { hasAuthParams, useAuth } from "react-oidc-context";
 
 const ProtectedRoute = () => {
   const auth = useAuth();
-
-  const location = useLocation();
-
-  if (!auth.isAuthenticated) {
-    return (
-      <Navigate
-        to={`${unAuthenticatedEntryPath}?${REDIRECT_URL_KEY}=${location.pathname}`}
-        replace
-      />
-    );
-  }
+  // automatically sign-in if there are no auth params
+  React.useEffect(() => {
+    if (
+      !hasAuthParams() &&
+      !auth.isAuthenticated &&
+      !auth.activeNavigator &&
+      !auth.isLoading
+    ) {
+      debugger;
+      auth.signinRedirect();
+    }
+  }, [
+    auth.isAuthenticated,
+    auth.activeNavigator,
+    auth.isLoading,
+    auth.signinRedirect,
+  ]);
 
   return <Outlet />;
 };
