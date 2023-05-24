@@ -35,9 +35,7 @@ export const UserDropdown = ({ className }: { className: string }) => {
     <div className={classNames(className, "flex items-center gap-2")}>
       <Avatar size={32} shape="circle" src={avatar} />
       <div className="hidden md:block">
-        <div className="text-xs capitalize">
-          {auth.isAuthenticated ? "anonymous user" : "guest"}
-        </div>
+        <div className="text-xs capitalize">user</div>
         <div className="font-bold">{auth.user?.profile.email}</div>
       </div>
     </div>
@@ -55,7 +53,7 @@ export const UserDropdown = ({ className }: { className: string }) => {
             <Avatar shape="circle" src={avatar} />
             <div>
               <div className="font-bold text-gray-900 dark:text-gray-100">
-                Anonymous User
+                User
               </div>
               <div className="text-xs">{auth.user?.profile.email}</div>
             </div>

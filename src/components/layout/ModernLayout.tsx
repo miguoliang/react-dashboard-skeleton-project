@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "components/template/Header";
 import SidePanel from "components/template/SidePanel";
 import UserDropdown from "components/template/UserDropdown";
@@ -9,6 +9,34 @@ import MobileNav from "components/template/MobileNav";
 import Search from "components/template/Search";
 import SideNav from "components/template/SideNav";
 import View from "views";
+import { useAuth } from "react-oidc-context";
+import classNames from "classnames";
+import { SIGN_UP_URL } from "../../configs/oidc.config";
+
+const SignInAndSignUp = ({ className }: { className?: string }) => {
+  const auth = useAuth();
+  return (
+    <div
+      className={classNames(
+        className,
+        "flex items-center leading-10 gap-2 font-bold capitalize cursor-pointer",
+      )}
+    >
+      <div
+        className="border-2 border-transparent px-5 rounded-lg hover:bg-gray-100 hover:border-gray-100"
+        onClick={() => auth.signinRedirect()}
+      >
+        sign in
+      </div>
+      <div
+        className="border-2 px-5 rounded-lg hover:bg-gray-100"
+        onClick={() => window.location.replace(SIGN_UP_URL)}
+      >
+        sign up
+      </div>
+    </div>
+  );
+};
 
 const HeaderActionsStart = () => {
   return (
@@ -21,12 +49,21 @@ const HeaderActionsStart = () => {
 };
 
 const HeaderActionsEnd = () => {
+  const auth = useAuth();
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  useEffect(() => {
+    setIsAuthenticated(auth.isAuthenticated);
+  }, [auth.isAuthenticated]);
   return (
     <>
       <LanguageSelector />
       <Notification />
       <SidePanel />
-      <UserDropdown hoverable={false} />
+      {isAuthenticated ? (
+        <UserDropdown hoverable={false} />
+      ) : (
+        <SignInAndSignUp />
+      )}
     </>
   );
 };
