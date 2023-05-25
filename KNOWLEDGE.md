@@ -54,3 +54,10 @@ const CustomField = ({ fileList, field, form, ...props }: FieldProps & { fileLis
 In the above example, you should not use `fileList` as a default value of `files` state. You should use `fileList` only
 when the `fileList` is changed. The most important thing is that you should not set a default value for `fileList` in
 declaration. Otherwise, a maximum update depth error will occur.
+
+## What's the difference between `access_token` and `id_token` in Amazon Cognito?
+
+Important: If there are no additional scopes configured on the API Gateway method, make sure that you're using a valid
+ID token. If additional scopes are configured on the API Gateway method, confirm that you're using a valid access token.
+For more information, see Integrate a REST API with an Amazon Cognito user pool and using Amazon Cognito custom scopes
+in API Gateway.
