@@ -10,6 +10,7 @@ import isEmpty from "lodash/isEmpty";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "store/hooks";
 import { NavigationTree } from "../../../configs/navigation.config/apps.navigation.config";
+import { useAuth } from "react-oidc-context";
 
 const stackedSideNavDefaultStyle = {
   width: SPLITTED_SIDE_NAV_MINI_WIDTH,
@@ -31,7 +32,7 @@ const StackedSideNav = () => {
   const currentRouteKey = useAppSelector(
     (state) => state.base.common.currentRouteKey,
   );
-  const userAuthority = useAppSelector((state) => state.auth.user.authority);
+  const userAuthority = useAuth().user?.scopes ?? [];
 
   const { larger } = useResponsive();
 

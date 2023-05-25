@@ -4,7 +4,7 @@ import {
   NAV_ITEM_TYPE_ITEM,
   NAV_ITEM_TYPE_TITLE,
 } from "constants/navigation.constant";
-import { ADMIN, USER } from "constants/roles.constant";
+import { USER } from "constants/roles.constant";
 
 export type NavigationTree = {
   key: string;
@@ -26,7 +26,7 @@ const appsNavigationConfig: NavigationTree[] = [
     translateKey: "nav.apps",
     icon: "apps",
     type: NAV_ITEM_TYPE_TITLE,
-    authority: [ADMIN, USER],
+    authority: [USER],
     subMenu: [
       {
         key: "dataSource",
@@ -35,7 +35,7 @@ const appsNavigationConfig: NavigationTree[] = [
         translateKey: "nav.appsProject.dataSource",
         icon: "project",
         type: NAV_ITEM_TYPE_COLLAPSE,
-        authority: [ADMIN, USER],
+        authority: [USER],
         subMenu: [],
       },
       {
@@ -45,7 +45,7 @@ const appsNavigationConfig: NavigationTree[] = [
         translateKey: "nav.appsAccount.account",
         icon: "account",
         type: NAV_ITEM_TYPE_COLLAPSE,
-        authority: [ADMIN, USER],
+        authority: [USER],
         subMenu: [
           {
             key: "appsAccount.settings",
@@ -54,7 +54,7 @@ const appsNavigationConfig: NavigationTree[] = [
             translateKey: "nav.appsAccount.settings",
             icon: "",
             type: NAV_ITEM_TYPE_ITEM,
-            authority: [ADMIN, USER],
+            authority: [USER],
             subMenu: [],
           },
           {
@@ -64,7 +64,7 @@ const appsNavigationConfig: NavigationTree[] = [
             translateKey: "nav.appsAccount.invoice",
             icon: "",
             type: NAV_ITEM_TYPE_ITEM,
-            authority: [ADMIN, USER],
+            authority: [USER],
             subMenu: [],
           },
           {
@@ -74,7 +74,7 @@ const appsNavigationConfig: NavigationTree[] = [
             translateKey: "nav.appsAccount.activityLog",
             icon: "",
             type: NAV_ITEM_TYPE_ITEM,
-            authority: [ADMIN, USER],
+            authority: [USER],
             subMenu: [],
           },
           {
@@ -84,7 +84,7 @@ const appsNavigationConfig: NavigationTree[] = [
             translateKey: "nav.appsAccount.kycForm",
             icon: "",
             type: NAV_ITEM_TYPE_ITEM,
-            authority: [ADMIN, USER],
+            authority: [USER],
             subMenu: [],
           },
         ],

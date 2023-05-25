@@ -8,7 +8,6 @@ import React, {
 import classNames from "classnames";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { Button, Dialog } from "components/ui";
-import { apiGetSearchResult } from "services/CommonService";
 import useThemeClass from "utils/hooks/useThemeClass";
 import navigationIcon from "configs/navigation-icon.config";
 import debounce from "lodash/debounce";
@@ -130,7 +129,7 @@ export const Search = ({ className }: { className: string }) => {
     if (noResult) {
       setNoResult(false);
     }
-    const respond = await apiGetSearchResult({ query });
+    const respond = { data: [] };
     if (respond.data.length === 0) {
       setNoResult(true);
     }

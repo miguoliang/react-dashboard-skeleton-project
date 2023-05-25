@@ -1,5 +1,7 @@
+import { API_URL } from "../constants/api.constant";
+
 const appConfig = {
-  apiPrefix: "/api",
+  apiPrefix: API_URL,
   authenticatedEntryPath: "/account/kyc-form",
   unAuthenticatedEntryPath: "/",
   tourPath: "/",

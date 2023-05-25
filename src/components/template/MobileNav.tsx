@@ -6,6 +6,7 @@ import { NavToggle } from "components/shared";
 import navigationConfig from "configs/navigation.config";
 import useResponsive from "utils/hooks/useResponsive";
 import { useAppSelector } from "store/hooks";
+import { useAuth } from "react-oidc-context";
 
 const VerticalMenuContent = lazy(
   () => import("components/template/VerticalMenuContent"),
@@ -37,7 +38,7 @@ const MobileNav = () => {
   const sideNavCollapse = useAppSelector(
     (state) => state.theme.layout.sideNavCollapse,
   );
-  const userAuthority = useAppSelector((state) => state.auth.user.authority);
+  const userAuthority = useAuth().user?.scopes ?? [];
 
   const { smaller } = useResponsive();
 

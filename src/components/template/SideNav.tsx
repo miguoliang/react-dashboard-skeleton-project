@@ -12,6 +12,7 @@ import navigationConfig from "configs/navigation.config";
 import VerticalMenuContent from "components/template/VerticalMenuContent";
 import useResponsive from "utils/hooks/useResponsive";
 import { useAppSelector } from "store/hooks";
+import { useAuth } from "react-oidc-context";
 
 const sideNavStyle = {
   width: SIDE_NAV_WIDTH,
@@ -38,7 +39,7 @@ const SideNav = () => {
   const sideNavCollapse = useAppSelector(
     (state) => state.theme.layout.sideNavCollapse,
   );
-  const userAuthority = useAppSelector((state) => state.auth.user.authority);
+  const userAuthority = useAuth().user?.scopes ?? [];
 
   const { larger } = useResponsive();
 

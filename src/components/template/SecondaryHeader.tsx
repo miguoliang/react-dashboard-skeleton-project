@@ -3,6 +3,7 @@ import classNames from "classnames";
 import HorizontalMenuContent from "components/template/HorizontalMenuContent";
 import useResponsive from "utils/hooks/useResponsive";
 import { useAppSelector } from "store/hooks";
+import { useAuth } from "react-oidc-context";
 
 const SecondaryHeader = (props: { className?: string; contained: boolean }) => {
   const { className, contained } = props;
@@ -12,7 +13,7 @@ const SecondaryHeader = (props: { className?: string; contained: boolean }) => {
   const primaryColorLevel = useAppSelector(
     (state) => state.theme.primaryColorLevel,
   );
-  const userAuthority = useAppSelector((state) => state.auth.user.authority);
+  const userAuthority = useAuth().user?.scopes;
 
   const { larger } = useResponsive();
 

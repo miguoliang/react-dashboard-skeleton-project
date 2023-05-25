@@ -1,7 +1,6 @@
 import rootReducer from "./rootReducer";
 import { combineReducers, configureStore, Reducer } from "@reduxjs/toolkit";
 import theme from "./theme/themeSlice";
-import auth from "./auth";
 import base from "./base";
 import locale from "./locale/localeSlice";
 import storage from "redux-persist/lib/storage";
@@ -39,7 +38,6 @@ export function injectReducer(key: string, reducer: Reducer) {
       persistConfig,
       combineReducers({
         theme,
-        auth,
         base,
         locale,
         ...asyncReducers,

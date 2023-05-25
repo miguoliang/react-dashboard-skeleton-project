@@ -11,6 +11,8 @@ export const SIGN_UP_URL = `${OIDC_HOST}/signup?client_id=${OIDC_CLIENT_ID}&resp
   OIDC_REDIRECT_URI,
 )}`;
 
+export const SIGN_OUT_URL = SIGN_UP_URL.replace("signup", "logout");
+
 export const oidcConfig: AuthProviderProps = {
   authority: OIDC_AUTHORITY,
   client_id: OIDC_CLIENT_ID,
@@ -19,6 +21,7 @@ export const oidcConfig: AuthProviderProps = {
   revokeTokenTypes: ["refresh_token"],
   automaticSilentRenew: false,
   onSigninCallback: () => {
+    console.log("onSigninCallback");
     window.history.replaceState({}, document.title, window.location.pathname);
   },
   client_secret: OIDC_CLIENT_SECRET,

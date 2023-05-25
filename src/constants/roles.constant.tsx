@@ -1,2 +1,1 @@
-export const ADMIN: string = "admin";
-export const USER: string = "user";
+export const USER: string = "openid";

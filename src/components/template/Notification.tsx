@@ -18,10 +18,6 @@ import {
   HiOutlineClipboardCheck,
   HiOutlineMailOpen,
 } from "react-icons/hi";
-import {
-  apiGetNotificationCount,
-  apiGetNotificationList,
-} from "services/CommonService";
 import { Link } from "react-router-dom";
 import isLastChild from "utils/isLastChild";
 import useTwColorByName from "utils/hooks/useTwColorByName";
@@ -30,7 +26,7 @@ import useResponsive from "utils/hooks/useResponsive";
 import acronym from "utils/acronym";
 import { useAppSelector } from "store/hooks";
 import { noop } from "../ui/utils/constant";
-import { Notification as NotificaitonData } from "mock/data/commonData";
+import { Notification as NotificationData } from "mock/data/commonData";
 
 const notificationHeight = "h-72";
 const imagePath = "/img/avatars/";
@@ -44,7 +40,7 @@ const GeneratedAvatar = ({ target }: { target: string }) => {
   );
 };
 
-const notificationTypeAvatar = (data: NotificaitonData) => {
+const notificationTypeAvatar = (data: NotificationData) => {
   const { type, target, image, status } = data;
   switch (type) {
     case 0:
@@ -100,7 +96,7 @@ const NotificationToggle = ({
 };
 
 export const Notification = ({ className }: { className: string }) => {
-  const [notificationList, setNotificationList] = useState<NotificaitonData[]>(
+  const [notificationList, setNotificationList] = useState<NotificationData[]>(
     [],
   );
   const [unreadNotification, setUnreadNotification] = useState(false);
@@ -114,7 +110,7 @@ export const Notification = ({ className }: { className: string }) => {
   const direction = useAppSelector((state) => state.theme.direction);
 
   const getNotificationCount = useCallback(async () => {
-    const resp = await apiGetNotificationCount();
+    const resp = { data: { count: 0 } };
     if (resp.data.count > 0) {
       setNoResult(false);
       setUnreadNotification(true);
@@ -131,7 +127,7 @@ export const Notification = ({ className }: { className: string }) => {
     if (notificationList.length === 0) {
       setLoading(true);
       setLoading(true);
-      const resp = await apiGetNotificationList();
+      const resp = { data: [] };
       setLoading(false);
       setNotificationList(resp.data);
     }
