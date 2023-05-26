@@ -2,16 +2,11 @@ import React from "react";
 import classNames from "classnames";
 import useThemeClass from "utils/hooks/useThemeClass";
 import { Link, LinkProps } from "react-router-dom";
-import { CustomRefElementProps } from "../ui/utils/constant";
 
-type ActionLinkProps = CustomRefElementProps<
-  {
-    themeColor?: boolean;
-    to?: string;
-    reloadDocument?: boolean;
-  },
-  "a"
->;
+type ActionLinkProps = {
+  themeColor?: boolean;
+  href?: string;
+} & Partial<LinkProps>;
 
 const ActionLink = (props: ActionLinkProps) => {
   const {
@@ -34,7 +29,7 @@ const ActionLink = (props: ActionLinkProps) => {
   };
 
   return to ? (
-    <Link {...classNameProps} {...(rest as LinkProps)}>
+    <Link {...classNameProps} to={to} {...rest}>
       {children}
     </Link>
   ) : (

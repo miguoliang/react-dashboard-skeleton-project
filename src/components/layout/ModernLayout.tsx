@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Header from "components/template/Header";
-import SidePanel from "components/template/SidePanel";
 import UserDropdown from "components/template/UserDropdown";
 import LanguageSelector from "components/template/LanguageSelector";
 import SideNavToggle from "components/template/SideNavToggle";

@@ -15,26 +15,14 @@ const appsRoute: Routes = [
     },
   },
   {
-    key: "appsAccount.settings",
-    path: `${APP_PREFIX_PATH}/account/settings/:tab`,
-    component: React.lazy(() => import("views/account/Settings")),
+    key: "dataSource.knowledgeGraph",
+    path: `${APP_PREFIX_PATH}/data-source/:id/knowledge-graph`,
+    component: React.lazy(() => import("views/dataSource/KnowledgeGraph")),
     authority: [USER],
     meta: {
-      header: "Settings",
+      header: "Knowledge Graph",
       headerContainer: true,
     },
-  },
-  {
-    key: "appsAccount.activityLog",
-    path: `${APP_PREFIX_PATH}/account/activity-log`,
-    component: React.lazy(() => import("views/account/ActivityLog")),
-    authority: [USER],
-  },
-  {
-    key: "appsAccount.kycForm",
-    path: `${APP_PREFIX_PATH}/account/kyc-form`,
-    component: React.lazy(() => import("views/account/KycForm")),
-    authority: [USER],
   },
 ];
 

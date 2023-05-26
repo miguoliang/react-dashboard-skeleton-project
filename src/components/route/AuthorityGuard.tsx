@@ -13,7 +13,11 @@ const AuthorityGuard = (props: AuthorityGuardType) => {
 
   const roleMatched = useAuthority(userAuthority, authority);
 
-  return <div>{roleMatched ? children : <Navigate to="/access-denied" />}</div>;
+  return (
+    <div className="h-full">
+      {roleMatched ? children : <Navigate to="/access-denied" />}
+    </div>
+  );
 };
 
 export default AuthorityGuard;

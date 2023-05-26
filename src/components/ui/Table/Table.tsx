@@ -34,7 +34,7 @@ const Table = React.forwardRef(
     );
 
     return (
-      <div className={classNames(overflow && "overflow-x-auto")}>
+      <div className={classNames(overflow && "overflow-x-auto", className)}>
         {React.createElement(
           Component,
           {
