@@ -7,6 +7,7 @@ import {
   makeGraph,
 } from "../../services/DataSourceService";
 import { useParams } from "react-router-dom";
+import { apiGetEdgesByVertices } from "../../services/EdgeService";
 
 const KnowledgeGraph = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -16,10 +17,9 @@ const KnowledgeGraph = () => {
   useEffect(() => {
     setLoading(true);
     const chart = echarts.init(chartRef.current!);
-    apiGetDataSourceVertices(dataSourceId!)
-      .then((res) => {
-        const graph = makeGraph(res.data);
-        console.log(graph);
+    composeGraph(dataSourceId!)
+      .then((data) => {
+        const graph = makeGraph(data.vertices, data.edges);
         updateGraph(chart, graph);
       })
       .finally(() => {
@@ -74,5 +74,13 @@ function updateGraph(chart: echarts.ECharts, graph: Graph) {
   };
   chart.setOption(option);
 }
+
+const composeGraph = async (dataSourceId: string) => {
+  const vertices = await apiGetDataSourceVertices(dataSourceId);
+  const vertexIds = vertices.data.map((v) => v.id);
+  console.log("vertexIds", vertexIds);
+  const edge = await apiGetEdgesByVertices(vertexIds);
+  return { vertices: vertices.data, edges: edge.data };
+};
 
 export default KnowledgeGraph;

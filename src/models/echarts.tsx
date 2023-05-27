@@ -4,16 +4,16 @@ export type Graph = {
   categories?: Category[];
 };
 
-type Category = {
+export type Category = {
   name: string;
 };
 
-type Link = {
+export type Link = {
   source: string;
   target: string;
 };
 
-type Node = {
+export type Node = {
   id: string;
   name: string;
   symbolSize?: number;
