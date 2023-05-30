@@ -3,26 +3,16 @@ import { Avatar, Dropdown, DropdownItem } from "components/ui";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
-import { HiOutlineCog, HiOutlineLogout, HiOutlineUser } from "react-icons/hi";
-import { FiActivity } from "react-icons/fi";
+import { HiOutlineCog, HiOutlineLogout } from "react-icons/hi";
 import { useAuth } from "react-oidc-context";
 import { SIGN_OUT_URL } from "../../configs/oidc.config";
+import { APP_PREFIX_PATH } from "../../constants/route.constant";
 
 const dropdownItemList = [
   {
-    label: "Profile",
-    path: "/app/account/settings/profile",
-    icon: <HiOutlineUser />,
-  },
-  {
     label: "Account Setting",
-    path: "/app/account/settings/profile",
+    path: `${APP_PREFIX_PATH}/account/settings/profile`,
     icon: <HiOutlineCog />,
-  },
-  {
-    label: "Activity Log",
-    path: "/app/account/activity-log",
-    icon: <FiActivity />,
   },
 ];
 
@@ -46,18 +36,6 @@ export const UserDropdown = ({ className }: { className: string }) => {
         renderTitle={UserAvatar}
         placement="bottom-end"
       >
-        <DropdownItem dropdownItemVariant="header">
-          <div className="py-2 px-3 flex items-center gap-2">
-            <Avatar shape="circle" src={""} />
-            <div>
-              <div className="font-bold text-gray-900 dark:text-gray-100">
-                User
-              </div>
-              <div className="text-xs">{auth.user?.profile.email}</div>
-            </div>
-          </div>
-        </DropdownItem>
-        <DropdownItem dropdownItemVariant="divider" />
         {dropdownItemList.map((item) => (
           <DropdownItem eventKey={item.label} key={item.label} className="mb-1">
             <Link className="flex gap-2 items-center" to={item.path}>
