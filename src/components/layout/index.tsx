@@ -4,6 +4,7 @@ import useDirection from "utils/hooks/useDirection";
 import useLocale from "utils/hooks/useLocale";
 import { RootState } from "../../store";
 import { useAppSelector } from "store/hooks";
+import CookieConsent from "react-cookie-consent";
 
 const layouts: Record<
   string,
@@ -32,6 +33,9 @@ const Layout = () => {
       }
     >
       <AppLayout />
+      <CookieConsent enableDeclineButton flipButtons>
+        This website uses cookies to enhance the user experience.
+      </CookieConsent>
     </Suspense>
   );
 };
