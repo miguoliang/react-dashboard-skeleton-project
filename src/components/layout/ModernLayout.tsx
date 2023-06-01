@@ -11,7 +11,7 @@ import { useAuth } from "react-oidc-context";
 import classNames from "classnames";
 import { SIGN_UP_URL } from "../../configs/oidc.config";
 
-const SignInAndSignUp = ({ className }: { className?: string }) => {
+export const SignInAndSignUp = ({ className }: { className?: string }) => {
   const auth = useAuth();
   return (
     <div

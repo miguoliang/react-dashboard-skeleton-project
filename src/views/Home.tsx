@@ -1,8 +1,9 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { Container } from "components/shared";
 
 const Home = () => {
   return (
-    <div>
+    <Container>
       <h1>Home</h1>
       {/*<PayPalButtons*/}
       {/*  createSubscription={(data, actions) => {*/}
@@ -18,7 +19,7 @@ const Home = () => {
       {/*    });*/}
       {/*  }}*/}
       {/*/>*/}
-    </div>
+    </Container>
   );
 };
 
