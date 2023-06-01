@@ -3,16 +3,31 @@ import { Avatar, Dropdown, DropdownItem } from "components/ui";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
-import { HiOutlineCog, HiOutlineLogout } from "react-icons/hi";
+import {
+  HiOutlineClock,
+  HiOutlineCog,
+  HiOutlineCurrencyDollar,
+  HiOutlineLogout,
+} from "react-icons/hi";
 import { useAuth } from "react-oidc-context";
 import { SIGN_OUT_URL } from "../../configs/oidc.config";
 import { APP_PREFIX_PATH } from "../../constants/route.constant";
 
 const dropdownItemList = [
   {
-    label: "Account Setting",
+    label: "Account",
     path: `${APP_PREFIX_PATH}/account/settings/profile`,
     icon: <HiOutlineCog />,
+  },
+  {
+    label: "Billing",
+    path: `${APP_PREFIX_PATH}/account/settings/billing`,
+    icon: <HiOutlineCurrencyDollar />,
+  },
+  {
+    label: "Subscription",
+    path: `${APP_PREFIX_PATH}/account/settings/subscription`,
+    icon: <HiOutlineClock />,
   },
 ];
 
@@ -32,7 +47,7 @@ export const UserDropdown = ({ className }: { className: string }) => {
   return (
     <div>
       <Dropdown
-        menuStyle={{ minWidth: 240 }}
+        menuStyle={{ minWidth: "100%" }}
         renderTitle={UserAvatar}
         placement="bottom-end"
       >

@@ -35,8 +35,18 @@ const appsRoute: Routes = [
     },
   },
   {
-    key: "account.settings.password",
-    path: `${APP_PREFIX_PATH}/account/settings/password`,
+    key: "account.settings.billing",
+    path: `${APP_PREFIX_PATH}/account/settings/billing`,
+    component: React.lazy(() => import("views/account/Settings")),
+    authority: [USER],
+    meta: {
+      header: "Settings",
+      headerContainer: true,
+    },
+  },
+  {
+    key: "account.settings.subscription",
+    path: `${APP_PREFIX_PATH}/account/settings/subscription`,
     component: React.lazy(() => import("views/account/Settings")),
     authority: [USER],
     meta: {
