@@ -4,12 +4,19 @@ import { PaginationRequest, PaginationResponse } from "../models/pagination";
 import { Vertex } from "../models/vertex";
 import { Category, Graph, Link, Node } from "../models/echarts";
 import { Edge } from "../models/edge";
+import dayjs from "dayjs";
 
-export async function apiGetDataSources(pageable?: PaginationRequest) {
+export async function apiGetDataSources(
+  date?: Date,
+  pageable?: PaginationRequest,
+) {
   return ApiService.fetchData<PaginationResponse<DataSource>>({
     url: "/data-sources",
     method: "get",
-    params: pageable,
+    params: {
+      date: dayjs(date).format("YYYY-MM-DD"),
+      ...pageable,
+    },
   });
 }
 

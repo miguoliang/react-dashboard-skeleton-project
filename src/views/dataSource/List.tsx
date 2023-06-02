@@ -6,32 +6,45 @@ import { PaginationResponse } from "../../models/pagination";
 import dayjs from "dayjs";
 import { ActionLink, Loading } from "../../components/shared";
 import { APP_PREFIX_PATH } from "../../constants/route.constant";
+import DatePicker from "../../components/ui/DatePicker";
 
 const DataSourceList = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [dataSourceList, setDataSourceList] =
     useState<PaginationResponse<DataSource> | null>(null);
+
   useEffect(() => {
     setLoading(true);
-    apiGetDataSources({ page: currentPage - 1 })
+    apiGetDataSources(selectedDate, { page: currentPage - 1 })
       .then((res) => {
         setDataSourceList(res.data);
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [currentPage]);
+  }, [currentPage, selectedDate]);
 
   return (
     <Loading loading={loading} type="cover" className="h-full">
       <div className="h-full flex flex-col">
+        <div className="flex items-center mb-4 flex-shrink-0">
+          <span className="flex-shrink-0 mr-4">日期：</span>
+          <DatePicker
+            className="max-w-[150px]"
+            closePickerOnChange
+            onChange={(date) => {
+              setSelectedDate(dayjs(date).toDate());
+              setCurrentPage(1);
+            }}
+          />
+        </div>
         <Table className="flex-grow">
           <THead className="leading-10">
             <Tr>
               <Th>ID</Th>
               <Th>Title</Th>
-              <Th>Source</Th>
               <Th>Created at</Th>
               <Th>Operations</Th>
             </Tr>
@@ -43,7 +56,6 @@ const DataSourceList = () => {
                   {dataSourceList.number * dataSourceList.size + index + 1}
                 </Td>
                 <Td>{dataSource.title}</Td>
-                <Td className="w-1/6">{dataSource.source}</Td>
                 <Td className="w-1/6">
                   {dayjs(dataSource.createdAt).format("YYYY-MM-DD HH:mm:ss")}
                 </Td>
