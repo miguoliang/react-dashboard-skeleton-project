@@ -6,6 +6,7 @@ import {
   OIDC_REDIRECT_URI,
 } from "../constants/oidc.constant";
 import { AuthProviderProps } from "react-oidc-context";
+import { WebStorageStateStore } from "oidc-client-ts";
 
 export const SIGN_UP_URL = `${OIDC_HOST}/signup?client_id=${OIDC_CLIENT_ID}&response_type=code&scope=openid+email&redirect_uri=${encodeURIComponent(
   OIDC_REDIRECT_URI,
@@ -25,4 +26,5 @@ export const oidcConfig: AuthProviderProps = {
     window.history.replaceState({}, document.title, window.location.pathname);
   },
   client_secret: OIDC_CLIENT_SECRET,
+  userStore: new WebStorageStateStore({ store: window.localStorage }),
 };

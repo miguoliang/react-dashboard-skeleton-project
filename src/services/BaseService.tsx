@@ -49,7 +49,7 @@ BaseService.interceptors.response.use(
 );
 
 function getUser() {
-  const oidcStorage = sessionStorage.getItem(
+  const oidcStorage = localStorage.getItem(
     `oidc.user:${OIDC_AUTHORITY}:${OIDC_CLIENT_ID}`,
   );
   return oidcStorage ? User.fromStorageString(oidcStorage) : null;
