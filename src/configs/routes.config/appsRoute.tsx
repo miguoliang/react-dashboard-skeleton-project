@@ -19,10 +19,6 @@ const appsRoute: Routes = [
     path: `${APP_PREFIX_PATH}/data-source/:id/knowledge-graph`,
     component: React.lazy(() => import("views/dataSource/KnowledgeGraph")),
     authority: [USER],
-    meta: {
-      header: "Knowledge Graph",
-      headerContainer: true,
-    },
   },
   {
     key: "account.settings.profile",

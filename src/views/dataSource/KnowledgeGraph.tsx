@@ -28,8 +28,11 @@ const KnowledgeGraph = () => {
   }, []);
 
   return (
-    <Loading loading={loading} type="cover" className="h-full">
-      <div className="w-full h-full" ref={chartRef}></div>
+    <Loading loading={loading} type="cover" className="h-full relative">
+      <div
+        className="absolute left-0 bottom-0 right-0 top-0"
+        ref={chartRef}
+      ></div>
     </Loading>
   );
 };
@@ -37,16 +40,25 @@ const KnowledgeGraph = () => {
 function updateGraph(chart: echarts.ECharts, graph: Graph) {
   const option = {
     tooltip: {},
+    title: {
+      text: "Knowledge Graph",
+      subtext: "Circular layout",
+      top: 0,
+      left: 0,
+      show: true,
+    },
     legend: [
       {
         data: graph.categories?.map(function (a) {
           return a.name;
         }),
+        orient: "vertical",
+        right: 0,
       },
     ],
     series: [
       {
-        name: "Les Miserables",
+        name: "Knowledge Graph",
         type: "graph",
         layout: "circular",
         data: graph.nodes,
@@ -78,7 +90,6 @@ function updateGraph(chart: echarts.ECharts, graph: Graph) {
 const composeGraph = async (dataSourceId: string) => {
   const vertices = await apiGetDataSourceVertices(dataSourceId);
   const vertexIds = vertices.data.map((v) => v.id);
-  console.log("vertexIds", vertexIds);
   const edge = await apiGetEdgesByVertices(vertexIds);
   return { vertices: vertices.data, edges: edge.data };
 };

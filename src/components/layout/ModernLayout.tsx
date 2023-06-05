@@ -48,7 +48,9 @@ const HeaderActionsStart = () => {
 
 const HeaderActionsEnd = () => {
   const auth = useAuth();
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(
+    auth.isAuthenticated,
+  );
   useEffect(() => {
     setIsAuthenticated(auth.isAuthenticated);
   }, [auth.isAuthenticated]);
