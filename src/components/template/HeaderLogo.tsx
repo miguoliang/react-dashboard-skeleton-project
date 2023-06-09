@@ -1,10 +1,9 @@
 import React from "react";
 import Logo from "components/template/Logo";
-import { useAppSelector } from "store/hooks";
+import { useThemeStore } from "../../store";
 
 const HeaderLogo = () => {
-  const mode = useAppSelector((state) => state.theme.mode);
-
+  const mode = useThemeStore((state) => state.mode);
   return <Logo mode={mode} className="hidden md:block" />;
 };
 

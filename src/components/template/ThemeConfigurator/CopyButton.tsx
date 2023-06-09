@@ -1,23 +1,21 @@
 import React from "react";
 import { Button, Notification, toast } from "components/ui";
-import { themeConfig } from "configs/theme.config";
-import { useAppSelector } from "store/hooks";
+import { useThemeStore } from "../../../store";
 
 const CopyButton = () => {
-  const theme = useAppSelector((state) => state.theme);
+  const themeStore = useThemeStore();
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     const config = {
-      ...themeConfig,
-      ...theme,
+      ...themeStore,
       layout: {
-        type: theme.layout.type,
-        sideNavCollapse: theme.layout.sideNavCollapse,
+        type: themeStore.layout,
+        sideNavCollapse: themeStore.sideNavCollapse,
       },
       panelExpand: false,
     };
 
-    navigator.clipboard.writeText(JSON.stringify(config, null, 2));
+    await navigator.clipboard.writeText(JSON.stringify(config, null, 2));
 
     toast.push(
       <Notification title="Copy Success" type="success">

@@ -1,11 +1,10 @@
 import React from "react";
 import classNames from "classnames";
 import { Badge, Select, useConfig } from "components/ui";
-import { setThemeColor, setThemeColorLevel } from "store/theme/themeSlice";
 import { HiCheck } from "react-icons/hi";
 import { components, ControlProps, OptionProps } from "react-select";
-import { useAppDispatch, useAppSelector } from "store/hooks";
 import { SelectChangeHandler } from "../../ui/Select/Select";
+import { useThemeStore } from "../../../store";
 
 const { Control } = components;
 
@@ -55,10 +54,7 @@ const ColorBadge = ({
   className?: string;
   themeColor: string;
 }) => {
-  const primaryColorLevel = useAppSelector(
-    (state) => state.theme.primaryColorLevel,
-  );
-
+  const primaryColorLevel = useThemeStore((state) => state.primaryColorLevel);
   return (
     <Badge
       className={className}
@@ -97,7 +93,7 @@ const CustomControl = ({
 }: ControlProps<ColorListOption>) => {
   const selected = props.getValue();
 
-  const themeColor = useAppSelector((state) => state.theme.themeColor);
+  const themeColor = useThemeStore((state) => state.themeColor);
 
   return (
     <Control {...props}>
@@ -110,23 +106,17 @@ const CustomControl = ({
 };
 
 const ThemeSwitcher = () => {
-  const dispatch = useAppDispatch();
-
-  const themeColor = useAppSelector((state) => state.theme.themeColor);
-  const primaryColorLevel = useAppSelector(
-    (state) => state.theme.primaryColorLevel,
-  );
-
+  const themeStore = useThemeStore();
   const onThemeColorChange: SelectChangeHandler<ColorListOption> = (option) => {
     const { themeColor } = useConfig();
-    dispatch(setThemeColor(option?.value ?? themeColor));
+    themeStore.setThemeColor(option?.value ?? themeColor);
   };
 
   const onThemeColorLevelChange: SelectChangeHandler<ColorLevelListOption> = (
     option,
   ) => {
     const { primaryColorLevel } = useConfig();
-    dispatch(setThemeColorLevel(option?.value ?? primaryColorLevel));
+    themeStore.setThemeColorLevel(option?.value ?? primaryColorLevel);
   };
 
   return (
@@ -138,14 +128,16 @@ const ThemeSwitcher = () => {
           Option: CustomSelectOption,
           Control: CustomControl,
         }}
-        value={colorList.filter((color) => color.value === themeColor)}
+        value={colorList.filter(
+          (color) => color.value === themeStore.themeColor,
+        )}
         onChange={onThemeColorChange}
       />
       <Select<ColorLevelListOption>
         size="sm"
         options={colorLevelList}
         value={colorLevelList.filter(
-          (color) => color.value === primaryColorLevel,
+          (color) => color.value === themeStore.primaryColorLevel,
         )}
         onChange={onThemeColorLevelChange}
       />

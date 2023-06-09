@@ -1,8 +1,7 @@
 import React, { PropsWithoutRef } from "react";
 import classNames from "classnames";
 import { Card } from "components/ui";
-import { RootState } from "store";
-import { useAppSelector } from "store/hooks";
+import { useThemeStore } from "../../store";
 
 type AdaptableCardProps = Partial<{
   leftSideBorder: boolean;
@@ -27,7 +26,7 @@ const AdaptableCard = (props: AdaptableCardProps) => {
     ...rest
   } = props;
 
-  const type = useAppSelector((state: RootState) => state.theme.layout.type);
+  const type = useThemeStore((state) => state.layout);
 
   return (
     <Card

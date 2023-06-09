@@ -24,9 +24,9 @@ import useTwColorByName from "utils/hooks/useTwColorByName";
 import useThemeClass from "utils/hooks/useThemeClass";
 import useResponsive from "utils/hooks/useResponsive";
 import acronym from "utils/acronym";
-import { useAppSelector } from "store/hooks";
 import { noop } from "../ui/utils/constant";
 import { Notification as NotificationData } from "mock/data/commonData";
+import { useThemeStore } from "../../store";
 
 const notificationHeight = "h-72";
 const imagePath = "/img/avatars/";
@@ -102,13 +102,9 @@ export const Notification = ({ className }: { className: string }) => {
   const [unreadNotification, setUnreadNotification] = useState(false);
   const [noResult, setNoResult] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const { bgTheme } = useThemeClass();
-
   const { larger } = useResponsive();
-
-  const direction = useAppSelector((state) => state.theme.direction);
-
+  const direction = useThemeStore((state) => state.direction);
   const getNotificationCount = useCallback(async () => {
     const resp = { data: { count: 0 } };
     if (resp.data.count > 0) {

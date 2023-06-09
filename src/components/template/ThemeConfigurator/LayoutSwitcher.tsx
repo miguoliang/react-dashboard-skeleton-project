@@ -4,8 +4,8 @@ import { Segment, SegmentItem } from "components/ui";
 import { DoubleSidedImage, SegmentItemOption } from "components/shared";
 import { HiCheckCircle } from "react-icons/hi";
 import useThemeClass from "utils/hooks/useThemeClass";
-import { setLayout } from "store/theme/themeSlice";
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import { useThemeStore } from "../../../store";
+import { LayoutType } from "../../../constants/theme.constant";
 
 const layouts: {
   value: string;
@@ -52,11 +52,9 @@ const layouts: {
 ];
 
 const LayoutSwitcher = () => {
-  const type = useAppSelector((state) => state.theme.layout.type);
-  const dispatch = useAppDispatch();
-
-  const onLayoutSelect = (val: any) => {
-    dispatch(setLayout(val));
+  const themeStore = useThemeStore();
+  const onLayoutSelect = (val: LayoutType) => {
+    themeStore.setLayout(val);
   };
 
   const { textTheme } = useThemeClass();
@@ -65,8 +63,8 @@ const LayoutSwitcher = () => {
     <div>
       <Segment
         className="w-full"
-        value={[type]}
-        onChange={(val: string[]) => onLayoutSelect(val[0])}
+        value={[themeStore.layout as LayoutType]}
+        onChange={(val: string[]) => onLayoutSelect(val[0] as LayoutType)}
       >
         <div className="grid grid-cols-3 gap-4 w-full">
           {layouts.map((layout) => (

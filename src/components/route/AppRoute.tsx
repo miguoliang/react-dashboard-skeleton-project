@@ -1,9 +1,6 @@
-import React, { LazyExoticComponent, useCallback, useEffect } from "react";
-import { setLayout, setPreviousLayout } from "store/theme/themeSlice";
-import { setCurrentRouteKey } from "store/base/commonSlice";
+import React, { LazyExoticComponent, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { RootState } from "../../store";
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import { useThemeStore } from "store";
 
 type AppRouteProps = {
   component: LazyExoticComponent<(props: Record<string, any>) => JSX.Element>;
@@ -16,32 +13,10 @@ const AppRoute = ({
   ...props
 }: AppRouteProps) => {
   const location = useLocation();
-
-  const dispatch = useAppDispatch();
-
-  const layoutType = useAppSelector(
-    (state: RootState) => state.theme.layout.type,
-  );
-  const previousLayout = useAppSelector(
-    (state: RootState) => state.theme.layout.previousType,
-  );
-
-  const handleLayoutChange = useCallback(() => {
-    dispatch(setCurrentRouteKey(routeKey));
-    if (props.layout && props.layout !== layoutType) {
-      dispatch(setPreviousLayout(layoutType));
-      dispatch(setLayout(props.layout));
-    }
-
-    if (!props.layout && previousLayout && layoutType !== previousLayout) {
-      dispatch(setLayout(layoutType));
-      dispatch(setPreviousLayout(previousLayout));
-    }
-  }, [dispatch, layoutType, previousLayout, props.layout, routeKey]);
-
+  const themeStore = useThemeStore();
   useEffect(() => {
-    handleLayoutChange();
-  }, [location, handleLayoutChange]);
+    themeStore.setCurrentRouteKey(routeKey);
+  }, [location]);
 
   return <Component {...props} />;
 };

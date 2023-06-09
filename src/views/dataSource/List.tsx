@@ -34,6 +34,7 @@ const DataSourceList = () => {
           <DatePicker
             className="max-w-[150px]"
             closePickerOnChange
+            defaultValue={selectedDate}
             onChange={(date) => {
               setSelectedDate(dayjs(date).toDate());
               setCurrentPage(1);

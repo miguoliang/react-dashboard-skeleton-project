@@ -2,26 +2,20 @@ import React from "react";
 import classNames from "classnames";
 import HorizontalMenuContent from "components/template/HorizontalMenuContent";
 import useResponsive from "utils/hooks/useResponsive";
-import { useAppSelector } from "store/hooks";
 import { useAuth } from "react-oidc-context";
+import { useThemeStore } from "../../store";
 
 const SecondaryHeader = (props: { className?: string; contained: boolean }) => {
   const { className, contained } = props;
-
-  const navMode = useAppSelector((state) => state.theme.navMode);
-  const themeColor = useAppSelector((state) => state.theme.themeColor);
-  const primaryColorLevel = useAppSelector(
-    (state) => state.theme.primaryColorLevel,
-  );
+  const themeStore = useThemeStore();
   const userAuthority = useAuth().user?.scopes;
-
   const { larger } = useResponsive();
 
   const headerColor = () => {
-    if (navMode === "themed") {
-      return `bg-${themeColor}-${primaryColorLevel} secondary-header-${navMode}`;
+    if (themeStore.navMode === "themed") {
+      return `bg-${themeStore.themeColor}-${themeStore.primaryColorLevel} secondary-header-${themeStore.navMode}`;
     }
-    return `secondary-header-${navMode}`;
+    return `secondary-header-${themeStore.navMode}`;
   };
 
   return (
@@ -42,7 +36,7 @@ const SecondaryHeader = (props: { className?: string; contained: boolean }) => {
             )}
           >
             <HorizontalMenuContent
-              menuVariant={navMode}
+              menuVariant={themeStore.navMode}
               userAuthority={userAuthority}
             />
           </div>

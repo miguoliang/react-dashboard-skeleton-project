@@ -20,7 +20,6 @@
   },
   "include": ["src"],
   "exclude": ["**/*.test.ts", "**/*.test.tsx", "node_modules"],
-  "files": ["./node_modules/redux-persist/types/integration/react.d.ts"],
   "references": [
     {
       "path": "./tsconfig.node.json"

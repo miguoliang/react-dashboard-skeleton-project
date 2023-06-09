@@ -1,20 +1,17 @@
 import React from "react";
 import { Radio, RadioGroup } from "components/ui";
-import { setNavMode } from "store/theme/themeSlice";
-import { NavMode } from "../../../constants/theme.constant";
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import { NavMode } from "constants/theme.constant";
+import { useThemeStore } from "store";
 
 const NavModeSwitcher = () => {
-  const navMode = useAppSelector((state) => state.theme.navMode);
-  const dispatch = useAppDispatch();
-
+  const themeStore = useThemeStore();
   const onSetNavMode = (val: NavMode) => {
-    dispatch(setNavMode(val));
+    themeStore.setNavMode(val);
   };
 
   return (
     <RadioGroup
-      value={navMode === "themed" ? "themed" : "light"}
+      value={themeStore.navMode === "themed" ? "themed" : "light"}
       onChange={(val) => onSetNavMode(val)}
     >
       <Radio value="default">Default</Radio>

@@ -4,24 +4,17 @@ import { Drawer } from "components/ui";
 import { HiOutlineCog } from "react-icons/hi";
 import SidePanelContent from "./SidePanelContent";
 import withHeaderItem from "utils/hoc/withHeaderItem";
-import { setPanelExpand } from "store/theme/themeSlice";
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import { useThemeStore } from "../../../store";
 
 export const SidePanel = (props: JSX.IntrinsicElements["div"]) => {
-  const dispatch = useAppDispatch();
-
   const { className, ...rest } = props;
-
-  const panelExpand = useAppSelector((state) => state.theme.panelExpand);
-
-  const direction = useAppSelector((state) => state.theme.direction);
-
+  const themeStore = useThemeStore();
   const openPanel = () => {
-    dispatch(setPanelExpand(true));
+    themeStore.setPanelExpand(true);
   };
 
   const closePanel = () => {
-    dispatch(setPanelExpand(false));
+    themeStore.setPanelExpand(false);
     const bodyClassList = document.body.classList;
     if (bodyClassList.contains("drawer-lock-scroll")) {
       bodyClassList.remove("drawer-lock-scroll", "drawer-open");
@@ -39,10 +32,10 @@ export const SidePanel = (props: JSX.IntrinsicElements["div"]) => {
       </div>
       <Drawer
         title="Theme Config"
-        isOpen={panelExpand}
+        isOpen={themeStore.panelExpand}
         onClose={closePanel}
         onRequestClose={closePanel}
-        placement={direction === "rtl" ? "left" : "right"}
+        placement={themeStore.direction === "rtl" ? "left" : "right"}
         width={375}
       >
         <SidePanelContent callBackClose={closePanel} />

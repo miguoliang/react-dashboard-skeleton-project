@@ -4,7 +4,7 @@ import WorldMap from "assets/maps/world-countries-sans-antarctica.json";
 import shadeColor from "utils/shadeColor";
 import ReactTooltip from "react-tooltip";
 import { theme } from "twin.macro";
-import { useAppSelector } from "store/hooks";
+import { useThemeStore } from "../../store";
 
 const twColor = theme<any>`colors`;
 
@@ -83,8 +83,7 @@ type MapChartProps = {
 
 const MapChart = (props: MapChartProps) => {
   const { setTooltipContent, data, mapSource, suffix, prefix } = props;
-
-  const mode = useAppSelector((state) => state.theme.mode);
+  const mode = useThemeStore((state) => state.mode);
   return (
     <ComposableMap
       style={{ transform: "translateY(20px)" }}

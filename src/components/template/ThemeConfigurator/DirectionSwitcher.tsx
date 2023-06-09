@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, InputGroup } from "components/ui";
-import useDirection from "utils/hooks/useDirection";
-import { TextDirection } from "../../ui/utils/constant";
+import { Direction } from "../../../constants/theme.constant";
+import { useThemeStore } from "../../../store";
 
-const dirList: { label: string; value: TextDirection }[] = [
+const dirList: { label: string; value: Direction }[] = [
   { value: "ltr", label: "LTR" },
   { value: "rtl", label: "RTL" },
 ];
@@ -13,10 +13,9 @@ const DirectionSwitcher = ({
 }: {
   callBackClose: () => void;
 }) => {
-  const [direction, updateDirection] = useDirection();
-
-  const onDirChange = (val: TextDirection) => {
-    updateDirection(val);
+  const themeStore = useThemeStore();
+  const onDirChange = (val: Direction) => {
+    themeStore.setDirection(val);
     callBackClose();
   };
 
@@ -25,7 +24,7 @@ const DirectionSwitcher = ({
       {dirList.map((dir) => (
         <Button
           key={dir.value}
-          active={direction === dir.value}
+          active={themeStore.direction === dir.value}
           onClick={() => onDirChange(dir.value)}
         >
           {dir.label}

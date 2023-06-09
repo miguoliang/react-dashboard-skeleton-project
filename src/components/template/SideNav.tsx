@@ -11,8 +11,8 @@ import Logo from "components/template/Logo";
 import navigationConfig from "configs/navigation.config";
 import VerticalMenuContent from "components/template/VerticalMenuContent";
 import useResponsive from "utils/hooks/useResponsive";
-import { useAppSelector } from "store/hooks";
 import { useAuth } from "react-oidc-context";
+import { useThemeStore } from "store";
 
 const sideNavStyle = {
   width: SIDE_NAV_WIDTH,
@@ -25,51 +25,36 @@ const sideNavCollapseStyle = {
 };
 
 const SideNav = () => {
-  const themeColor = useAppSelector((state) => state.theme.themeColor);
-  const primaryColorLevel = useAppSelector(
-    (state) => state.theme.primaryColorLevel,
-  );
-  const navMode = useAppSelector((state) => state.theme.navMode);
-  const mode = useAppSelector((state) => state.theme.mode);
-  const direction = useAppSelector((state) => state.theme.direction);
-  const currentRouteKey = useAppSelector(
-    (state) => state.base.common.currentRouteKey,
-  );
-
-  const sideNavCollapse = useAppSelector(
-    (state) => state.theme.layout.sideNavCollapse,
-  );
+  const themeStore = useThemeStore();
   const userAuthority = useAuth().user?.scopes ?? [];
-
   const { larger } = useResponsive();
-
   const sideNavColor = () => {
-    if (navMode === "themed") {
-      return `bg-${themeColor}-${primaryColorLevel} side-nav-${navMode}`;
+    if (themeStore.navMode === "themed") {
+      return `bg-${themeStore.themeColor}-${themeStore.primaryColorLevel} side-nav-${themeStore.navMode}`;
     }
-    return `side-nav-${navMode}`;
+    return `side-nav-${themeStore.navMode}`;
   };
 
   const logoMode = () => {
-    if (navMode === "themed") {
+    if (themeStore.navMode === "themed") {
       return "dark";
     }
 
-    if (navMode === "transparent") {
-      return mode;
+    if (themeStore.navMode === "transparent") {
+      return themeStore.mode;
     }
 
-    return navMode;
+    return themeStore.navMode;
   };
 
   const menuContent = (
     <VerticalMenuContent
-      navMode={navMode}
-      collapsed={sideNavCollapse}
+      navMode={themeStore.navMode}
+      collapsed={themeStore.sideNavCollapse}
       navigationTree={navigationConfig}
-      routeKey={currentRouteKey}
+      routeKey={themeStore.currentRouteKey}
       userAuthority={userAuthority}
-      direction={direction}
+      direction={themeStore.direction}
     />
   );
 
@@ -77,25 +62,31 @@ const SideNav = () => {
     <>
       {larger.md && (
         <div
-          style={sideNavCollapse ? sideNavCollapseStyle : sideNavStyle}
+          style={
+            themeStore.sideNavCollapse ? sideNavCollapseStyle : sideNavStyle
+          }
           className={classNames(
             "side-nav",
             sideNavColor(),
-            !sideNavCollapse && "side-nav-expand",
+            !themeStore.sideNavCollapse && "side-nav-expand",
           )}
         >
           <div className="side-nav-header">
             <Logo
               mode={logoMode()}
-              type={sideNavCollapse ? "streamline" : "full"}
-              gutter={sideNavCollapse ? SIDE_NAV_CONTENT_GUTTER : LOGO_X_GUTTER}
+              type={themeStore.sideNavCollapse ? "streamline" : "full"}
+              gutter={
+                themeStore.sideNavCollapse
+                  ? SIDE_NAV_CONTENT_GUTTER
+                  : LOGO_X_GUTTER
+              }
             />
           </div>
-          {sideNavCollapse ? (
+          {themeStore.sideNavCollapse ? (
             menuContent
           ) : (
             <div className="side-nav-content">
-              <ScrollBar autoHide direction={direction}>
+              <ScrollBar autoHide direction={themeStore.direction}>
                 {menuContent}
               </ScrollBar>
             </div>

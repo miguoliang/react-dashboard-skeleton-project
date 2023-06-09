@@ -5,8 +5,8 @@ import withHeaderItem from "utils/hoc/withHeaderItem";
 import { NavToggle } from "components/shared";
 import navigationConfig from "configs/navigation.config";
 import useResponsive from "utils/hooks/useResponsive";
-import { useAppSelector } from "store/hooks";
 import { useAuth } from "react-oidc-context";
+import { useThemeStore } from "store";
 
 const VerticalMenuContent = lazy(
   () => import("components/template/VerticalMenuContent"),
@@ -25,33 +25,18 @@ const MobileNav = () => {
     setIsOpen(false);
   };
 
-  const themeColor = useAppSelector((state) => state.theme.themeColor);
-  const primaryColorLevel = useAppSelector(
-    (state) => state.theme.primaryColorLevel,
-  );
-  const navMode = useAppSelector((state) => state.theme.navMode);
-  const mode = useAppSelector((state) => state.theme.mode);
-  const direction = useAppSelector((state) => state.theme.direction);
-  const currentRouteKey = useAppSelector(
-    (state) => state.base.common.currentRouteKey,
-  );
-  const sideNavCollapse = useAppSelector(
-    (state) => state.theme.layout.sideNavCollapse,
-  );
+  const themeStore = useThemeStore();
   const userAuthority = useAuth().user?.scopes ?? [];
-
   const { smaller } = useResponsive();
 
   const navColor = () => {
-    if (navMode === "themed") {
-      return `bg-${themeColor}-${primaryColorLevel} side-nav-${navMode}`;
+    if (themeStore.navMode === "themed") {
+      return `bg-${themeStore.themeColor}-${themeStore.primaryColorLevel} side-nav-${themeStore.navMode}`;
     }
-
-    if (navMode === "transparent") {
-      return `side-nav-${mode}`;
+    if (themeStore.navMode === "transparent") {
+      return `side-nav-${themeStore.mode}`;
     }
-
-    return `side-nav-${navMode}`;
+    return `side-nav-${themeStore.navMode}`;
   };
 
   return (
@@ -68,18 +53,18 @@ const MobileNav = () => {
             onRequestClose={onDrawerClose}
             bodyClass={classNames(navColor(), "p-0")}
             width={330}
-            placement={direction === "rtl" ? "right" : "left"}
+            placement={themeStore.direction === "rtl" ? "right" : "left"}
           >
             <Suspense fallback={<></>}>
               {isOpen && (
                 <VerticalMenuContent
-                  navMode={navMode}
-                  collapsed={sideNavCollapse}
+                  navMode={themeStore.navMode}
+                  collapsed={themeStore.sideNavCollapse}
                   navigationTree={navigationConfig}
-                  routeKey={currentRouteKey}
+                  routeKey={themeStore.currentRouteKey}
                   userAuthority={userAuthority}
                   onMenuItemClick={onDrawerClose}
-                  direction={direction}
+                  direction={themeStore.direction}
                 />
               )}
             </Suspense>

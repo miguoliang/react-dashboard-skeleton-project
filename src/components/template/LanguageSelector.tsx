@@ -2,14 +2,13 @@ import React, { useMemo, useState } from "react";
 import { Avatar, Dropdown, DropdownItem, Spinner } from "components/ui";
 import classNames from "classnames";
 import withHeaderItem from "utils/hoc/withHeaderItem";
-import { setLang } from "store/locale/localeSlice";
 import { dateLocales } from "locales";
 import dayjs from "dayjs";
 import i18n from "i18next";
 
 import { HiCheck } from "react-icons/hi";
-import { useAppDispatch, useAppSelector } from "store/hooks";
 import { noop } from "../ui/utils/constant";
+import { useLocaleStore } from "../../store";
 
 const languageList = [
   { label: "English", value: "en", flag: "us" },
@@ -20,10 +19,7 @@ const languageList = [
 
 export const LanguageSelector = ({ className }: { className: string }) => {
   const [loading, setLoading] = useState(false);
-
-  const locale = useAppSelector((state) => state.locale.currentLang);
-  const dispatch = useAppDispatch();
-
+  const locale = useLocaleStore((state) => state.currentLang);
   const selectLangFlag = useMemo(() => {
     return languageList.find((lang) => lang.value === locale)?.flag;
   }, [locale]);
@@ -43,16 +39,12 @@ export const LanguageSelector = ({ className }: { className: string }) => {
   );
 
   const onLanguageSelect = (lang: string) => {
-    console.log(lang);
     const formattedLang = lang.replace(/-([a-z])/g, function (g) {
       return g[1].toUpperCase();
     });
-
     setLoading(true);
-
     const dispatchLang = () => {
       i18n.changeLanguage(formattedLang).then(() => noop());
-      dispatch(setLang(lang));
       setLoading(false);
     };
 

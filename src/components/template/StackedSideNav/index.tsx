@@ -8,9 +8,9 @@ import StackedSideNavSecondary from "./StackedSideNavSecondary";
 import useResponsive from "utils/hooks/useResponsive";
 import isEmpty from "lodash/isEmpty";
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "store/hooks";
-import { NavigationTree } from "../../../configs/navigation.config/apps.navigation.config";
+import { NavigationTree } from "configs/navigation.config/apps.navigation.config";
 import { useAuth } from "react-oidc-context";
+import { useThemeStore } from "store";
 
 const stackedSideNavDefaultStyle = {
   width: SPLITTED_SIDE_NAV_MINI_WIDTH,
@@ -18,27 +18,15 @@ const stackedSideNavDefaultStyle = {
 
 const StackedSideNav = () => {
   const { t } = useTranslation();
-
   const [selectedMenu, setSelectedMenu] = useState<NavigationTree>();
   const [activeKeys, setActiveKeys] = useState<string[]>();
-
-  const themeColor = useAppSelector((state) => state.theme.themeColor);
-  const primaryColorLevel = useAppSelector(
-    (state) => state.theme.primaryColorLevel,
-  );
-  const navMode = useAppSelector((state) => state.theme.navMode);
-  const mode = useAppSelector((state) => state.theme.mode);
-  const direction = useAppSelector((state) => state.theme.direction);
-  const currentRouteKey = useAppSelector(
-    (state) => state.base.common.currentRouteKey,
-  );
+  const themeStore = useThemeStore();
   const userAuthority = useAuth().user?.scopes ?? [];
-
   const { larger } = useResponsive();
 
   const navColor = (navType: string, mode: string, ableTheme = true) => {
-    if (navMode === "themed" && ableTheme) {
-      return `bg-${themeColor}-${primaryColorLevel} ${navType}-${mode}`;
+    if (themeStore.navMode === "themed" && ableTheme) {
+      return `bg-${themeStore.themeColor}-${themeStore.primaryColorLevel} ${navType}-${mode}`;
     }
     return `${navType}-${mode}`;
   };
@@ -59,11 +47,11 @@ const StackedSideNav = () => {
   const stackedSideNavSecondaryDirStyle = () => {
     let style = {};
     const marginValue = `${-SPLITTED_SIDE_NAV_SECONDARY_WIDTH}px`;
-    if (direction === "ltr") {
+    if (themeStore.direction === "ltr") {
       style = { marginLeft: marginValue };
     }
 
-    if (direction === "rtl") {
+    if (themeStore.direction === "rtl") {
       style = { marginRight: marginValue };
     }
 
@@ -77,22 +65,22 @@ const StackedSideNav = () => {
           <StackedSideNavMini
             className={`stacked-side-nav-mini ${navColor(
               "stacked-side-nav-mini",
-              navMode,
+              themeStore.navMode,
             )}`}
             style={stackedSideNavDefaultStyle}
-            routeKey={currentRouteKey}
+            routeKey={themeStore.currentRouteKey}
             activeKeys={activeKeys}
-            navMode={navMode}
+            navMode={themeStore.navMode}
             onChange={handleChange}
             onSetActiveKey={handleSetActiveKey}
             userAuthority={userAuthority}
-            mode={mode}
-            direction={direction}
+            mode={themeStore.mode}
+            direction={themeStore.direction}
           />
           <div
             className={`stacked-side-nav-secondary ${navColor(
               "stacked-side-nav-secondary",
-              mode,
+              themeStore.mode,
               false,
             )}`}
             style={{
@@ -106,10 +94,10 @@ const StackedSideNav = () => {
               <StackedSideNavSecondary
                 title={t(selectedMenu.translateKey, selectedMenu.title)}
                 menu={selectedMenu.menu}
-                routeKey={currentRouteKey}
+                routeKey={themeStore.currentRouteKey}
                 navMode={"transparent"}
                 onCollapse={handleCollapse}
-                direction={direction}
+                direction={themeStore.direction}
                 userAuthority={userAuthority}
               />
             )}
