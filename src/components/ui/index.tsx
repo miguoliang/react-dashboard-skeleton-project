@@ -1,5 +1,4 @@
 export { default as Alert } from "./Alert";
-export * from "./Avatar";
 export { default as Badge } from "./Badge";
 export { default as Button } from "./Buttons";
 export { default as Card } from "./Card";

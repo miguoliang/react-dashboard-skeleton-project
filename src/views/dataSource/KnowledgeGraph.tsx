@@ -1,22 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
 import { Loading } from "components/shared";
-import { Graph } from "../../models/echarts";
+import { Graph } from "models/echarts";
 import {
   apiGetDataSourceVertices,
   makeGraph,
-} from "../../services/DataSourceService";
+} from "services/DataSourceService";
 import { useParams } from "react-router-dom";
-import { apiGetEdgesByVertices } from "../../services/EdgeService";
+import { apiGetEdgesByVertices } from "services/EdgeService";
 import { Button } from "components/ui";
+import { useBoolean } from "@chakra-ui/react";
 
 const KnowledgeGraph = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useBoolean();
   const chartRef = useRef<HTMLDivElement>(null);
   const { id: dataSourceId } = useParams<{ id: string }>();
 
   useEffect(() => {
-    setLoading(true);
+    setLoading.on();
     const chart = echarts.init(chartRef.current!);
     composeGraph(dataSourceId!)
       .then((data) => {
@@ -24,7 +25,7 @@ const KnowledgeGraph = () => {
         updateGraph(chart, graph);
       })
       .finally(() => {
-        setLoading(false);
+        setLoading.off();
       });
   }, []);
 

@@ -1,5 +1,6 @@
 import React from "react";
-import { Avatar, Dropdown, DropdownItem } from "components/ui";
+import { Avatar } from "@chakra-ui/react";
+import { Dropdown, DropdownItem } from "components/ui";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
@@ -36,7 +37,7 @@ export const UserDropdown = ({ className }: { className: string }) => {
 
   const UserAvatar = (
     <div className={classNames(className, "flex items-center gap-2")}>
-      <Avatar size={32} shape="circle" src={""} />
+      <Avatar size="md" src="/img/avatars/thumb-1.jpg" />
       <div className="hidden md:block">
         <div className="text-xs capitalize">user</div>
         <div className="font-bold">{auth.user?.profile.email}</div>

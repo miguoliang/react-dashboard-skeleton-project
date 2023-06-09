@@ -4,11 +4,11 @@ import React, {
   forwardRef,
   ReactNode,
   useEffect,
-  useState,
 } from "react";
 import classNames from "classnames";
 import Spinner from "../Spinner";
 import { useConfig } from "../ConfigProvider";
+import { useBoolean } from "@chakra-ui/react";
 
 const Switcher = forwardRef<
   HTMLInputElement,
@@ -45,12 +45,12 @@ const Switcher = forwardRef<
 
   const { themeColor, primaryColorLevel } = useConfig();
 
-  const [switcherChecked, setSwitcherChecked] = useState<boolean>(
+  const [switcherChecked, setSwitcherChecked] = useBoolean(
     defaultChecked || checked || false,
   );
 
   useEffect(() => {
-    setSwitcherChecked(checked);
+    checked ? setSwitcherChecked.on() : setSwitcherChecked.off();
   }, [checked]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -58,7 +58,7 @@ const Switcher = forwardRef<
       return;
     }
     const nextChecked = !switcherChecked;
-    setSwitcherChecked(nextChecked);
+    nextChecked ? setSwitcherChecked.on() : setSwitcherChecked.off();
     onChange?.(nextChecked, e);
   };
 

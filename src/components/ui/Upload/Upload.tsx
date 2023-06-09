@@ -16,6 +16,7 @@ import CloseButton from "../CloseButton";
 import Notification from "../Notification";
 import toast from "../toast";
 import { FieldProps } from "formik";
+import { useBoolean } from "@chakra-ui/react";
 
 const filesToArray = (files: Record<string, any>) =>
   Object.keys(files).map((key) => files[key]);
@@ -56,7 +57,7 @@ const Upload = React.forwardRef<
 
   const fileInputField = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>(fileList ?? []);
-  const [dragOver, setDragOver] = useState<boolean>(false);
+  const [dragOver, setDragOver] = useBoolean();
 
   const { themeColor, primaryColorLevel } = useConfig();
 
@@ -154,19 +155,19 @@ const Upload = React.forwardRef<
 
   const handleDragLeave = useCallback(() => {
     if (draggable) {
-      setDragOver(false);
+      setDragOver.off();
     }
   }, [draggable]);
 
   const handleDragOver = useCallback(() => {
     if (draggable && !disabled) {
-      setDragOver(true);
+      setDragOver.on();
     }
   }, [draggable, disabled]);
 
   const handleDrop = useCallback(() => {
     if (draggable) {
-      setDragOver(false);
+      setDragOver.off();
     }
   }, [draggable]);
 

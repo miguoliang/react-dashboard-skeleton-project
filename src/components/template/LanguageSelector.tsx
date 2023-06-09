@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { Avatar, Dropdown, DropdownItem, Spinner } from "components/ui";
+import { Avatar } from "@chakra-ui/react";
+import { Dropdown, DropdownItem, Spinner } from "components/ui";
 import classNames from "classnames";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { dateLocales } from "locales";
@@ -29,11 +30,7 @@ export const LanguageSelector = ({ className }: { className: string }) => {
       {loading ? (
         <Spinner size={20} />
       ) : (
-        <Avatar
-          size={24}
-          shape="circle"
-          src={`/img/countries/${selectLangFlag}.png`}
-        />
+        <Avatar size="xs" src={`/img/countries/${selectLangFlag}.png`} />
       )}
     </div>
   );
@@ -68,11 +65,7 @@ export const LanguageSelector = ({ className }: { className: string }) => {
           onClick={() => onLanguageSelect(lang.value)}
         >
           <span className="flex items-center">
-            <Avatar
-              size={18}
-              shape="circle"
-              src={`/img/countries/${lang.flag}.png`}
-            />
+            <Avatar size="xs" src={`/img/countries/${lang.flag}.png`} />
             <span className="ltr:ml-2 rtl:mr-2">{lang.label}</span>
           </span>
           {locale === lang.value && (

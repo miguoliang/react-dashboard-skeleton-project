@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Avatar } from "@chakra-ui/react";
 import {
-  Avatar,
   Button,
   Card,
   Dialog,

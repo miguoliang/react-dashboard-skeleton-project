@@ -1,9 +1,13 @@
 import React, { useMemo } from "react";
-import { Avatar, AvatarGroup, Tooltip } from "components/ui";
+import { Tooltip } from "components/ui";
 import acronym from "utils/acronym";
 import useTwColorByName from "utils/hooks/useTwColorByName";
-import { AvatarProps } from "../ui/Avatar/Avatar";
-import { AvatarGroupProps } from "components/ui/Avatar/AvatarGroup";
+import {
+  Avatar,
+  AvatarGroup,
+  AvatarGroupProps,
+  AvatarProps,
+} from "@chakra-ui/react";
 
 type UsersAvatarGroupProps = {
   users?: Record<string, string>[];
@@ -30,8 +34,7 @@ const UsersAvatarGroup = (props: UsersAvatarGroupProps) => {
 
   const defaultAvatarProps = useMemo<AvatarProps>(() => {
     return {
-      shape: "circle",
-      size: 30,
+      size: "md",
       className: "cursor-pointer",
       ...avatarProps,
     };
@@ -40,13 +43,7 @@ const UsersAvatarGroup = (props: UsersAvatarGroupProps) => {
     onAvatarClick?.(avatar);
   };
   return (
-    <AvatarGroup
-      omittedAvatarTooltip
-      omittedAvatarProps={defaultAvatarProps}
-      chained
-      {...avatarGroupProps}
-      {...rest}
-    >
+    <AvatarGroup chained {...avatarGroupProps} {...rest}>
       {users.map((elm, index) => (
         <Tooltip key={elm[nameKey] + index} title={elm[nameKey]}>
           <Avatar

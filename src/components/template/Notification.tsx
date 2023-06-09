@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
 import withHeaderItem from "utils/hoc/withHeaderItem";
+import { Avatar } from "@chakra-ui/react";
 import {
-  Avatar,
   Badge,
   Button,
   Dropdown,
@@ -33,11 +33,7 @@ const imagePath = "/img/avatars/";
 
 const GeneratedAvatar = ({ target }: { target: string }) => {
   const color = useTwColorByName();
-  return (
-    <Avatar shape="circle" className={`${color(target)}`}>
-      {acronym(target)}
-    </Avatar>
-  );
+  return <Avatar className={`${color(target)}`}>{acronym(target)}</Avatar>;
 };
 
 const notificationTypeAvatar = (data: NotificationData) => {
@@ -45,14 +41,13 @@ const notificationTypeAvatar = (data: NotificationData) => {
   switch (type) {
     case 0:
       if (image) {
-        return <Avatar shape="circle" src={`${imagePath}${image}`} />;
+        return <Avatar src={`${imagePath}${image}`} />;
       } else {
         return <GeneratedAvatar target={target} />;
       }
     case 1:
       return (
         <Avatar
-          shape="circle"
           className="bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-100"
           icon={<HiOutlineCalendar />}
         />
@@ -67,9 +62,7 @@ const notificationTypeAvatar = (data: NotificationData) => {
       ) : (
         <HiOutlineBan />
       );
-      return (
-        <Avatar shape="circle" className={statusColor} icon={statusIcon} />
-      );
+      return <Avatar className={statusColor} icon={statusIcon} />;
     default:
       return <Avatar />;
   }

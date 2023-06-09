@@ -1,6 +1,6 @@
 import React from "react";
+import { Avatar } from "@chakra-ui/react";
 import {
-  Avatar,
   Button,
   FormContainer,
   Input,
@@ -76,7 +76,7 @@ const CustomSelectOption = ({
       {...innerProps}
     >
       <div className="flex items-center">
-        <Avatar shape="circle" size={20} src={data.imgPath} />
+        <Avatar size="md" src={data.imgPath} />
         <span className="ml-2 rtl:mr-2">{label}</span>
       </div>
       {isSelected && <HiCheck className="text-emerald-500 text-xl" />}
@@ -91,8 +91,7 @@ const CustomControl = ({ children, ...props }: ControlProps<any>) => {
       {selected && (
         <Avatar
           className="ltr:ml-4 rtl:mr-4"
-          shape="circle"
-          size={18}
+          size="md"
           src={selected.imgPath}
         />
       )}
@@ -173,7 +172,6 @@ const Profile = ({
               <FormRow name="avatar" label="Avatar" {...validatorProps}>
                 <Field name="avatar">
                   {({ field, form }: FieldProps) => {
-                    const avatarProps = field.value ? { src: field.value } : {};
                     return (
                       <Upload
                         className="cursor-pointer"
@@ -186,10 +184,9 @@ const Profile = ({
                       >
                         <Avatar
                           className="border-2 border-white dark:border-gray-800 shadow-lg"
-                          size={60}
-                          shape="circle"
+                          size="xl"
                           icon={<HiOutlineUser />}
-                          {...avatarProps}
+                          src={field.value}
                         />
                       </Upload>
                     );

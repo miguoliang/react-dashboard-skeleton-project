@@ -1,28 +1,29 @@
 import { useEffect, useState } from "react";
-import { apiGetDataSources } from "../../services/DataSourceService";
-import { DataSource } from "../../models/data-source";
+import { apiGetDataSources } from "services/DataSourceService";
+import { DataSource } from "models/data-source";
 import { Pagination, Table, TBody, Td, Th, THead, Tr } from "components/ui";
-import { PaginationResponse } from "../../models/pagination";
+import { PaginationResponse } from "models/pagination";
 import dayjs from "dayjs";
-import { ActionLink, Loading } from "../../components/shared";
-import { APP_PREFIX_PATH } from "../../constants/route.constant";
-import DatePicker from "../../components/ui/DatePicker";
+import { ActionLink, Loading } from "components/shared";
+import { APP_PREFIX_PATH } from "constants/route.constant";
+import DatePicker from "components/ui/DatePicker";
+import { useBoolean } from "@chakra-ui/react";
 
 const DataSourceList = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useBoolean();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [dataSourceList, setDataSourceList] =
     useState<PaginationResponse<DataSource> | null>(null);
 
   useEffect(() => {
-    setLoading(true);
+    setLoading.on();
     apiGetDataSources(selectedDate, { page: currentPage - 1 })
       .then((res) => {
         setDataSourceList(res.data);
       })
       .finally(() => {
-        setLoading(false);
+        setLoading.off();
       });
   }, [currentPage, selectedDate]);
 

@@ -8,6 +8,8 @@ import { AuthProvider } from "react-oidc-context";
 import { oidcConfig } from "./configs/oidc.config";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { paypalConfig } from "./configs/paypal.config";
+import { ChakraBaseProvider } from "@chakra-ui/react";
+import { chakraTheme } from "./configs/chakra.config";
 
 const environment = import.meta.env.NODE_ENV;
 
@@ -21,13 +23,15 @@ if (environment !== "production" && appConfig.enableMock) {
 
 function App() {
   return (
-    <PayPalScriptProvider options={paypalConfig}>
-      <AuthProvider {...oidcConfig}>
-        <BrowserRouter>
-          <Layout />
-        </BrowserRouter>
-      </AuthProvider>
-    </PayPalScriptProvider>
+    <ChakraBaseProvider theme={chakraTheme}>
+      <PayPalScriptProvider options={paypalConfig}>
+        <AuthProvider {...oidcConfig}>
+          <BrowserRouter>
+            <Layout />
+          </BrowserRouter>
+        </AuthProvider>
+      </PayPalScriptProvider>
+    </ChakraBaseProvider>
   );
 }
 

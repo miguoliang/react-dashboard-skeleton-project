@@ -1,11 +1,12 @@
 import React, { MouseEventHandler } from "react";
+import { Avatar } from "@chakra-ui/react";
 import {
   HiCheckCircle,
   HiOutlineExclamation,
   HiOutlineExclamationCircle,
   HiOutlineInformationCircle,
 } from "react-icons/hi";
-import { Avatar, Button, Dialog } from "components/ui";
+import { Button, Dialog } from "components/ui";
 import { Status } from "../ui/utils/constant";
 import { DialogProps } from "components/ui/Dialog/Dialog";
 
@@ -13,10 +14,7 @@ const StatusIcon = ({ status }: { status: Status }) => {
   switch (status) {
     case "info":
       return (
-        <Avatar
-          className="bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-100"
-          shape="circle"
-        >
+        <Avatar className="bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-100">
           <span className="text-2xl">
             <HiOutlineInformationCircle />
           </span>
@@ -24,10 +22,7 @@ const StatusIcon = ({ status }: { status: Status }) => {
       );
     case "success":
       return (
-        <Avatar
-          className="bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-100"
-          shape="circle"
-        >
+        <Avatar className="bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-100">
           <span className="text-2xl">
             <HiCheckCircle />
           </span>
@@ -35,10 +30,7 @@ const StatusIcon = ({ status }: { status: Status }) => {
       );
     case "warning":
       return (
-        <Avatar
-          className="text-amber-600 bg-amber-100 dark:text-amber-100"
-          shape="circle"
-        >
+        <Avatar className="text-amber-600 bg-amber-100 dark:text-amber-100">
           <span className="text-2xl">
             <HiOutlineExclamationCircle />
           </span>
@@ -46,10 +38,7 @@ const StatusIcon = ({ status }: { status: Status }) => {
       );
     case "danger":
       return (
-        <Avatar
-          className="text-red-600 bg-red-100 dark:text-red-100"
-          shape="circle"
-        >
+        <Avatar className="text-red-600 bg-red-100 dark:text-red-100">
           <span className="text-2xl">
             <HiOutlineExclamation />
           </span>
