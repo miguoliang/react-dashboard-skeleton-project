@@ -13,9 +13,9 @@ import useRootClose from "../hooks/useRootClose";
 import { usePopper } from "react-popper";
 import useMergedRef from "../hooks/useMergeRef";
 import { HiOutlineCalendar } from "react-icons/hi";
-import CloseButton from "../CloseButton";
 import { Size } from "../utils/constant";
 import { FieldInputProps, FormikProps } from "formik";
+import { CloseButton } from "@chakra-ui/react";
 
 dayjs.extend(localizedFormat);
 

@@ -11,11 +11,10 @@ import classNames from "classnames";
 import { useConfig } from "../ConfigProvider";
 import cloneDeep from "lodash/cloneDeep";
 import FileItem from "./FileItem";
-import CloseButton from "../CloseButton";
 import Notification from "../Notification";
 import toast from "../toast";
 import { FieldProps } from "formik";
-import { Button, useBoolean } from "@chakra-ui/react";
+import { Button, CloseButton, useBoolean } from "@chakra-ui/react";
 
 const filesToArray = (files: Record<string, any>) =>
   Object.keys(files).map((key) => files[key]);

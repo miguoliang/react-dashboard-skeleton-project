@@ -10,12 +10,12 @@ import { HiPlus } from "react-icons/hi";
 import isLastChild from "utils/isLastChild";
 import isEmpty from "lodash/isEmpty";
 import { apiGetAccountSettingBillingData } from "services/AccountServices";
-import { noop } from "../../../../components/ui/utils/constant";
 import {
   PaymentMethod,
   settingBillingData,
 } from "../../../../mock/data/accountData";
 import { Button } from "@chakra-ui/react";
+import { noop } from "lodash";
 
 const months = [
   "Jan",

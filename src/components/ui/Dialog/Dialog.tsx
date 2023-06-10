@@ -1,11 +1,11 @@
 import React, { MouseEventHandler } from "react";
 import Modal from "react-modal";
 import classNames from "classnames";
-import CloseButton from "../CloseButton";
 import { motion } from "framer-motion";
 import { theme } from "twin.macro";
 import useWindowSize from "../hooks/useWindowSize";
 import { FunctionType } from "constants/types";
+import { CloseButton } from "@chakra-ui/react";
 
 export type DialogProps = Partial<{
   closable: boolean;
@@ -43,7 +43,7 @@ const Dialog = (props: DialogProps) => {
     <CloseButton
       onClick={onCloseClick}
       className="ltr:right-6 rtl:left-6"
-      absolute
+      position="absolute"
     />
   );
 

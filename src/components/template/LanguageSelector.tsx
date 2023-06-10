@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import {
   Avatar,
+  Circle,
   Image,
   Menu,
   MenuButton,
@@ -35,7 +36,7 @@ export const LanguageSelector = () => {
   const selectedLanguage = loading ? (
     <Spinner size={20} />
   ) : (
-    <Avatar size="xs" src={`/img/countries/${selectLangFlag}.png`} />
+    <Image boxSize="24px" src={`/img/countries/${selectLangFlag}.png`} />
   );
 
   const onLanguageSelect = (lang: string) => {
@@ -60,20 +61,17 @@ export const LanguageSelector = () => {
 
   return (
     <Menu placement="bottom-end">
-      <MenuButton
-        width="40px"
-        height="40px"
-        borderRadius="full"
-        alignItems="center"
-        _hover={{
-          background: "gray.100",
-        }}
-      >
-        {selectedLanguage}
+      <MenuButton>
+        <Circle size="40px" p={1} _hover={{ bg: "gray.100" }}>
+          {selectedLanguage}
+        </Circle>
       </MenuButton>
       <MenuList>
         {languageList.map((lang) => (
-          <MenuItem onClick={() => onLanguageSelect(lang.value)}>
+          <MenuItem
+            key={lang.value}
+            onClick={() => onLanguageSelect(lang.value)}
+          >
             <Image
               width="18px"
               height="18px"

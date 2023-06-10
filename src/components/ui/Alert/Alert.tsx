@@ -14,9 +14,9 @@ import {
   HiXCircle,
 } from "react-icons/hi";
 import { motion } from "framer-motion";
-import CloseButton from "../CloseButton";
 import StatusIcon from "../StatusIcon";
 import { Status } from "../utils/constant";
+import { CloseButton } from "@chakra-ui/react";
 
 const DEFAULT_TYPE = "warning";
 
@@ -122,7 +122,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const renderClose = () => {
     return (
       <div className="cursor-pointer" onClick={(e) => handleClose(e)}>
-        {customClose || <CloseButton defaultStyle={false} />}
+        {customClose || <CloseButton />}
       </div>
     );
   };

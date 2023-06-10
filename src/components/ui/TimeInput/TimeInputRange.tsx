@@ -10,11 +10,11 @@ import useUniqueId from "../hooks/useUniqueId";
 import useMergedRef from "../hooks/useMergeRef";
 import useDidUpdate from "../hooks/useDidUpdate";
 import TimeInput from "./TimeInput";
-import CloseButton from "../CloseButton";
 import { HiOutlineClock } from "react-icons/hi";
 import Input from "../Input";
 import { Size } from "../utils/constant";
 import { FieldInputProps, FormikProps } from "formik";
+import { CloseButton } from "@chakra-ui/react";
 
 type TimeInputRangeProps = Partial<{
   invalid: boolean;

@@ -2,8 +2,8 @@ import React, { MouseEventHandler, ReactNode } from "react";
 import classNames from "classnames";
 import Modal from "react-modal";
 import ReactModal from "react-modal";
-import CloseButton from "../CloseButton";
 import { motion } from "framer-motion";
+import { CloseButton } from "@chakra-ui/react";
 
 type DrawerProps = Partial<{
   placement: "top" | "right" | "bottom" | "left";

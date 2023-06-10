@@ -11,7 +11,6 @@ import useMergedRef from "../hooks/useMergeRef";
 import useDidUpdate from "../hooks/useDidUpdate";
 import TimeInputField from "./TimeInputField";
 import AmPmInput from "./AmPmInput";
-import CloseButton from "../CloseButton";
 import Input from "../Input";
 import {
   createAmPmHandler,
@@ -22,6 +21,7 @@ import {
 import { HiOutlineClock } from "react-icons/hi";
 import { Size } from "../utils/constant";
 import { FieldInputProps, FormikProps } from "formik";
+import { CloseButton } from "@chakra-ui/react";
 
 type TimeInputProps = Partial<{
   showSeconds: boolean;

@@ -7,9 +7,9 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import useTimeout from "../hooks/useTimeout";
-import CloseButton from "../CloseButton";
 import StatusIcon from "../StatusIcon";
 import { Status } from "../utils/constant";
+import { CloseButton } from "@chakra-ui/react";
 
 type NotificationProps = Partial<{
   duration: number;
@@ -101,8 +101,7 @@ const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
         {closable && (
           <CloseButton
             className="notification-close"
-            defaultStyle={false}
-            absolute={true}
+            position={"absolute"}
             onClick={handleClose}
           />
         )}
