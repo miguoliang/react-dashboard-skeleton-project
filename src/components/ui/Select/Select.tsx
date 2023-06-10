@@ -18,9 +18,9 @@ import { useConfig } from "../ConfigProvider";
 import { useForm } from "../Form/context";
 import { useInputGroup } from "../InputGroup/context";
 import { HiCheck, HiChevronDown, HiX } from "react-icons/hi";
-import Spinner from "../Spinner";
 import { CONTROL_SIZES, FormFieldType, Size } from "../utils/constant";
 import { FormikState } from "formik/dist/types";
+import { Spinner } from "@chakra-ui/react";
 
 const DefaultOption = ({
   innerProps,

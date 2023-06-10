@@ -1,15 +1,14 @@
 import React, { useMemo } from "react";
 import {
-  Avatar,
   Circle,
   Image,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Spinner,
   useBoolean,
 } from "@chakra-ui/react";
-import { Spinner } from "components/ui";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { dateLocales } from "locales";
 import dayjs from "dayjs";
@@ -34,7 +33,7 @@ export const LanguageSelector = () => {
   }, [locale]);
 
   const selectedLanguage = loading ? (
-    <Spinner size={20} />
+    <Spinner size={"sm"} />
   ) : (
     <Image boxSize="24px" src={`/img/countries/${selectLangFlag}.png`} />
   );

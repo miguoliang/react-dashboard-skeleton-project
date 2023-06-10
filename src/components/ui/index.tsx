@@ -19,7 +19,6 @@ export * from "./Menu";
 export * from "./Dropdown";
 export { default as Progress } from "./Progress";
 export { default as Notification } from "./Notification";
-export { default as Spinner } from "./Spinner";
 export { default as Skeleton } from "./Skeleton";
 export * from "./Segment";
 export * from "./Steps";

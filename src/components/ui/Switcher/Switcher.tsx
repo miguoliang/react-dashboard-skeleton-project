@@ -6,9 +6,8 @@ import React, {
   useEffect,
 } from "react";
 import classNames from "classnames";
-import Spinner from "../Spinner";
 import { useConfig } from "../ConfigProvider";
-import { useBoolean } from "@chakra-ui/react";
+import { Spinner, useBoolean } from "@chakra-ui/react";
 
 const Switcher = forwardRef<
   HTMLInputElement,

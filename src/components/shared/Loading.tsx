@@ -1,6 +1,6 @@
 import React, { ForwardedRef, forwardRef, ReactNode } from "react";
-import { Spinner } from "components/ui";
 import classNames from "classnames";
+import { Spinner } from "@chakra-ui/react";
 
 const DefaultLoading = forwardRef(
   (props: LoadingProps, ref: ForwardedRef<any>) => {
@@ -27,7 +27,7 @@ const DefaultLoading = forwardRef(
         customLoader ? (
           <>{customLoader}</>
         ) : (
-          <Spinner className={spinnerClass} size={40} />
+          <Spinner className={spinnerClass} size={"md"} />
         ),
       );
     } else {
@@ -72,7 +72,7 @@ const CoveredLoading = forwardRef(
           {customLoader ? (
             <>{customLoader}</>
           ) : (
-            <Spinner className={spinnerClass} size={40} />
+            <Spinner className={spinnerClass} size={"md"} />
           )}
         </div>
       ),
