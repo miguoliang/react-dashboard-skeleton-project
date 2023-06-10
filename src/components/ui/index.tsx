@@ -1,6 +1,5 @@
 export { default as Alert } from "./Alert";
 export { default as Badge } from "./Badge";
-export { default as Button } from "./Buttons";
 export { default as Card } from "./Card";
 export { default as Select } from "./Select";
 export { default as Input } from "./Input";

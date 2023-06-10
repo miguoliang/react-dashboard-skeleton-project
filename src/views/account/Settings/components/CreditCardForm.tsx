@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Checkbox,
   FormContainer,
   FormItem,
@@ -14,6 +13,7 @@ import NumberFormat, { NumberFormatProps } from "react-number-format";
 import * as Yup from "yup";
 import { InputProps } from "../../../../components/ui/Input/Input";
 import { PaymentMethod } from "../../../../mock/data/accountData";
+import { Button } from "@chakra-ui/react";
 
 const { useUniqueId } = hooks;
 
@@ -266,7 +266,7 @@ const CreditCardForm = ({
               />
             </FormItem>
             <FormItem className="mb-0 text-right">
-              <Button block variant="solid" type="submit">
+              <Button display="block" variant="solid" type="submit">
                 Update
               </Button>
             </FormItem>

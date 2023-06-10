@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import Button from "../../Buttons";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import { Button } from "@chakra-ui/react";
 
 type HeaderProps = {
   hasNext: boolean;
@@ -72,12 +72,12 @@ const Header = (props: HeaderProps) => {
       >
         <Button
           type="button"
-          variant="plain"
+          variant="ghost"
           className={classNames(
             !hasPrevious && renderCenter && "opacity-0 cursor-default",
           )}
           size="sm"
-          icon={<HiChevronLeft />}
+          leftIcon={<HiChevronLeft />}
           disabled={!hasPrevious}
           onClick={onPrevious}
           aria-label={previousLabel}
@@ -86,12 +86,12 @@ const Header = (props: HeaderProps) => {
         {renderCenter && renderChildren}
         <Button
           type="button"
-          variant="plain"
+          variant="ghost"
           className={classNames(
             !hasNext && renderCenter && "opacity-0 cursor-default",
           )}
           size="sm"
-          icon={<HiChevronRight />}
+          leftIcon={<HiChevronRight />}
           disabled={!hasNext}
           onClick={onNext}
           aria-label={nextLabel}

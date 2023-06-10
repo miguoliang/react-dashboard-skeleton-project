@@ -1,7 +1,6 @@
 import React from "react";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, Button } from "@chakra-ui/react";
 import {
-  Button,
   FormContainer,
   Input,
   Notification,
@@ -261,7 +260,7 @@ const Profile = ({
                 >
                   Reset
                 </Button>
-                <Button variant="solid" loading={isSubmitting} type="submit">
+                <Button variant="solid" isLoading={isSubmitting} type="submit">
                   {isSubmitting ? "Updating" : "Update"}
                 </Button>
               </div>

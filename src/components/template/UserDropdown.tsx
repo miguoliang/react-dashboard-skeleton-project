@@ -37,7 +37,7 @@ export const UserDropdown = ({ className }: { className: string }) => {
 
   const UserAvatar = (
     <div className={classNames(className, "flex items-center gap-2")}>
-      <Avatar size="md" src="/img/avatars/thumb-1.jpg" />
+      <Avatar size="sm" src="/img/avatars/thumb-1.jpg" />
       <div className="hidden md:block">
         <div className="text-xs capitalize">user</div>
         <div className="font-bold">{auth.user?.profile.email}</div>

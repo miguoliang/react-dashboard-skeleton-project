@@ -1,7 +1,14 @@
-import React, { useMemo, useState } from "react";
-import { Avatar } from "@chakra-ui/react";
-import { Dropdown, DropdownItem, Spinner } from "components/ui";
-import classNames from "classnames";
+import React, { useMemo } from "react";
+import {
+  Avatar,
+  Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  useBoolean,
+} from "@chakra-ui/react";
+import { Spinner } from "components/ui";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { dateLocales } from "locales";
 import dayjs from "dayjs";
@@ -18,31 +25,27 @@ const languageList = [
   { label: "Arabic", value: "ar", flag: "ar" },
 ];
 
-export const LanguageSelector = ({ className }: { className: string }) => {
-  const [loading, setLoading] = useState(false);
+export const LanguageSelector = () => {
+  const [loading, setLoading] = useBoolean();
   const locale = useLocaleStore((state) => state.currentLang);
   const selectLangFlag = useMemo(() => {
     return languageList.find((lang) => lang.value === locale)?.flag;
   }, [locale]);
 
-  const selectedLanguage = (
-    <div className={classNames(className, "flex items-center")}>
-      {loading ? (
-        <Spinner size={20} />
-      ) : (
-        <Avatar size="xs" src={`/img/countries/${selectLangFlag}.png`} />
-      )}
-    </div>
+  const selectedLanguage = loading ? (
+    <Spinner size={20} />
+  ) : (
+    <Avatar size="xs" src={`/img/countries/${selectLangFlag}.png`} />
   );
 
   const onLanguageSelect = (lang: string) => {
     const formattedLang = lang.replace(/-([a-z])/g, function (g) {
       return g[1].toUpperCase();
     });
-    setLoading(true);
+    setLoading.on();
     const dispatchLang = () => {
       i18n.changeLanguage(formattedLang).then(() => noop());
-      setLoading(false);
+      setLoading.off();
     };
 
     dateLocales[formattedLang]()
@@ -56,24 +59,35 @@ export const LanguageSelector = ({ className }: { className: string }) => {
   };
 
   return (
-    <Dropdown renderTitle={selectedLanguage} placement="bottom-end">
-      {languageList.map((lang) => (
-        <DropdownItem
-          className="mb-1 justify-between"
-          eventKey={lang.label}
-          key={lang.label}
-          onClick={() => onLanguageSelect(lang.value)}
-        >
-          <span className="flex items-center">
-            <Avatar size="xs" src={`/img/countries/${lang.flag}.png`} />
-            <span className="ltr:ml-2 rtl:mr-2">{lang.label}</span>
-          </span>
-          {locale === lang.value && (
-            <HiCheck className="text-emerald-500 text-lg" />
-          )}
-        </DropdownItem>
-      ))}
-    </Dropdown>
+    <Menu placement="bottom-end">
+      <MenuButton
+        width="40px"
+        height="40px"
+        borderRadius="full"
+        alignItems="center"
+        _hover={{
+          background: "gray.100",
+        }}
+      >
+        {selectedLanguage}
+      </MenuButton>
+      <MenuList>
+        {languageList.map((lang) => (
+          <MenuItem onClick={() => onLanguageSelect(lang.value)}>
+            <Image
+              width="18px"
+              height="18px"
+              src={`/img/countries/${lang.flag}.png`}
+              alt={lang.label}
+            />
+            <span className="ltr:ml-2 rtl:mr-2 flex-grow">{lang.label}</span>
+            {locale === lang.value && (
+              <HiCheck className="text-emerald-500 text-lg" />
+            )}
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
   );
 };
 

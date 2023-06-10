@@ -1,13 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import {
-  Button,
-  FormContainer,
-  Input,
-  Notification,
-  Tag,
-  toast,
-} from "components/ui";
+import { FormContainer, Input, Notification, Tag, toast } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import { Field, Form, Formik, FormikValues } from "formik";
@@ -20,6 +13,7 @@ import {
 import dayjs from "dayjs";
 import * as Yup from "yup";
 import { LoginHistory } from "../../../../mock/data/accountData";
+import { Button } from "@chakra-ui/react";
 
 const LoginHistoryIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -129,7 +123,11 @@ const Password = ({ data = [] }: { data?: LoginHistory[] }) => {
                   >
                     Reset
                   </Button>
-                  <Button variant="solid" loading={isSubmitting} type="submit">
+                  <Button
+                    variant="solid"
+                    isLoading={isSubmitting}
+                    type="submit"
+                  >
                     {isSubmitting ? "Updating" : "Update Password"}
                   </Button>
                 </div>

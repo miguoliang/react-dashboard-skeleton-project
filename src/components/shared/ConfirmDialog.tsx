@@ -1,12 +1,12 @@
 import React, { MouseEventHandler } from "react";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, Button } from "@chakra-ui/react";
 import {
   HiCheckCircle,
   HiOutlineExclamation,
   HiOutlineExclamationCircle,
   HiOutlineInformationCircle,
 } from "react-icons/hi";
-import { Button, Dialog } from "components/ui";
+import { Dialog } from "components/ui";
 import { Status } from "../ui/utils/constant";
 import { DialogProps } from "components/ui/Dialog/Dialog";
 

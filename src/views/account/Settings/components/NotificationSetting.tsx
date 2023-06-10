@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   FormContainer,
   Notification,
   Segment,
@@ -21,6 +20,7 @@ import {
 } from "formik";
 import isLastChild from "utils/isLastChild";
 import { HiGlobeAlt, HiMail, HiOutlineDeviceMobile } from "react-icons/hi";
+import { Button } from "@chakra-ui/react";
 
 const generalNotificationForm = [
   { label: "News", name: "news" },
@@ -206,7 +206,7 @@ const NotificationSetting = ({
                 >
                   Reset
                 </Button>
-                <Button variant="solid" loading={isSubmitting} type="submit">
+                <Button variant="solid" isLoading={isSubmitting} type="submit">
                   {isSubmitting ? "Updating" : "Update"}
                 </Button>
               </div>

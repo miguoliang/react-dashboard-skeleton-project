@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Avatar } from "@chakra-ui/react";
-import {
-  Button,
-  Card,
-  Dialog,
-  Notification,
-  Switcher,
-  toast,
-} from "components/ui";
+import { Avatar, Button } from "@chakra-ui/react";
+import { Card, Dialog, Notification, Switcher, toast } from "components/ui";
 import isEmpty from "lodash/isEmpty";
 import { apiGetAccountSettingIntegrationData } from "services/AccountServices";
 import cloneDeep from "lodash/cloneDeep";
@@ -222,7 +215,7 @@ const Integration = () => {
             <Button
               variant="solid"
               onClick={() => handleInstall(integrationDetails)}
-              loading={installing}
+              isLoading={installing}
             >
               Install
             </Button>

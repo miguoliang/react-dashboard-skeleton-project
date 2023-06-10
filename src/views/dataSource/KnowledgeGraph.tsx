@@ -8,8 +8,7 @@ import {
 } from "services/DataSourceService";
 import { useParams } from "react-router-dom";
 import { apiGetEdgesByVertices } from "services/EdgeService";
-import { Button } from "components/ui";
-import { useBoolean } from "@chakra-ui/react";
+import { Button, useBoolean } from "@chakra-ui/react";
 
 const KnowledgeGraph = () => {
   const [loading, setLoading] = useBoolean();
@@ -31,11 +30,13 @@ const KnowledgeGraph = () => {
 
   return (
     <Loading loading={loading} type="cover" className="h-full relative">
-      <Button className="absolute bottom-0 left-0 rounded-lg">Add</Button>
       <div
         className="absolute left-0 bottom-0 right-0 top-0"
         ref={chartRef}
       ></div>
+      <Button position="absolute" bottom={0}>
+        Add
+      </Button>
     </Loading>
   );
 };

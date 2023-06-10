@@ -7,13 +7,14 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import withHeaderItem from "utils/hoc/withHeaderItem";
-import { Button, Dialog } from "components/ui";
+import { Dialog } from "components/ui";
 import useThemeClass from "utils/hooks/useThemeClass";
 import navigationIcon from "configs/navigation-icon.config";
 import debounce from "lodash/debounce";
 import { HiChevronRight, HiOutlineSearch } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import Highlighter from "react-highlight-words";
+import { Button } from "@chakra-ui/react";
 
 const recommendedSearch = [
   {

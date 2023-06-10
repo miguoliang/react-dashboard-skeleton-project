@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
-import {
-  Button,
-  Dialog,
-  FormContainer,
-  Notification,
-  Tag,
-  toast,
-} from "components/ui";
+import { Dialog, FormContainer, Notification, Tag, toast } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import CreditCardForm from "./CreditCardForm";
@@ -22,6 +15,7 @@ import {
   PaymentMethod,
   settingBillingData,
 } from "../../../../mock/data/accountData";
+import { Button } from "@chakra-ui/react";
 
 const months = [
   "Jan",
@@ -196,7 +190,7 @@ const Billing = () => {
                     type="button"
                     variant="plain"
                     size="sm"
-                    icon={<HiPlus className="text-lg" />}
+                    leftIcon={<HiPlus className="text-lg" />}
                     onClick={() => onEditCreditCard({} as PaymentMethod, "NEW")}
                   >
                     <span className="font-semibold">Add new card</span>
@@ -275,7 +269,7 @@ const Billing = () => {
                 >
                   Reset
                 </Button>
-                <Button variant="solid" loading={isSubmitting} type="submit">
+                <Button variant="solid" isLoading={isSubmitting} type="submit">
                   {isSubmitting ? "Updating" : "Update"}
                 </Button>
               </div>

@@ -13,10 +13,10 @@ import useMergedRef from "../hooks/useMergeRef";
 import capitalize from "../utils/capitalize";
 import Calendar from "./Calendar";
 import BasePicker from "./BasePicker";
-import Button from "../Buttons";
 import { useConfig } from "../ConfigProvider";
 import { DatePickerProps } from "./DatePicker";
 import { TimeInput } from "../TimeInput";
+import { Button } from "@chakra-ui/react";
 
 const DEFAULT_INPUT_FORMAT = "DD-MMM-YYYY hh:mm a";
 
