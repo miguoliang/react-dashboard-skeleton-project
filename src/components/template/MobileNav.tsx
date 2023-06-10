@@ -1,12 +1,11 @@
 import React, { lazy, Suspense, useState } from "react";
-import classNames from "classnames";
-import { Drawer } from "components/ui";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { NavToggle } from "components/shared";
 import navigationConfig from "configs/navigation.config";
 import useResponsive from "utils/hooks/useResponsive";
 import { useAuth } from "react-oidc-context";
 import { useThemeStore } from "store";
+import { Drawer, Text } from "@chakra-ui/react";
 
 const VerticalMenuContent = lazy(
   () => import("components/template/VerticalMenuContent"),
@@ -29,16 +28,6 @@ const MobileNav = () => {
   const userAuthority = useAuth().user?.scopes ?? [];
   const { smaller } = useResponsive();
 
-  const navColor = () => {
-    if (themeStore.navMode === "themed") {
-      return `bg-${themeStore.themeColor}-${themeStore.primaryColorLevel} side-nav-${themeStore.navMode}`;
-    }
-    if (themeStore.navMode === "transparent") {
-      return `side-nav-${themeStore.mode}`;
-    }
-    return `side-nav-${themeStore.navMode}`;
-  };
-
   return (
     <>
       {smaller.md && (
@@ -47,14 +36,11 @@ const MobileNav = () => {
             <MobileNavToggle toggled={isOpen} />
           </div>
           <Drawer
-            title="Navigation"
             isOpen={isOpen}
             onClose={onDrawerClose}
-            onRequestClose={onDrawerClose}
-            bodyClass={classNames(navColor(), "p-0")}
-            width={330}
             placement={themeStore.direction === "rtl" ? "right" : "left"}
           >
+            <Text>Navigation</Text>
             <Suspense fallback={<></>}>
               {isOpen && (
                 <VerticalMenuContent

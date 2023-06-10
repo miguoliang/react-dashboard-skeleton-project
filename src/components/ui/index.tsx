@@ -13,7 +13,6 @@ export { default as FormContainer } from "./Form/FormContainer";
 export * from "./Table";
 export { default as Pagination } from "./Pagination";
 export { default as Dialog } from "./Dialog";
-export { default as Drawer } from "./Drawer";
 export * from "./DatePicker";
 export * from "./Menu";
 export * from "./Dropdown";
