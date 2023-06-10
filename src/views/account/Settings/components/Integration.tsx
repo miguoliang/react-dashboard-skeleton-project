@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Button } from "@chakra-ui/react";
-import { Card, Dialog, Notification, Switcher, toast } from "components/ui";
+import { Avatar, Button, useToast } from "@chakra-ui/react";
+import { Card, Dialog, Switcher } from "components/ui";
 import isEmpty from "lodash/isEmpty";
 import { apiGetAccountSettingIntegrationData } from "services/AccountServices";
 import cloneDeep from "lodash/cloneDeep";
@@ -60,6 +60,8 @@ const Integration = () => {
     setViewIntegration(false);
   };
 
+  const toast = useToast();
+
   const handleInstall = (details?: IntegrationData | null) => {
     setInstalling(true);
     setTimeout(() => {
@@ -74,8 +76,10 @@ const Integration = () => {
       });
       setInstalling(false);
       onViewIntegrationClose();
-      toast.push(<Notification title="App installed" type="success" />, {
-        placement: "top-center",
+      toast({
+        title: "App installed",
+        status: "success",
+        position: "top",
       });
     }, 1000);
   };

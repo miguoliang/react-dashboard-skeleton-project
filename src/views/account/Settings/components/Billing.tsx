@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
-import { Dialog, FormContainer, Notification, Tag, toast } from "components/ui";
+import { Dialog, FormContainer, Tag } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import CreditCardForm from "./CreditCardForm";
@@ -14,7 +14,7 @@ import {
   PaymentMethod,
   settingBillingData,
 } from "../../../../mock/data/accountData";
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { noop } from "lodash";
 
 const months = [
@@ -42,13 +42,14 @@ const Billing = () => {
     setData(response.data);
   };
 
+  const toast = useToast();
+
   const onFormSubmit = (_: any, setSubmitting: (value: boolean) => void) => {
-    toast.push(
-      <Notification title={"Billing information updated"} type="success" />,
-      {
-        placement: "top-center",
-      },
-    );
+    toast({
+      title: "Billing information updated",
+      status: "success",
+      position: "top",
+    });
     setSubmitting(false);
   };
 

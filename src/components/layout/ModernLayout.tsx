@@ -9,7 +9,7 @@ import SideNav from "components/template/SideNav";
 import View from "views";
 import { useAuth } from "react-oidc-context";
 import classNames from "classnames";
-import { SIGN_UP_URL } from "../../configs/oidc.config";
+import { SIGN_UP_URL } from "configs/oidc.config";
 
 export const SignInAndSignUp = ({ className }: { className?: string }) => {
   const auth = useAuth();

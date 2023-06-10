@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { FormContainer, Input, Notification, Tag, toast } from "components/ui";
+import { FormContainer, Input, Tag } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import { Field, Form, Formik, FormikValues } from "formik";
@@ -13,7 +13,7 @@ import {
 import dayjs from "dayjs";
 import * as Yup from "yup";
 import { LoginHistory } from "../../../../mock/data/accountData";
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 
 const LoginHistoryIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -41,12 +41,15 @@ const validationSchema = Yup.object().shape({
 });
 
 const Password = ({ data = [] }: { data?: LoginHistory[] }) => {
+  const toast = useToast();
   const onFormSubmit = (
     values: FormikValues,
     setSubmitting: (_: boolean) => void,
   ) => {
-    toast.push(<Notification title={"Password updated"} type="success" />, {
-      placement: "top-center",
+    toast({
+      title: "Password updated",
+      status: "success",
+      position: "top",
     });
     setSubmitting(false);
   };

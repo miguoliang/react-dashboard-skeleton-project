@@ -11,10 +11,8 @@ import classNames from "classnames";
 import { useConfig } from "../ConfigProvider";
 import cloneDeep from "lodash/cloneDeep";
 import FileItem from "./FileItem";
-import Notification from "../Notification";
-import toast from "../toast";
 import { FieldProps } from "formik";
-import { Button, CloseButton, useBoolean } from "@chakra-ui/react";
+import { Button, CloseButton, useBoolean, useToast } from "@chakra-ui/react";
 
 const filesToArray = (files: Record<string, any>) =>
   Object.keys(files).map((key) => files[key]);
@@ -63,15 +61,16 @@ const Upload = React.forwardRef<
     setFiles(fileList ?? []);
   }, [fileList]);
 
+  const toast = useToast();
+
   const triggerMessage = (msg?: string) => {
-    toast.push(
-      <Notification type="danger" duration={2000}>
-        {msg || "Upload Failed!"}
-      </Notification>,
-      {
-        placement: "top-center",
-      },
-    );
+    toast({
+      description: msg || "Upload Failed!",
+      duration: 2000,
+      status: "error",
+      position: "top",
+      isClosable: true,
+    });
   };
 
   const pushFile = (newFiles: FileList | File[] | null, file: File[]) => {

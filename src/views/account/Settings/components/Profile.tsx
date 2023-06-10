@@ -1,14 +1,6 @@
 import React from "react";
-import { Avatar, Button } from "@chakra-ui/react";
-import {
-  FormContainer,
-  Input,
-  Notification,
-  Select,
-  Switcher,
-  toast,
-  Upload,
-} from "components/ui";
+import { Avatar, Button, useToast } from "@chakra-ui/react";
+import { FormContainer, Input, Select, Switcher, Upload } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import {
@@ -120,9 +112,13 @@ const Profile = ({
     form.setFieldValue(field.name, URL.createObjectURL(first(file) as File));
   };
 
+  const toast = useToast();
   const onFormSubmit = (values: any, setSubmitting: any) => {
-    toast.push(<Notification title={"Profile updated"} type="success" />, {
-      placement: "top-center",
+    toast({
+      title: "Profile updated",
+      description: "Your profile has been updated.",
+      status: "success",
+      position: "top",
     });
     setSubmitting(false);
   };

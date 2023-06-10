@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  FormContainer,
-  Notification,
-  Segment,
-  SegmentItem,
-  toast,
-} from "components/ui";
+import { FormContainer, Segment, SegmentItem } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import {
@@ -20,7 +14,7 @@ import {
 } from "formik";
 import isLastChild from "utils/isLastChild";
 import { HiGlobeAlt, HiMail, HiOutlineDeviceMobile } from "react-icons/hi";
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 
 const generalNotificationForm = [
   { label: "News", name: "news" },
@@ -143,13 +137,13 @@ const NotificationSetting = ({
 }: {
   data?: Record<string, string[]>;
 }) => {
+  const toast = useToast();
   const onFormSubmit = (values: any, setSubmitting: (_: boolean) => void) => {
-    toast.push(
-      <Notification title={"Notification setting updated"} type="success" />,
-      {
-        placement: "top-center",
-      },
-    );
+    toast({
+      title: "Notification setting updated",
+      status: "success",
+      position: "top",
+    });
     setSubmitting(false);
   };
 
