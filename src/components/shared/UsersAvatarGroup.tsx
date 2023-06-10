@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { Tooltip } from "components/ui";
 import acronym from "utils/acronym";
 import useTwColorByName from "utils/hooks/useTwColorByName";
 import {
@@ -7,6 +6,7 @@ import {
   AvatarGroup,
   AvatarGroupProps,
   AvatarProps,
+  Tooltip,
 } from "@chakra-ui/react";
 
 type UsersAvatarGroupProps = {

@@ -1,10 +1,11 @@
 import React from "react";
-import { MenuItem, Tooltip, useConfig } from "components/ui";
+import { MenuItem, useConfig } from "components/ui";
 import VerticalMenuIcon from "./VerticalMenuIcon";
 import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import { AuthorityCheck } from "components/shared";
 import { NavigationTree } from "configs/navigation.config/apps.navigation.config";
+import { Tooltip } from "@chakra-ui/react";
 
 const CollapsedItem = ({
   title,

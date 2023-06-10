@@ -1,19 +1,12 @@
 import React from "react";
-import {
-  Checkbox,
-  FormContainer,
-  FormItem,
-  hooks,
-  Input,
-  Tooltip,
-} from "components/ui";
+import { Checkbox, FormContainer, FormItem, hooks, Input } from "components/ui";
 import { Field, FieldInputProps, Form, Formik, FormikProps } from "formik";
 import { HiCalendar, HiCreditCard, HiInformationCircle } from "react-icons/hi";
 import NumberFormat, { NumberFormatProps } from "react-number-format";
 import * as Yup from "yup";
 import { InputProps } from "../../../../components/ui/Input/Input";
 import { PaymentMethod } from "../../../../mock/data/accountData";
-import { Button } from "@chakra-ui/react";
+import { Button, Tooltip } from "@chakra-ui/react";
 
 const { useUniqueId } = hooks;
 
