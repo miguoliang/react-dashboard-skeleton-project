@@ -7,14 +7,20 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import withHeaderItem from "utils/hoc/withHeaderItem";
-import { Dialog } from "components/ui";
 import useThemeClass from "utils/hooks/useThemeClass";
 import navigationIcon from "configs/navigation-icon.config";
 import debounce from "lodash/debounce";
 import { HiChevronRight, HiOutlineSearch } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import Highlighter from "react-highlight-words";
-import { Button } from "@chakra-ui/react";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+} from "@chakra-ui/react";
 
 const recommendedSearch = [
   {
@@ -162,14 +168,14 @@ export const Search = ({ className }: { className: string }) => {
       >
         <HiOutlineSearch />
       </div>
-      <Dialog
-        contentClassName="p-0"
+      <Modal
         isOpen={searchDialogOpen}
-        closable={false}
-        onRequestClose={handleSearchClose}
+        closeOnOverlayClick={false}
+        onClose={handleSearchClose}
       >
-        <div>
-          <div className="px-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-600">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
             <div className="flex items-center">
               <HiOutlineSearch className="text-xl" />
               <input
@@ -182,8 +188,8 @@ export const Search = ({ className }: { className: string }) => {
             <Button size="xs" onClick={handleSearchClose}>
               Esc
             </Button>
-          </div>
-          <div className="py-6 px-5 max-h-[550px] overflow-y-auto">
+          </ModalHeader>
+          <ModalBody className="py-6 px-5 max-h-[550px] overflow-y-auto">
             {searchResult.map((result) => (
               <div className="mb-6" key={result.title}>
                 <h6 className="mb-3">{result.title}</h6>
@@ -207,9 +213,9 @@ export const Search = ({ className }: { className: string }) => {
                 </span>
               </div>
             )}
-          </div>
-        </div>
-      </Dialog>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 };

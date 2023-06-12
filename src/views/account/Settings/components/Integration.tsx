@@ -5,10 +5,15 @@ import {
   Card,
   CardBody,
   CardFooter,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Switch,
   useToast,
 } from "@chakra-ui/react";
-import { Dialog } from "components/ui";
 import isEmpty from "lodash/isEmpty";
 import { apiGetAccountSettingIntegrationData } from "services/AccountServices";
 import cloneDeep from "lodash/cloneDeep";
@@ -16,7 +21,7 @@ import { noop } from "lodash";
 import {
   Integration as IntegrationData,
   settingIntegrationData,
-} from "../../../../mock/data/accountData";
+} from "mock/data/accountData";
 
 const Integration = () => {
   const [data, setData] = useState<typeof settingIntegrationData>({});
@@ -160,74 +165,72 @@ const Integration = () => {
           ))}
         </div>
       </div>
-      <Dialog
-        width={650}
-        isOpen={viewIntegration}
-        onClose={onViewIntegrationClose}
-        onRequestClose={onViewIntegrationClose}
-      >
-        <div className="flex items-center">
-          <Avatar
-            className="bg-transparent dark:bg-transparent"
-            src={integrationDetails?.img}
-          />
-          <div className="ltr:ml-3 rtl:mr-3">
-            <h6>{integrationDetails?.name}</h6>
-            <span>{integrationDetails?.type}</span>
-          </div>
-        </div>
-        <div className="mt-6">
-          <span className="font-semibold text-gray-900 dark:text-gray-100">
-            About {integrationDetails?.name}
-          </span>
-          <p className="mt-2 mb-4">
-            Wings medium plunger pot, redeye doppio siphon froth iced. Latte,
-            and, barista cultivar fair trade grinder caramelization spoon.
-            Whipped, grinder to go brewed est single shot half and half. Plunger
-            pot blue mountain et blue mountain grinder carajillo, saucer half
-            and half milk instant strong.
-          </p>
-          <span className="font-semibold text-gray-900 dark:text-gray-100">
-            Key Features
-          </span>
-          <ul className="list-disc mt-2 ltr:ml-4 rtl:mr-4">
-            <li className="mb-1">
-              Fair trade, cortado con panna, crema foam cinnamon aged.{" "}
-            </li>
-            <li className="mb-1">
-              Mug saucer acerbic, caffeine organic kopi-luwak galão siphon.{" "}
-            </li>
-            <li className="mb-1">
-              To go half and half cultivar single origin ut, french press.{" "}
-            </li>
-            <li className="mb-1">
-              Mocha latte flavour cortado cup kopi-luwak.{" "}
-            </li>
-          </ul>
-        </div>
-        <div className="text-right mt-6">
-          <Button
-            className="ltr:mr-2 rtl:ml-2"
-            variant="plain"
-            onClick={onViewIntegrationClose}
-          >
-            Cancel
-          </Button>
-          {integrationDetails?.installed ? (
-            <Button disabled variant="solid">
-              Installed
-            </Button>
-          ) : (
+      <Modal isOpen={viewIntegration} onClose={onViewIntegrationClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <Avatar
+              className="bg-transparent dark:bg-transparent"
+              src={integrationDetails?.img}
+            />
+            <div className="ltr:ml-3 rtl:mr-3">
+              <h6>{integrationDetails?.name}</h6>
+              <span>{integrationDetails?.type}</span>
+            </div>
+          </ModalHeader>
+          <ModalBody>
+            <span className="font-semibold text-gray-900 dark:text-gray-100">
+              About {integrationDetails?.name}
+            </span>
+            <p className="mt-2 mb-4">
+              Wings medium plunger pot, redeye doppio siphon froth iced. Latte,
+              and, barista cultivar fair trade grinder caramelization spoon.
+              Whipped, grinder to go brewed est single shot half and half.
+              Plunger pot blue mountain et blue mountain grinder carajillo,
+              saucer half and half milk instant strong.
+            </p>
+            <span className="font-semibold text-gray-900 dark:text-gray-100">
+              Key Features
+            </span>
+            <ul className="list-disc mt-2 ltr:ml-4 rtl:mr-4">
+              <li className="mb-1">
+                Fair trade, cortado con panna, crema foam cinnamon aged.{" "}
+              </li>
+              <li className="mb-1">
+                Mug saucer acerbic, caffeine organic kopi-luwak galão siphon.{" "}
+              </li>
+              <li className="mb-1">
+                To go half and half cultivar single origin ut, french press.{" "}
+              </li>
+              <li className="mb-1">
+                Mocha latte flavour cortado cup kopi-luwak.{" "}
+              </li>
+            </ul>
+          </ModalBody>
+          <ModalFooter>
             <Button
-              variant="solid"
-              onClick={() => handleInstall(integrationDetails)}
-              isLoading={installing}
+              className="ltr:mr-2 rtl:ml-2"
+              variant="plain"
+              onClick={onViewIntegrationClose}
             >
-              Install
+              Cancel
             </Button>
-          )}
-        </div>
-      </Dialog>
+            {integrationDetails?.installed ? (
+              <Button disabled variant="solid">
+                Installed
+              </Button>
+            ) : (
+              <Button
+                variant="solid"
+                onClick={() => handleInstall(integrationDetails)}
+                isLoading={installing}
+              >
+                Install
+              </Button>
+            )}
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 };

@@ -2,7 +2,6 @@ export { default as ActionLink } from "./ActionLink";
 export { default as Affix } from "./Affix";
 export { default as AuthorityCheck } from "./AuthorityCheck";
 export { default as Chart } from "./Chart";
-export { default as ConfirmDialog } from "./ConfirmDialog";
 export { default as Container } from "./Container";
 export { default as DataTable } from "./DataTable";
 export { default as DoubleSidedImage } from "./DoubleSidedImage";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
-import { Dialog, FormContainer } from "components/ui";
+import { FormContainer } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import CreditCardForm from "./CreditCardForm";
@@ -10,11 +10,17 @@ import { HiPlus } from "react-icons/hi";
 import isLastChild from "utils/isLastChild";
 import isEmpty from "lodash/isEmpty";
 import { apiGetAccountSettingBillingData } from "services/AccountServices";
+import { PaymentMethod, settingBillingData } from "mock/data/accountData";
 import {
-  PaymentMethod,
-  settingBillingData,
-} from "../../../../mock/data/accountData";
-import { Button, Tag, useToast } from "@chakra-ui/react";
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  Tag,
+  useToast,
+} from "@chakra-ui/react";
 import { noop } from "lodash";
 
 const months = [
@@ -236,32 +242,36 @@ const Billing = () => {
                   ))}
                 </div>
               </FormRow>
-              <Dialog
+              <Modal
                 isOpen={ccDialogType === "NEW" || ccDialogType === "EDIT"}
                 onClose={onCreditCardDialogClose}
-                onRequestClose={onCreditCardDialogClose}
               >
-                <h5 className="mb-4">Edit Credit Card</h5>
-                <Field name="paymentMethods">
-                  {({
-                    field,
-                    form,
-                  }: {
-                    field: FieldInputProps<string>;
-                    form: FormikProps<any>;
-                  }) => {
-                    return selectedCard ? (
-                      <CreditCardForm
-                        type={ccDialogType}
-                        card={selectedCard}
-                        onUpdate={(cardValue: PaymentMethod) =>
-                          onCardUpdate(cardValue, form, field)
-                        }
-                      />
-                    ) : null;
-                  }}
-                </Field>
-              </Dialog>
+                <ModalContent>
+                  <ModalHeader>Edit Credit Card</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Field name="paymentMethods">
+                      {({
+                        field,
+                        form,
+                      }: {
+                        field: FieldInputProps<string>;
+                        form: FormikProps<any>;
+                      }) => {
+                        return selectedCard ? (
+                          <CreditCardForm
+                            type={ccDialogType}
+                            card={selectedCard}
+                            onUpdate={(cardValue: PaymentMethod) =>
+                              onCardUpdate(cardValue, form, field)
+                            }
+                          />
+                        ) : null;
+                      }}
+                    </Field>
+                  </ModalBody>
+                </ModalContent>
+              </Modal>
               <div className="mt-4 ltr:text-right">
                 <Button
                   className="ltr:mr-2 rtl:ml-2"
