@@ -1,11 +1,11 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import { TabList, TabNav, Tabs } from "components/ui";
 import { AdaptableCard, Container } from "components/shared";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import isEmpty from "lodash/isEmpty";
 import { apiGetAccountSettingData } from "services/AccountServices";
 import { noop } from "lodash";
 import { settingData } from "../../../mock/data/accountData";
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 
 const Profile = lazy(() => import("./components/Profile"));
 const Password = lazy(() => import("./components/Password"));
@@ -15,31 +15,20 @@ const NotificationSetting = lazy(
 const Integration = lazy(() => import("./components/Integration"));
 const Billing = lazy(() => import("./components/Billing"));
 
-const settingsMenu: {
-  [key: string]: { label: string; path: string };
-} = {
-  profile: { label: "Profile", path: "profile" },
-  password: { label: "Password", path: "password" },
-  notification: { label: "Notification", path: "notification" },
-  integration: { label: "Integration", path: "integration" },
-  billing: { label: "Billing", path: "billing" },
-};
+const settingsMenu = [
+  { label: "Profile", path: "profile" },
+  { label: "Password", path: "password" },
+  { label: "Notification", path: "notification" },
+  { label: "Integration", path: "integration" },
+  { label: "Billing", path: "billing" },
+];
 
 const Settings = () => {
-  const [currentTab, setCurrentTab] = useState("profile");
   const [data, setData] = useState(settingData);
 
   const navigate = useNavigate();
-
-  const location = useLocation();
-
-  const path = location.pathname.substring(
-    location.pathname.lastIndexOf("/") + 1,
-  );
-
-  const onTabChange = (val: string) => {
-    setCurrentTab(val);
-    navigate(`/app/account/settings/${val}`);
+  const onTabChange = (val: number) => {
+    navigate(`/app/account/settings/${settingsMenu[val].path}`);
   };
 
   const fetchData = async () => {
@@ -48,7 +37,6 @@ const Settings = () => {
   };
 
   useEffect(() => {
-    setCurrentTab(path);
     if (isEmpty(data)) {
       fetchData().then(noop);
     }
@@ -57,26 +45,40 @@ const Settings = () => {
   return (
     <Container>
       <AdaptableCard>
-        <Tabs value={currentTab} onChange={(val) => onTabChange(val)}>
+        <Tabs onChange={onTabChange}>
           <TabList>
-            {Object.keys(settingsMenu).map((key) => (
-              <TabNav key={key} value={key}>
-                {settingsMenu[key].label}
-              </TabNav>
+            {settingsMenu.map((it) => (
+              <Tab key={it.path}>{it.label}</Tab>
             ))}
           </TabList>
+          <TabPanels className="px-4 py-6">
+            <TabPanel>
+              <Suspense fallback={<></>}>
+                <Profile data={data.profile} />
+              </Suspense>
+            </TabPanel>
+            <TabPanel>
+              <Suspense fallback={<></>}>
+                <Password data={data.loginHistory} />
+              </Suspense>
+            </TabPanel>
+            <TabPanel>
+              <Suspense fallback={<></>}>
+                <NotificationSetting data={data.notification} />
+              </Suspense>
+            </TabPanel>
+            <TabPanel>
+              <Suspense fallback={<></>}>
+                <Integration />
+              </Suspense>
+            </TabPanel>
+            <TabPanel>
+              <Suspense fallback={<></>}>
+                <Billing />
+              </Suspense>
+            </TabPanel>
+          </TabPanels>
         </Tabs>
-        <div className="px-4 py-6">
-          <Suspense fallback={<></>}>
-            {currentTab === "profile" && <Profile data={data.profile} />}
-            {currentTab === "password" && <Password data={data.loginHistory} />}
-            {currentTab === "notification" && (
-              <NotificationSetting data={data.notification} />
-            )}
-            {currentTab === "integration" && <Integration />}
-            {currentTab === "billing" && <Billing />}
-          </Suspense>
-        </div>
       </AdaptableCard>
     </Container>
   );
