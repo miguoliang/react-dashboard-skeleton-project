@@ -1,6 +1,6 @@
 import React from "react";
-import { Avatar, Button, useToast } from "@chakra-ui/react";
-import { FormContainer, Input, Select, Switcher, Upload } from "components/ui";
+import { Avatar, Button, Switch, useToast } from "@chakra-ui/react";
+import { FormContainer, Input, Select, Upload } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import {
@@ -246,7 +246,7 @@ const Profile = ({
                 {...validatorProps}
                 border={false}
               >
-                <Field name="syncData" component={Switcher} />
+                <Field name="syncData" component={Switch} />
               </FormRow>
               <div className="mt-4 ltr:text-right">
                 <Button

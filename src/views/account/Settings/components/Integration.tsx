@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Button, useToast } from "@chakra-ui/react";
-import { Card, Dialog, Switcher } from "components/ui";
+import { Avatar, Button, Switch, useToast } from "@chakra-ui/react";
+import { Card, Dialog } from "components/ui";
 import isEmpty from "lodash/isEmpty";
 import { apiGetAccountSettingIntegrationData } from "services/AccountServices";
 import cloneDeep from "lodash/cloneDeep";
@@ -114,8 +114,10 @@ const Integration = () => {
                     <h6>{app.name}</h6>
                   </div>
                 </div>
-                <Switcher
-                  onChange={(val) => handleToggle(val, app.name, "installed")}
+                <Switch
+                  onChange={(e) =>
+                    handleToggle(e.target.checked, app.name, "installed")
+                  }
                   checked={app.active}
                 />
               </div>
