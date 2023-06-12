@@ -8,9 +8,9 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
-import useMergedRef from "../hooks/useMergeRef";
 import { clamp, padTime } from "./utils";
 import { CustomRefElementProps } from "../utils/constant";
+import { useMergeRefs } from "@chakra-ui/react";
 
 type TimeInputFieldProps = CustomRefElementProps<
   {
@@ -118,7 +118,7 @@ const TimeInputField = forwardRef<HTMLInputElement, TimeInputFieldProps>(
         <input
           type="text"
           inputMode="numeric"
-          ref={useMergedRef(inputRef, ref)}
+          ref={useMergeRefs(inputRef, ref)}
           onChange={handleChange}
           onClick={handleClick}
           onFocus={handleFocus}

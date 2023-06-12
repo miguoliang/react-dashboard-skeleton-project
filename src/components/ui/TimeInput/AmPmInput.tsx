@@ -7,7 +7,7 @@ import React, {
   useRef,
 } from "react";
 import classNames from "classnames";
-import useMergedRef from "../hooks/useMergeRef";
+import { useMergeRefs } from "@chakra-ui/react";
 
 type AmPmInputProps = {
   className?: string;
@@ -64,7 +64,7 @@ const AmPmInput = forwardRef<HTMLInputElement, AmPmInputProps>((props, ref) => {
   return (
     <input
       type="text"
-      ref={useMergedRef(inputRef, ref)}
+      ref={useMergeRefs(inputRef, ref)}
       onClick={handleClick}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}

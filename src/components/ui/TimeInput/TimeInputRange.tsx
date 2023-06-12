@@ -7,14 +7,13 @@ import React, {
   useState,
 } from "react";
 import useUniqueId from "../hooks/useUniqueId";
-import useMergedRef from "../hooks/useMergeRef";
 import useDidUpdate from "../hooks/useDidUpdate";
 import TimeInput from "./TimeInput";
 import { HiOutlineClock } from "react-icons/hi";
 import Input from "../Input";
 import { Size } from "../utils/constant";
 import { FieldInputProps, FormikProps } from "formik";
-import { CloseButton } from "@chakra-ui/react";
+import { CloseButton, useMergeRefs } from "@chakra-ui/react";
 
 type TimeInputRangeProps = Partial<{
   invalid: boolean;
@@ -123,7 +122,7 @@ const TimeInputRange = forwardRef<HTMLInputElement, TimeInputRangeProps>(
       >
         <div className="time-input-wrapper">
           <TimeInput
-            ref={useMergedRef(fromTimeRef, ref)}
+            ref={useMergeRefs(fromTimeRef, ref)}
             value={_value[0]}
             onChange={(date) => setValue([date ?? new Date(), _value[1]])}
             name={name}

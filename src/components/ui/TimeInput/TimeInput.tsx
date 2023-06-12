@@ -7,7 +7,6 @@ import React, {
   useState,
 } from "react";
 import useUniqueId from "../hooks/useUniqueId";
-import useMergedRef from "../hooks/useMergeRef";
 import useDidUpdate from "../hooks/useDidUpdate";
 import TimeInputField from "./TimeInputField";
 import AmPmInput from "./AmPmInput";
@@ -21,7 +20,7 @@ import {
 import { HiOutlineClock } from "react-icons/hi";
 import { Size } from "../utils/constant";
 import { FieldInputProps, FormikProps } from "formik";
-import { CloseButton } from "@chakra-ui/react";
+import { CloseButton, useMergeRefs } from "@chakra-ui/react";
 
 type TimeInputProps = Partial<{
   showSeconds: boolean;
@@ -190,7 +189,7 @@ const TimeInput = forwardRef<HTMLInputElement, TimeInputProps>((props, ref) => {
     >
       <div className="time-input-wrapper">
         <TimeInputField
-          ref={useMergedRef(hoursRef, ref)}
+          ref={useMergeRefs(hoursRef, ref)}
           value={time.hours}
           onChange={handleHoursChange}
           setValue={(val) => setTime((current) => ({ ...current, hours: val }))}
