@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
-import { Dialog, FormContainer, Tag } from "components/ui";
+import { Dialog, FormContainer } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import CreditCardForm from "./CreditCardForm";
@@ -14,7 +14,7 @@ import {
   PaymentMethod,
   settingBillingData,
 } from "../../../../mock/data/accountData";
-import { Button, useToast } from "@chakra-ui/react";
+import { Button, Tag, useToast } from "@chakra-ui/react";
 import { noop } from "lodash";
 
 const months = [
@@ -163,7 +163,7 @@ const Billing = () => {
                               {card.cardHolderName} •••• {card.last4Number}
                             </div>
                             {card.primary && (
-                              <Tag className="bg-sky-100 text-sky-600 dark:bg-sky-500/20 dark:text-sky-100 rounded-md border-0 mx-2">
+                              <Tag>
                                 <span className="capitalize"> Primary </span>
                               </Tag>
                             )}

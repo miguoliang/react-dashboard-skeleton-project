@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { FormContainer, Input, Tag } from "components/ui";
+import { FormContainer, Input } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import { Field, Form, Formik, FormikValues } from "formik";
@@ -13,7 +13,7 @@ import {
 import dayjs from "dayjs";
 import * as Yup from "yup";
 import { LoginHistory } from "../../../../mock/data/accountData";
-import { Button, useToast } from "@chakra-ui/react";
+import { Button, Tag, useToast } from "@chakra-ui/react";
 
 const LoginHistoryIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -165,7 +165,7 @@ const Password = ({ data = [] }: { data?: LoginHistory[] }) => {
                         {log.deviceName}
                       </div>
                       {index === 0 && (
-                        <Tag className="bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-100 rounded-md border-0 mx-2">
+                        <Tag>
                           <span className="capitalize"> Current </span>
                         </Tag>
                       )}

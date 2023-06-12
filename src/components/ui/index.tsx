@@ -16,7 +16,6 @@ export { default as Notification } from "./Notification";
 export * from "./Segment";
 export * from "./Steps";
 export * from "./Tabs";
-export { default as Tag } from "./Tag";
 export * from "./TimeInput";
 export * from "./Timeline";
 export { default as ScrollBar } from "./ScrollBar";
