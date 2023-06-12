@@ -10,7 +10,6 @@ export { default as Pagination } from "./Pagination";
 export { default as Dialog } from "./Dialog";
 export * from "./Menu";
 export * from "./Dropdown";
-export { default as Progress } from "./Progress";
 export { default as Notification } from "./Notification";
 export * from "./Segment";
 export * from "./Steps";
