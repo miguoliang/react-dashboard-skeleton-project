@@ -9,7 +9,6 @@ export { default as FormContainer } from "./Form/FormContainer";
 export * from "./Sorter";
 export { default as Pagination } from "./Pagination";
 export { default as Dialog } from "./Dialog";
-export * from "./DatePicker";
 export * from "./Menu";
 export * from "./Dropdown";
 export { default as Progress } from "./Progress";

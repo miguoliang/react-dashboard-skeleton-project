@@ -6,8 +6,8 @@ import { PaginationResponse } from "models/pagination";
 import dayjs from "dayjs";
 import { ActionLink, Loading } from "components/shared";
 import { APP_PREFIX_PATH } from "constants/route.constant";
-import DatePicker from "components/ui/DatePicker";
 import { Table, Tbody, Td, Th, Thead, Tr, useBoolean } from "@chakra-ui/react";
+import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 
 const DataSourceList = () => {
   const [loading, setLoading] = useBoolean();
@@ -32,12 +32,11 @@ const DataSourceList = () => {
       <div className="h-full flex flex-col">
         <div className="flex items-center mb-4 flex-shrink-0">
           <span className="flex-shrink-0 mr-4">日期：</span>
-          <DatePicker
+          <DateRangePicker
             className="max-w-[150px]"
-            closePickerOnChange
             defaultValue={selectedDate}
             onChange={(date) => {
-              setSelectedDate(dayjs(date).toDate());
+              setSelectedDate(date as Date);
               setCurrentPage(1);
             }}
           />
