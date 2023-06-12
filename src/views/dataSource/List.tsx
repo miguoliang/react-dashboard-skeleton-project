@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { apiGetDataSources } from "services/DataSourceService";
 import { DataSource } from "models/data-source";
-import { Pagination, Table, TBody, Td, Th, THead, Tr } from "components/ui";
+import { Pagination } from "components/ui";
 import { PaginationResponse } from "models/pagination";
 import dayjs from "dayjs";
 import { ActionLink, Loading } from "components/shared";
 import { APP_PREFIX_PATH } from "constants/route.constant";
 import DatePicker from "components/ui/DatePicker";
-import { useBoolean } from "@chakra-ui/react";
+import { Table, Tbody, Td, Th, Thead, Tr, useBoolean } from "@chakra-ui/react";
 
 const DataSourceList = () => {
   const [loading, setLoading] = useBoolean();
@@ -43,15 +43,15 @@ const DataSourceList = () => {
           />
         </div>
         <Table className="flex-grow">
-          <THead className="leading-10">
+          <Thead className="leading-10">
             <Tr>
               <Th>ID</Th>
               <Th>Title</Th>
               <Th>Created at</Th>
               <Th>Operations</Th>
             </Tr>
-          </THead>
-          <TBody>
+          </Thead>
+          <Tbody>
             {dataSourceList?.content.map((dataSource, index) => (
               <Tr key={dataSource.id}>
                 <Td>
@@ -70,7 +70,7 @@ const DataSourceList = () => {
                 </Td>
               </Tr>
             ))}
-          </TBody>
+          </Tbody>
         </Table>
         <Pagination
           className="mt-4 flex justify-center flex-shrink-0"

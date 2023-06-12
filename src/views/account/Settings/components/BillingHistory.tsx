@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge, Table, TBody, Td, Th, THead, Tr } from "components/ui";
+import { Badge } from "components/ui";
 import {
   createColumnHelper,
   flexRender,
@@ -9,6 +9,7 @@ import {
 import NumberFormat from "react-number-format";
 import dayjs from "dayjs";
 import { BillingHistory as BillingHistoryData } from "../../../../mock/data/accountData";
+import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 
 const statusColor: Record<"paid" | "pending", string> = {
   paid: "bg-emerald-500",
@@ -88,7 +89,7 @@ const BillingHistory = ({
   return (
     <div {...rest}>
       <Table>
-        <THead className="!bg-transparent">
+        <Thead className="!bg-transparent">
           {table.getHeaderGroups().map((headerGroup) => (
             <Tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
@@ -103,8 +104,8 @@ const BillingHistory = ({
               })}
             </Tr>
           ))}
-        </THead>
-        <TBody>
+        </Thead>
+        <Tbody>
           {table.getRowModel().rows.map((row) => {
             return (
               <Tr key={row.id}>
@@ -121,7 +122,7 @@ const BillingHistory = ({
               </Tr>
             );
           })}
-        </TBody>
+        </Tbody>
       </Table>
     </div>
   );

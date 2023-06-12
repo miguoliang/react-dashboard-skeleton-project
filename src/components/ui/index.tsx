@@ -6,7 +6,7 @@ export * from "./InputGroup";
 export { default as Upload } from "./Upload";
 export { default as FormItem } from "./Form/FormItem";
 export { default as FormContainer } from "./Form/FormContainer";
-export * from "./Table";
+export * from "./Sorter";
 export { default as Pagination } from "./Pagination";
 export { default as Dialog } from "./Dialog";
 export * from "./DatePicker";

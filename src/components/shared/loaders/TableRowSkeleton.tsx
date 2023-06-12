@@ -1,6 +1,7 @@
 import React from "react";
-import { Skeleton, TBody, Td, Tr } from "components/ui";
+import { Skeleton } from "components/ui";
 import { SkeletonProps } from "../../ui/Skeleton/Skeleton";
+import { Tbody, Td, Tr } from "@chakra-ui/react";
 
 type TableRowSkeletonProps = {
   columns: number;
@@ -13,7 +14,7 @@ const TableRowSkeleton = (props: TableRowSkeletonProps) => {
   const { columns = 1, rows = 10, avatarInColumns = [], avatarProps } = props;
 
   return (
-    <TBody>
+    <Tbody>
       {Array.from(new Array(rows), (_, i) => i + 0).map((row) => (
         <Tr key={`row-${row}`}>
           {Array.from(new Array(columns), (_, i) => i + 0).map((col) => (
@@ -30,7 +31,7 @@ const TableRowSkeleton = (props: TableRowSkeletonProps) => {
           ))}
         </Tr>
       ))}
-    </TBody>
+    </Tbody>
   );
 };
 
