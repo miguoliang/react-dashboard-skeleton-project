@@ -1,17 +1,14 @@
 import React from "react";
-import { Skeleton } from "components/ui";
-import { SkeletonProps } from "../../ui/Skeleton/Skeleton";
-import { Tbody, Td, Tr } from "@chakra-ui/react";
+import { Skeleton, SkeletonCircle, Tbody, Td, Tr } from "@chakra-ui/react";
 
 type TableRowSkeletonProps = {
   columns: number;
   rows: number;
   avatarInColumns?: number[];
-  avatarProps?: SkeletonProps;
 };
 
 const TableRowSkeleton = (props: TableRowSkeletonProps) => {
-  const { columns = 1, rows = 10, avatarInColumns = [], avatarProps } = props;
+  const { columns = 1, rows = 10, avatarInColumns = [] } = props;
 
   return (
     <Tbody>
@@ -22,7 +19,7 @@ const TableRowSkeleton = (props: TableRowSkeletonProps) => {
               <div className="flex flex-auto items-center gap-2">
                 {avatarInColumns.includes(col) && (
                   <div>
-                    <Skeleton variant="circle" {...avatarProps} />
+                    <SkeletonCircle />
                   </div>
                 )}
                 <Skeleton />

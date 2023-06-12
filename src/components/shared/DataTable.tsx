@@ -73,7 +73,6 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
     onSort,
     pageSizes = [10, 25, 50, 100],
     selectable = false,
-    skeletonAvatarProps,
     pagingData = {
       total: 0,
       pageIndex: 1,
@@ -206,7 +205,6 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
             columns={finalColumns.length}
             rows={pagingData.pageSize}
             avatarInColumns={skeletonAvatarColumns}
-            avatarProps={skeletonAvatarProps}
           />
         ) : (
           <Tbody>
