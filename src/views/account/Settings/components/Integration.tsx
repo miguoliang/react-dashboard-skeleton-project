@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Button, Switch, useToast } from "@chakra-ui/react";
-import { Card, Dialog } from "components/ui";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Switch,
+  useToast,
+} from "@chakra-ui/react";
+import { Dialog } from "components/ui";
 import isEmpty from "lodash/isEmpty";
 import { apiGetAccountSettingIntegrationData } from "services/AccountServices";
 import cloneDeep from "lodash/cloneDeep";
@@ -89,21 +97,8 @@ const Integration = () => {
       <h5>Installed</h5>
       <div className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4">
         {data.installed?.map((app) => (
-          <Card
-            bodyClass="p-0"
-            key={app.name}
-            footerClass="flex justify-end p-2"
-            footer={
-              <Button
-                variant="plain"
-                size="sm"
-                onClick={() => onViewIntegrationOpen(app, true)}
-              >
-                View Intergration
-              </Button>
-            }
-          >
-            <div className="p-6">
+          <Card key={app.name}>
+            <CardBody>
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <Avatar
@@ -122,7 +117,16 @@ const Integration = () => {
                 />
               </div>
               <p className="mt-6">{app.desc}</p>
-            </div>
+            </CardBody>
+            <CardFooter>
+              <Button
+                variant="plain"
+                size="sm"
+                onClick={() => onViewIntegrationOpen(app, true)}
+              >
+                View Intergration
+              </Button>
+            </CardFooter>
           </Card>
         ))}
       </div>
@@ -130,21 +134,8 @@ const Integration = () => {
         <h5>Available</h5>
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4">
           {data.available?.map((app) => (
-            <Card
-              bodyClass="p-0"
-              key={app.name}
-              footerClass="flex justify-end p-2"
-              footer={
-                <Button
-                  variant="plain"
-                  size="sm"
-                  onClick={() => onViewIntegrationOpen(app, false)}
-                >
-                  View Intergration
-                </Button>
-              }
-            >
-              <div className="p-6">
+            <Card key={app.name}>
+              <CardBody>
                 <div className="flex items-center">
                   <Avatar
                     className="bg-transparent dark:bg-transparent"
@@ -155,7 +146,16 @@ const Integration = () => {
                   </div>
                 </div>
                 <p className="mt-6">{app.desc}</p>
-              </div>
+              </CardBody>
+              <CardFooter>
+                <Button
+                  variant="plain"
+                  size="sm"
+                  onClick={() => onViewIntegrationOpen(app, false)}
+                >
+                  View Integration
+                </Button>
+              </CardFooter>
             </Card>
           ))}
         </div>

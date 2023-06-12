@@ -1,5 +1,4 @@
 export { default as ActionLink } from "./ActionLink";
-export { default as AdaptableCard } from "./AdaptableCard";
 export { default as Affix } from "./Affix";
 export { default as AuthorityCheck } from "./AuthorityCheck";
 export { default as Chart } from "./Chart";
