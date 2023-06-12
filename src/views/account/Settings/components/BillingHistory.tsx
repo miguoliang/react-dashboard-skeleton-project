@@ -1,5 +1,4 @@
 import React from "react";
-import { Badge } from "components/ui";
 import {
   createColumnHelper,
   flexRender,
@@ -9,7 +8,7 @@ import {
 import NumberFormat from "react-number-format";
 import dayjs from "dayjs";
 import { BillingHistory as BillingHistoryData } from "../../../../mock/data/accountData";
-import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Badge, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 
 const statusColor: Record<"paid" | "pending", string> = {
   paid: "bg-emerald-500",
