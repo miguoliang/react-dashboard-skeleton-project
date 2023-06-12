@@ -1,4 +1,3 @@
-export { default as Select } from "./Select";
 export { default as Input } from "./Input";
 export * from "./InputGroup";
 export { default as Upload } from "./Upload";

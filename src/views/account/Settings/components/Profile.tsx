@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar, Button, Switch, useToast } from "@chakra-ui/react";
-import { FormContainer, Input, Select, Upload } from "components/ui";
+import { FormContainer, Input, Upload } from "components/ui";
 import FormDescription from "./FormDescription";
 import FormRow from "./FormRow";
 import {
@@ -11,7 +11,7 @@ import {
   Formik,
   FormikProps,
 } from "formik";
-import { components, ControlProps } from "react-select";
+import ReactSelect, { components, ControlProps } from "react-select";
 import {
   HiCheck,
   HiOutlineBriefcase,
@@ -211,9 +211,7 @@ const Profile = ({
               <FormRow name="lang" label="Language" {...validatorProps}>
                 <Field name="lang">
                   {({ field, form }: FieldProps) => (
-                    <Select<(typeof langOptions)[0]>
-                      field={field}
-                      form={form}
+                    <ReactSelect<(typeof langOptions)[0]>
                       options={langOptions}
                       components={{
                         Option: CustomSelectOption,

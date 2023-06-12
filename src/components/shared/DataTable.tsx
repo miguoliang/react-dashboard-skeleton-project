@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
-import { Pagination, Select, Sorter } from "components/ui";
+import { Pagination, Sorter } from "components/ui";
 import TableRowSkeleton from "./loaders/TableRowSkeleton";
 import Loading from "./Loading";
 import {
@@ -22,8 +22,8 @@ import {
 } from "@tanstack/react-table";
 import { PaginationChangeHandler } from "../ui/Pagination/Pagers";
 import { Table as ReactTable } from "@tanstack/table-core/build/lib/types";
-import { SelectChangeHandler } from "components/ui/Select/Select";
 import { Checkbox, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import ReactSelect, { Props } from "react-select";
 
 export type PageSizeOption = {
   value: number;
@@ -42,7 +42,7 @@ export type DataTableProps = {
   onCheckBoxChange?: DataTableCheckBoxChangeHandler;
   onIndeterminateCheckBoxChange?: DataTableCheckBoxChangeHandler;
   onPaginationChange: PaginationChangeHandler;
-  onSelectChange: SelectChangeHandler<PageSizeOption>;
+  onSelectChange: Props<PageSizeOption>["onChange"];
   onSort: (sort: SortingState) => void;
   pageSizes?: number[];
   selectable?: boolean;
@@ -99,12 +99,6 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
   const handlePaginationChange: PaginationChangeHandler = (page) => {
     if (!loading) {
       onPaginationChange(page);
-    }
-  };
-
-  const handleSelectChange: SelectChangeHandler<PageSizeOption> = (option) => {
-    if (!loading) {
-      onSelectChange(option);
     }
   };
 
@@ -238,13 +232,12 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
           onChange={handlePaginationChange}
         />
         <div style={{ minWidth: 130 }}>
-          <Select<PageSizeOption>
-            size="sm"
+          <ReactSelect<PageSizeOption, false>
             menuPlacement="top"
             isSearchable={false}
             value={pageSizeOption.filter((option) => option.value === pageSize)}
             options={pageSizeOption}
-            onChange={handleSelectChange}
+            onChange={onSelectChange}
           />
         </div>
       </div>
