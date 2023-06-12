@@ -12,7 +12,6 @@ export * from "./Menu";
 export * from "./Dropdown";
 export { default as Notification } from "./Notification";
 export * from "./Segment";
-export * from "./Steps";
 export * from "./Tabs";
 export * from "./TimeInput";
 export * from "./Timeline";
