@@ -1,25 +1,12 @@
 import React, {
-  ChangeEventHandler,
   forwardRef,
   useEffect,
   useImperativeHandle,
   useMemo,
-  useRef,
   useState,
 } from "react";
 import classNames from "classnames";
-import {
-  Checkbox,
-  Pagination,
-  Select,
-  Sorter,
-  Table,
-  TBody,
-  Td,
-  Th,
-  THead,
-  Tr,
-} from "components/ui";
+import { Pagination, Select, Sorter } from "components/ui";
 import TableRowSkeleton from "./loaders/TableRowSkeleton";
 import Loading from "./Loading";
 import {
@@ -33,55 +20,14 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import { CheckboxProps } from "../ui/Checkbox/Checkbox";
 import { PaginationChangeHandler } from "../ui/Pagination/Pagers";
 import { Table as ReactTable } from "@tanstack/table-core/build/lib/types";
 import { SelectChangeHandler } from "components/ui/Select/Select";
+import { Checkbox, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 
 export type PageSizeOption = {
   value: number;
   label: string;
-};
-
-type IndeterminateCheckboxProps = Partial<{
-  indeterminate: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-  onCheckBoxChange: ChangeEventHandler<HTMLInputElement>;
-  onIndeterminateCheckBoxChange: ChangeEventHandler<HTMLInputElement>;
-}> &
-  Omit<CheckboxProps, "onChange">;
-
-const IndeterminateCheckbox = (props: IndeterminateCheckboxProps) => {
-  const {
-    indeterminate,
-    onChange,
-    onCheckBoxChange,
-    onIndeterminateCheckBoxChange,
-    ...rest
-  } = props;
-
-  const ref = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (typeof indeterminate === "boolean") {
-      ref.current!.indeterminate = !rest.checked && indeterminate;
-    }
-  }, [ref, indeterminate]);
-
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    onChange?.(e);
-    onCheckBoxChange?.(e);
-    onIndeterminateCheckBoxChange?.(e);
-  };
-
-  return (
-    <Checkbox
-      className="mb-0"
-      ref={ref}
-      onChange={(_, e) => handleChange(e)}
-      {...rest}
-    />
-  );
 };
 
 export type DataTableCheckBoxChangeHandler<T = any> = (
@@ -122,8 +68,6 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
     columns: columnsProp = [],
     data = [],
     loading = false,
-    onCheckBoxChange,
-    onIndeterminateCheckBoxChange,
     onPaginationChange,
     onSelectChange,
     onSort,
@@ -153,24 +97,6 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
     [pageSizes],
   );
 
-  const handleCheckBoxChange: DataTableCheckBoxChangeHandler = (
-    checked,
-    row,
-  ) => {
-    if (!loading) {
-      onCheckBoxChange?.(checked, row);
-    }
-  };
-
-  const handleIndeterminateCheckBoxChange: DataTableCheckBoxChangeHandler = (
-    checked,
-    rows,
-  ) => {
-    if (!loading) {
-      onIndeterminateCheckBoxChange?.(checked, rows);
-    }
-  };
-
   const handlePaginationChange: PaginationChangeHandler = (page) => {
     if (!loading) {
       onPaginationChange(page);
@@ -195,27 +121,16 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
         {
           id: "select",
           header: ({ table }: { table: ReactTable<any> }) => (
-            <IndeterminateCheckbox
+            <Checkbox
               checked={table.getIsAllRowsSelected()}
-              indeterminate={table.getIsSomeRowsSelected()}
               onChange={table.getToggleAllRowsSelectedHandler()}
-              onIndeterminateCheckBoxChange={(e) => {
-                handleIndeterminateCheckBoxChange(
-                  e.target.checked,
-                  table.getRowModel().rows,
-                );
-              }}
             />
           ),
           cell: ({ row }: { row: Row<any> }) => (
-            <IndeterminateCheckbox
+            <Checkbox
               checked={row.getIsSelected()}
               disabled={!row.getCanSelect()}
-              indeterminate={row.getIsSomeSelected()}
               onChange={row.getToggleSelectedHandler()}
-              onCheckBoxChange={(e) =>
-                handleCheckBoxChange(e.target.checked, row.original)
-              }
             />
           ),
         },
@@ -256,7 +171,7 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
   return (
     <Loading loading={loading && data.length !== 0} type="cover">
       <Table>
-        <THead>
+        <Thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <Tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
@@ -285,7 +200,7 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
               })}
             </Tr>
           ))}
-        </THead>
+        </Thead>
         {loading && data.length === 0 ? (
           <TableRowSkeleton
             columns={finalColumns.length}
@@ -294,7 +209,7 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
             avatarProps={skeletonAvatarProps}
           />
         ) : (
-          <TBody>
+          <Tbody>
             {table
               .getRowModel()
               .rows.slice(0, 10)
@@ -314,7 +229,7 @@ const DataTable = forwardRef<ResetMethods, DataTableProps>((props, ref) => {
                   </Tr>
                 );
               })}
-          </TBody>
+          </Tbody>
         )}
       </Table>
       <div className="flex items-center justify-between mt-4">
