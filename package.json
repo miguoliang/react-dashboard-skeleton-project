@@ -101,6 +101,8 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.0",
+    "@react-buddy/ide-toolbox": "^2.3.1",
+    "@react-buddy/palette-chakra-ui": "^2.3.1",
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/typography": "^0.5.2",
     "@testing-library/react": "^13.4.0",

@@ -1,0 +1,91 @@
+/* override "@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css" */
+
+.react-daterange-picker {
+    @apply inline-flex relative;
+}
+
+.react-daterange-picker,
+.react-daterange-picker *,
+.react-daterange-picker *:before,
+.react-daterange-picker *:after {
+    @apply box-border;
+}
+
+.react-daterange-picker--disabled {
+    @apply bg-gray-200 text-gray-600;
+}
+
+.react-daterange-picker__wrapper {
+    @apply p-[2px] flex flex-grow flex-shrink items-center border border-gray-300 rounded-lg h-11;
+}
+
+.react-daterange-picker__wrapper:focus,
+.react-daterange-picker__wrapper:focus-within {
+    @apply ring-indigo-600 border-indigo-600 border-2 p-[1px];
+}
+
+.react-daterange-picker__inputGroup {
+    min-width: calc((4px * 3) + 0.54em * 8 + 0.217em * 2);
+    @apply h-full flex-grow px-2 box-content;
+}
+
+.react-daterange-picker__inputGroup__divider {
+    @apply py-[1px] whitespace-pre;
+}
+
+.react-daterange-picker__inputGroup__divider,
+.react-daterange-picker__inputGroup__leadingZero {
+    @apply inline-block;
+}
+
+.react-daterange-picker__inputGroup__input {
+    min-width: 0.54em;
+    @apply h-full relative px-1 border-0 bg-transparent text-current appearance-none outline-none;
+}
+
+.react-daterange-picker__inputGroup__input::-webkit-outer-spin-button,
+.react-daterange-picker__inputGroup__input::-webkit-inner-spin-button {
+    @apply appearance-none m-0;
+}
+
+.react-daterange-picker__inputGroup__input:invalid {
+    @apply bg-red-100 bg-opacity-10;
+}
+
+.react-daterange-picker__inputGroup__input--hasLeadingZero {
+    margin-left: -0.54em;
+    padding-left: calc(1px + 0.54em);
+}
+
+.react-daterange-picker__button {
+    @apply border-0 bg-transparent py-1 px-2;
+}
+
+.react-daterange-picker__button:enabled {
+    @apply cursor-pointer;
+}
+
+.react-daterange-picker__button:enabled:hover .react-daterange-picker__button__icon,
+.react-daterange-picker__button:enabled:focus .react-daterange-picker__button__icon {
+    @apply text-blue-600;
+}
+
+.react-daterange-picker__button:disabled .react-daterange-picker__button__icon {
+    @apply text-gray-400;
+}
+
+.react-daterange-picker__button svg {
+    display: inherit;
+}
+
+.react-daterange-picker__calendar {
+    @apply w-[350px] max-w-full z-10;
+}
+
+.react-daterange-picker__calendar--closed {
+    @apply hidden;
+}
+
+.react-daterange-picker__calendar .react-calendar {
+    @apply border;
+}

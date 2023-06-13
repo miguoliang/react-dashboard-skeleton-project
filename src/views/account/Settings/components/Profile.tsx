@@ -67,7 +67,7 @@ const CustomSelectOption = ({
       {...innerProps}
     >
       <div className="flex items-center">
-        <Avatar size="md" src={data.imgPath} />
+        <Avatar size="xs" src={data.imgPath} />
         <span className="ml-2 rtl:mr-2">{label}</span>
       </div>
       {isSelected && <HiCheck className="text-emerald-500 text-xl" />}
@@ -82,7 +82,7 @@ const CustomControl = ({ children, ...props }: ControlProps<any>) => {
       {selected && (
         <Avatar
           className="ltr:ml-4 rtl:mr-4"
-          size="md"
+          size="xs"
           src={selected.imgPath}
         />
       )}
@@ -216,6 +216,7 @@ const Profile = ({
                       components={{
                         Option: CustomSelectOption,
                         Control: CustomControl,
+                        IndicatorSeparator: () => null,
                       }}
                       value={langOptions.filter(
                         (option) => option.value === values.lang,
@@ -244,7 +245,9 @@ const Profile = ({
                 {...validatorProps}
                 border={false}
               >
-                <Field name="syncData" component={Switch} />
+                <Field name="syncData">
+                  {({ field }: FieldProps) => <Switch {...field} size={"lg"} />}
+                </Field>
               </FormRow>
               <div className="mt-4 ltr:text-right">
                 <Button

@@ -34,7 +34,12 @@ const DataSourceList = () => {
           <span className="flex-shrink-0 mr-4">日期：</span>
           <DateRangePicker
             className="max-w-[150px]"
-            defaultValue={selectedDate}
+            value={[selectedDate, selectedDate]}
+            dayPlaceholder={""}
+            monthPlaceholder={""}
+            yearPlaceholder={""}
+            rangeDivider={"至"}
+            format={"y-MM-dd"}
             onChange={(date) => {
               setSelectedDate(date as Date);
               setCurrentPage(1);
