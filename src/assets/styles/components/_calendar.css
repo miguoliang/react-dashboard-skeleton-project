@@ -1,7 +1,7 @@
 /* override "react-calendar/dist/Calendar.css" */
 
 .react-calendar {
-    @apply w-[350px] max-w-full bg-white border border-gray-300 rounded-md shadow-sm leading-3;
+    @apply bg-white rounded-md leading-3 p-4;
 }
 
 .react-calendar--doubleView {
@@ -35,6 +35,10 @@
     @apply flex h-[44px] mb-[1em];
 }
 
+.react-calendar__navigation__label {
+    @apply mx-3 rounded-lg bg-transparent;
+}
+
 .react-calendar__navigation button {
     @apply min-w-[44px] bg-none;
 }
@@ -43,9 +47,13 @@
     @apply bg-gray-200;
 }
 
+.react-calendar__navigation button.react-calendar__navigation__label:disabled {
+    @apply bg-transparent;
+}
+
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
-    @apply bg-gray-300;
+    @apply bg-gray-100 rounded-lg;
 }
 
 .react-calendar__month-view__weekdays {
@@ -75,29 +83,33 @@
 }
 
 .react-calendar__tile {
-    @apply max-w-full px-2 py-1 bg-none text-center leading-4;
+    @apply max-w-full p-2 bg-none text-center leading-4 rounded-lg;
 }
 
 .react-calendar__tile:disabled {
     @apply bg-gray-200;
 }
 
-.react-calendar__tile:enabled:hover,
-.react-calendar__tile:enabled:focus {
-    @apply bg-gray-300;
+.react-calendar__tile:enabled:hover {
+    @apply rounded-lg;
 }
 
-.react-calendar__tile--now {
-    @apply bg-yellow-200;
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    @apply bg-gray-100;
+}
+
+button.react-calendar__tile--now {
+    @apply border border-blue-500;
 }
 
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-    @apply bg-yellow-300;
+    @apply bg-gray-100;
 }
 
-.react-calendar__tile--hasActive {
-    @apply bg-blue-200;
+button.react-calendar__tile--hasActive {
+    @apply bg-blue-500 text-white;
 }
 
 .react-calendar__tile--hasActive:enabled:hover,
@@ -107,6 +119,14 @@
 
 .react-calendar__tile--active {
     @apply bg-blue-500 text-white;
+}
+
+.react-calendar__tile--active.react-calendar__tile--rangeStart {
+    @apply rounded-l;
+}
+
+.react-calendar__tile--active.react-calendar__tile--rangeEnd {
+    @apply rounded-r;
 }
 
 .react-calendar__tile--active:enabled:hover,

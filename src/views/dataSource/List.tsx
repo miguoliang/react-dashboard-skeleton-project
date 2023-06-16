@@ -7,7 +7,8 @@ import dayjs from "dayjs";
 import { ActionLink, Loading } from "components/shared";
 import { APP_PREFIX_PATH } from "constants/route.constant";
 import { Table, Tbody, Td, Th, Thead, Tr, useBoolean } from "@chakra-ui/react";
-import DateRangePicker from "@wojtekmaj/react-daterange-picker";
+import DatePicker from "react-date-picker";
+import { HiOutlineCalendar } from "react-icons/hi";
 
 const DataSourceList = () => {
   const [loading, setLoading] = useBoolean();
@@ -32,14 +33,22 @@ const DataSourceList = () => {
       <div className="h-full flex flex-col">
         <div className="flex items-center mb-4 flex-shrink-0">
           <span className="flex-shrink-0 mr-4">日期：</span>
-          <DateRangePicker
-            className="max-w-[150px]"
-            value={[selectedDate, selectedDate]}
+          <DatePicker
+            className={"w-[180px]"}
+            value={selectedDate}
+            locale={"en-US"}
             dayPlaceholder={""}
             monthPlaceholder={""}
             yearPlaceholder={""}
-            rangeDivider={"至"}
-            format={"y-MM-dd"}
+            maxDetail={"month"}
+            minDetail={"year"}
+            calendarIcon={
+              <HiOutlineCalendar size={18} className={"text-gray-400"} />
+            }
+            clearIcon={null}
+            format={"y-M-d"}
+            prev2Label={null}
+            next2Label={null}
             onChange={(date) => {
               setSelectedDate(date as Date);
               setCurrentPage(1);

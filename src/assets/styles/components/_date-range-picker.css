@@ -25,7 +25,6 @@
 }
 
 .react-daterange-picker__inputGroup {
-    min-width: calc((4px * 3) + 0.54em * 8 + 0.217em * 2);
     @apply h-full flex-grow px-2 box-content;
 }
 
@@ -39,8 +38,16 @@
 }
 
 .react-daterange-picker__inputGroup__input {
-    min-width: 0.54em;
     @apply h-full relative px-1 border-0 bg-transparent text-current appearance-none outline-none;
+}
+
+.react-daterange-picker__inputGroup__input.react-daterange-picker__inputGroup__year {
+    @apply min-w-[2.5rem];
+}
+
+.react-daterange-picker__inputGroup__input.react-daterange-picker__inputGroup__month,
+.react-daterange-picker__inputGroup__input.react-daterange-picker__inputGroup__day {
+    @apply min-w-[1rem];
 }
 
 .react-daterange-picker__inputGroup__input::-webkit-outer-spin-button,
@@ -53,8 +60,6 @@
 }
 
 .react-daterange-picker__inputGroup__input--hasLeadingZero {
-    margin-left: -0.54em;
-    padding-left: calc(1px + 0.54em);
 }
 
 .react-daterange-picker__button {
@@ -79,7 +84,7 @@
 }
 
 .react-daterange-picker__calendar {
-    @apply w-[350px] max-w-full z-10;
+    @apply w-[350px] z-10;
 }
 
 .react-daterange-picker__calendar--closed {
@@ -87,5 +92,5 @@
 }
 
 .react-daterange-picker__calendar .react-calendar {
-    @apply border;
+    @apply mt-1 shadow-2xl;
 }
