@@ -1,5 +1,6 @@
 import { Avatar, extendTheme } from "@chakra-ui/react";
 import { menuTheme } from "./menu.config";
+import { tableTheme } from "./table.config";
 
 export const chakraTheme = extendTheme({
   colors: {
@@ -19,5 +20,6 @@ export const chakraTheme = extendTheme({
   components: {
     Avatar,
     Menu: menuTheme,
+    Table: tableTheme,
   },
 });

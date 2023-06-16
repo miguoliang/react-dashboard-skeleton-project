@@ -1,7 +1,7 @@
 /* override "react-calendar/dist/Calendar.css" */
 
 .react-calendar {
-    @apply bg-white rounded-md leading-3 p-4;
+    @apply bg-white rounded-lg leading-3 p-4;
 }
 
 .react-calendar--doubleView {
@@ -100,7 +100,7 @@
 }
 
 button.react-calendar__tile--now {
-    @apply border border-blue-500;
+    @apply underline underline-offset-4 text-inherit;
 }
 
 .react-calendar__tile--now:enabled:hover,
@@ -114,24 +114,24 @@ button.react-calendar__tile--hasActive {
 
 .react-calendar__tile--hasActive:enabled:hover,
 .react-calendar__tile--hasActive:enabled:focus {
-    @apply bg-blue-300;
+    @apply bg-blue-300 text-white;
 }
 
-.react-calendar__tile--active {
+button.react-calendar__tile--active {
     @apply bg-blue-500 text-white;
 }
 
 .react-calendar__tile--active.react-calendar__tile--rangeStart {
-    @apply rounded-l;
+    @apply rounded-l-lg;
 }
 
 .react-calendar__tile--active.react-calendar__tile--rangeEnd {
-    @apply rounded-r;
+    @apply rounded-r-lg;
 }
 
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-    @apply bg-blue-600;
+    @apply bg-blue-500 text-white;
 }
 
 .react-calendar--selectRange .react-calendar__tile--hover {
