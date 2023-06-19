@@ -6,13 +6,16 @@ import {
   OIDC_REDIRECT_URI,
 } from "../constants/oidc.constant";
 import { AuthProviderProps } from "react-oidc-context";
-import { WebStorageStateStore } from "oidc-client-ts";
+import { Log, WebStorageStateStore } from "oidc-client-ts";
 
 export const SIGN_UP_URL = `${OIDC_HOST}/signup?client_id=${OIDC_CLIENT_ID}&response_type=code&scope=openid+email&redirect_uri=${encodeURIComponent(
   OIDC_REDIRECT_URI,
 )}`;
 
 export const SIGN_OUT_URL = SIGN_UP_URL.replace("signup", "logout");
+
+Log.setLogger(console);
+Log.setLevel(Log.DEBUG);
 
 export const oidcConfig: AuthProviderProps = {
   authority: OIDC_AUTHORITY,

@@ -27,7 +27,9 @@ function App() {
       <PayPalScriptProvider options={paypalConfig}>
         <AuthProvider {...oidcConfig}>
           <BrowserRouter>
-            <Layout />
+            <React.StrictMode>
+              <Layout />
+            </React.StrictMode>
           </BrowserRouter>
         </AuthProvider>
       </PayPalScriptProvider>
