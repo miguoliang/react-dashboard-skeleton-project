@@ -61,3 +61,14 @@ Important: If there are no additional scopes configured on the API Gateway metho
 ID token. If additional scopes are configured on the API Gateway method, confirm that you're using a valid access token.
 For more information, see Integrate a REST API with an Amazon Cognito user pool and using Amazon Cognito custom scopes
 in API Gateway.
+
+## `React.StrictMode` causes `useEffect` to be called twice, thus causing the oidc-client to remove state twice.
+In order to fix this, you should wrap the `React.StrictMode` with `AuthProvider` as below:
+
+```tsx
+<AuthProvider>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+</AuthProvider>
+```
