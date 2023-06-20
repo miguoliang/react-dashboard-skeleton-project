@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "components/template/Header";
 import UserDropdown from "components/template/UserDropdown";
 import LanguageSelector from "components/template/LanguageSelector";
 import HeaderLogo from "components/template/HeaderLogo";
 import MobileNav from "components/template/MobileNav";
 import View from "views";
-import { useAuth } from "react-oidc-context";
 import { SignInAndSignUp } from "./ModernLayout";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 const HeaderActionsStart = () => {
   return (
@@ -18,11 +18,7 @@ const HeaderActionsStart = () => {
 };
 
 const HeaderActionsEnd = () => {
-  const auth = useAuth();
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
-  useEffect(() => {
-    setIsAuthenticated(auth.isAuthenticated);
-  }, [auth.isAuthenticated]);
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
   return (
     <>
       <LanguageSelector />

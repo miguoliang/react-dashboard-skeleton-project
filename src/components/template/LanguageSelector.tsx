@@ -16,7 +16,7 @@ import i18n from "i18next";
 
 import { HiCheck } from "react-icons/hi";
 import { noop } from "../ui/utils/constant";
-import { useLocaleStore } from "../../store";
+import useLocale from "../../utils/hooks/useLocale";
 
 const languageList = [
   { label: "English", value: "en", flag: "us" },
@@ -27,7 +27,7 @@ const languageList = [
 
 export const LanguageSelector = () => {
   const [loading, setLoading] = useBoolean();
-  const locale = useLocaleStore((state) => state.currentLang);
+  const locale = useLocale((state) => state.currentLang);
   const selectLangFlag = useMemo(() => {
     return languageList.find((lang) => lang.value === locale)?.flag;
   }, [locale]);

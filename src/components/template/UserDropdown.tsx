@@ -10,9 +10,8 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineLogout,
 } from "react-icons/hi";
-import { useAuth } from "react-oidc-context";
-import { SIGN_OUT_URL } from "../../configs/oidc.config";
 import { APP_PREFIX_PATH } from "../../constants/route.constant";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 const dropdownItemList = [
   {
@@ -62,7 +61,7 @@ export const UserDropdown = ({ className }: { className: string }) => {
         ))}
         <DropdownItem dropdownItemVariant="divider" />
         <DropdownItem
-          onClick={() => window.location.replace(SIGN_OUT_URL)}
+          onClick={() => auth.signOut()}
           eventKey="Sign Out"
           className="gap-2"
         >

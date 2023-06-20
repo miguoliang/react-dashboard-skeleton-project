@@ -2,13 +2,13 @@ import React from "react";
 import classNames from "classnames";
 import HorizontalMenuContent from "components/template/HorizontalMenuContent";
 import useResponsive from "utils/hooks/useResponsive";
-import { useAuth } from "react-oidc-context";
 import { useThemeStore } from "../../store";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 const SecondaryHeader = (props: { className?: string; contained: boolean }) => {
   const { className, contained } = props;
   const themeStore = useThemeStore();
-  const userAuthority = useAuth().user?.scopes;
+  const scopes = useAuth((state) => state.user?.scopes ?? []);
   const { larger } = useResponsive();
 
   const headerColor = () => {
@@ -37,7 +37,7 @@ const SecondaryHeader = (props: { className?: string; contained: boolean }) => {
           >
             <HorizontalMenuContent
               menuVariant={themeStore.navMode}
-              userAuthority={userAuthority}
+              userAuthority={scopes}
             />
           </div>
         </div>

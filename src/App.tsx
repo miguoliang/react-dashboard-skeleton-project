@@ -4,8 +4,6 @@ import Layout from "./components/layout";
 import mockServer from "./mock";
 import appConfig from "./configs/app.config";
 import "./locales";
-import { AuthProvider } from "react-oidc-context";
-import { oidcConfig } from "./configs/oidc.config";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { paypalConfig } from "./configs/paypal.config";
 import { ChakraBaseProvider } from "@chakra-ui/react";
@@ -25,13 +23,9 @@ function App() {
   return (
     <ChakraBaseProvider theme={chakraTheme}>
       <PayPalScriptProvider options={paypalConfig}>
-        <AuthProvider {...oidcConfig}>
-          <BrowserRouter>
-            <React.StrictMode>
-              <Layout />
-            </React.StrictMode>
-          </BrowserRouter>
-        </AuthProvider>
+        <BrowserRouter>
+          <Layout />
+        </BrowserRouter>
       </PayPalScriptProvider>
     </ChakraBaseProvider>
   );

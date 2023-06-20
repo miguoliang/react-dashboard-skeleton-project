@@ -3,9 +3,9 @@ import withHeaderItem from "utils/hoc/withHeaderItem";
 import { NavToggle } from "components/shared";
 import navigationConfig from "configs/navigation.config";
 import useResponsive from "utils/hooks/useResponsive";
-import { useAuth } from "react-oidc-context";
 import { useThemeStore } from "store";
 import { Drawer, Text } from "@chakra-ui/react";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 const VerticalMenuContent = lazy(
   () => import("components/template/VerticalMenuContent"),
@@ -25,7 +25,7 @@ const MobileNav = () => {
   };
 
   const themeStore = useThemeStore();
-  const userAuthority = useAuth().user?.scopes ?? [];
+  const scopes = useAuth((state) => state.user?.scopes ?? []);
   const { smaller } = useResponsive();
 
   return (
@@ -48,7 +48,7 @@ const MobileNav = () => {
                   collapsed={themeStore.sideNavCollapse}
                   navigationTree={navigationConfig}
                   routeKey={themeStore.currentRouteKey}
-                  userAuthority={userAuthority}
+                  userAuthority={scopes}
                   onMenuItemClick={onDrawerClose}
                   direction={themeStore.direction}
                 />

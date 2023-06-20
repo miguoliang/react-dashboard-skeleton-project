@@ -11,8 +11,8 @@ import Logo from "components/template/Logo";
 import navigationConfig from "configs/navigation.config";
 import VerticalMenuContent from "components/template/VerticalMenuContent";
 import useResponsive from "utils/hooks/useResponsive";
-import { useAuth } from "react-oidc-context";
 import { useThemeStore } from "store";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 const sideNavStyle = {
   width: SIDE_NAV_WIDTH,
@@ -26,7 +26,7 @@ const sideNavCollapseStyle = {
 
 const SideNav = () => {
   const themeStore = useThemeStore();
-  const userAuthority = useAuth().user?.scopes ?? [];
+  const scopes = useAuth((state) => state.user?.scopes ?? []);
   const { larger } = useResponsive();
   const sideNavColor = () => {
     if (themeStore.navMode === "themed") {
@@ -53,7 +53,7 @@ const SideNav = () => {
       collapsed={themeStore.sideNavCollapse}
       navigationTree={navigationConfig}
       routeKey={themeStore.currentRouteKey}
-      userAuthority={userAuthority}
+      userAuthority={scopes}
       direction={themeStore.direction}
     />
   );
