@@ -1,5 +1,5 @@
 import React from "react";
-import UserDropdown from "components/template/UserDropdown";
+import UserDropdown from "components/template/UserMenu";
 import LanguageSelector from "components/template/LanguageSelector";
 import MobileNav from "components/template/MobileNav";
 import View from "views";

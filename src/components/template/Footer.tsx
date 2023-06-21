@@ -1,8 +1,6 @@
 import React from "react";
-import classNames from "classnames";
-import { Container } from "components/shared";
 import { APP_NAME } from "constants/app.constant";
-import { PAGE_CONTAINER_GUTTER_X } from "constants/theme.constant";
+import { Flex } from "@chakra-ui/react";
 
 const FooterContent = () => {
   return (
@@ -25,24 +23,10 @@ const FooterContent = () => {
   );
 };
 
-export default function Footer({
-  pageContainerType,
-}: {
-  pageContainerType: string;
-}) {
+export default function Footer() {
   return (
-    <footer
-      className={classNames(
-        `footer flex flex-auto items-center h-16 ${PAGE_CONTAINER_GUTTER_X}`,
-      )}
-    >
-      {pageContainerType === "contained" ? (
-        <Container>
-          <FooterContent />
-        </Container>
-      ) : (
-        <FooterContent />
-      )}
-    </footer>
+    <Flex as="footer">
+      <FooterContent />
+    </Flex>
   );
 }

@@ -8,6 +8,11 @@ export const publicRoutes: Routes = [
     path: "/",
     component: React.lazy(() => import("views/Home")),
   },
+  {
+    key: "accessDenied",
+    path: "/access-denied",
+    component: React.lazy(() => import("views/AccessDenied")),
+  },
 ];
 
 export const protectedRoutes: Routes = [...appsRoute];

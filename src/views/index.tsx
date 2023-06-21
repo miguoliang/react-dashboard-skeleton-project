@@ -1,17 +1,15 @@
 import React, { Suspense } from "react";
 import { Loading } from "components/shared";
 import { protectedRoutes, publicRoutes } from "configs/routes.config";
-import PageContainer, {
-  PageContainerProps,
-} from "components/template/PageContainer";
 import { Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "components/route/ProtectedRoute";
 import PublicRoute from "components/route/PublicRoute";
 import AuthorityGuard from "components/route/AuthorityGuard";
 import AppRoute from "components/route/AppRoute";
 import { APP_PREFIX_PATH } from "../constants/route.constant";
+import { Container } from "@chakra-ui/react";
 
-const AllRoutes = (props: PageContainerProps) => {
+const AllRoutes = () => {
   return (
     <Routes>
       <Route path={APP_PREFIX_PATH} element={<ProtectedRoute />}>
@@ -21,13 +19,13 @@ const AllRoutes = (props: PageContainerProps) => {
             path={route.path}
             element={
               <AuthorityGuard authority={route.authority}>
-                <PageContainer {...props} {...route.meta}>
+                <Container {...route.meta}>
                   <AppRoute
                     routeKey={route.key}
                     component={route.component}
                     {...route.meta}
                   />
-                </PageContainer>
+                </Container>
               </AuthorityGuard>
             }
           />

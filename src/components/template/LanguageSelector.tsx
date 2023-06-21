@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import {
   Avatar,
+  Flex,
   Image,
   Menu,
   MenuButton,
@@ -61,6 +62,7 @@ export const LanguageSelector = () => {
       <MenuList>
         {languageList.map((lang) => (
           <MenuItem
+            as={Flex}
             key={lang.value}
             onClick={() => onLanguageSelect(lang.value)}
           >

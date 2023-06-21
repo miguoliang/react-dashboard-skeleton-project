@@ -37,7 +37,7 @@ const menuList = [
   },
 ];
 
-export const UserDropdown = ({ className }: { className: string }) => {
+export const UserMenu = ({ className }: { className: string }) => {
   const auth = useAuth();
 
   const UserAvatar = (
@@ -55,7 +55,12 @@ export const UserDropdown = ({ className }: { className: string }) => {
       <MenuButton>{UserAvatar}</MenuButton>
       <MenuList>
         {menuList.map((item) => (
-          <MenuItem as={Link} to={item.path} icon={<HiOutlineCog />}>
+          <MenuItem
+            as={Link}
+            to={item.path}
+            key={item.label}
+            icon={<HiOutlineCog />}
+          >
             {item.label}
           </MenuItem>
         ))}
@@ -68,4 +73,4 @@ export const UserDropdown = ({ className }: { className: string }) => {
   );
 };
 
-export default withHeaderItem(UserDropdown);
+export default withHeaderItem(UserMenu);

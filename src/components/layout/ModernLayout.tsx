@@ -1,5 +1,5 @@
 import React from "react";
-import UserDropdown from "components/template/UserDropdown";
+import UserMenu from "components/template/UserMenu";
 import LanguageSelector from "components/template/LanguageSelector";
 import SideNavToggle from "components/template/SideNavToggle";
 import MobileNav from "components/template/MobileNav";
@@ -55,11 +55,7 @@ const HeaderActionsEnd = () => {
   return (
     <>
       <LanguageSelector />
-      {isAuthenticated ? (
-        <UserDropdown hoverable={false} />
-      ) : (
-        <SignInAndSignUp />
-      )}
+      {isAuthenticated ? <UserMenu hoverable={false} /> : <SignInAndSignUp />}
     </>
   );
 };
