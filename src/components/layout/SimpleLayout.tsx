@@ -32,7 +32,7 @@ const HeaderActionsEnd = () => {
 
 const SimpleLayout = () => {
   return (
-    <Box>
+    <>
       <Box
         as="header"
         boxShadow={"md"}
@@ -53,7 +53,7 @@ const SimpleLayout = () => {
           <View />
         </Container>
       </Box>
-    </Box>
+    </>
   );
 };
 

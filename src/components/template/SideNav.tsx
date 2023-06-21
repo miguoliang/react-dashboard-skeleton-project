@@ -2,9 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { ScrollBar } from "components/ui";
 import {
-  LOGO_X_GUTTER,
   SIDE_NAV_COLLAPSED_WIDTH,
-  SIDE_NAV_CONTENT_GUTTER,
   SIDE_NAV_WIDTH,
 } from "constants/theme.constant";
 import navigationConfig from "configs/navigation.config";
@@ -12,7 +10,7 @@ import VerticalMenuContent from "components/template/VerticalMenuContent";
 import useResponsive from "hooks/useResponsive";
 import { useAuth } from "../../hooks/useAuth";
 import { useTheme } from "../../hooks/useTheme";
-import { Image } from "@chakra-ui/react";
+import { Image, VStack } from "@chakra-ui/react";
 
 const sideNavStyle = {
   width: SIDE_NAV_WIDTH,
@@ -47,7 +45,7 @@ const SideNav = () => {
   );
 
   return (
-    <>
+    <VStack className={"sticky"}>
       {larger.md && (
         <div
           style={theme.sideNavCollapse ? sideNavCollapseStyle : sideNavStyle}
@@ -59,12 +57,9 @@ const SideNav = () => {
         >
           <div className="side-nav-header">
             <Image
-              src={`/assets/img/logo-light-${
+              src={`/img/logo/logo-light-${
                 theme.sideNavCollapse ? "streamline" : "full"
               }.png`}
-              className={
-                theme.sideNavCollapse ? SIDE_NAV_CONTENT_GUTTER : LOGO_X_GUTTER
-              }
             />
           </div>
           {theme.sideNavCollapse ? (
@@ -78,7 +73,7 @@ const SideNav = () => {
           )}
         </div>
       )}
-    </>
+    </VStack>
   );
 };
 

@@ -7,7 +7,7 @@ import Search from "components/template/Search";
 import SideNav from "components/template/SideNav";
 import View from "views";
 import { useAuth } from "hooks/useAuth";
-import { Button, HStack, VStack } from "@chakra-ui/react";
+import { Button, Flex, HStack, VStack } from "@chakra-ui/react";
 
 export const SignInAndSignUp = () => {
   const auth = useAuth();
@@ -62,7 +62,7 @@ const HeaderActionsEnd = () => {
 
 const ModernLayout = (props: Record<string, any>) => {
   return (
-    <HStack>
+    <Flex>
       <SideNav />
       <VStack className="min-h-screen min-w-0 relative w-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700">
         <HStack className="border-b border-gray-200 dark:border-gray-700">
@@ -71,7 +71,7 @@ const ModernLayout = (props: Record<string, any>) => {
         </HStack>
         <View {...props} />
       </VStack>
-    </HStack>
+    </Flex>
   );
 };
 

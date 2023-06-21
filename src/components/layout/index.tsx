@@ -2,8 +2,8 @@ import React, { lazy, memo, Suspense, useEffect, useMemo } from "react";
 import { Loading } from "components/shared";
 import CookieConsent from "react-cookie-consent";
 import { useLocation } from "react-router-dom";
-import { APP_PREFIX_PATH } from "../../constants/route.constant";
-import { useAuth } from "../../hooks/useAuth";
+import { APP_PREFIX_PATH } from "constants/route.constant";
+import { useAuth } from "hooks/useAuth";
 
 const Layout = () => {
   const location = useLocation();
@@ -25,7 +25,15 @@ const Layout = () => {
         auth.setUser(user ?? undefined);
         auth.setAuthenticated(true);
       });
+      return;
     }
+
+    auth.userManager.getUser().then((user) => {
+      if (user) {
+        auth.setUser(user);
+        auth.setAuthenticated(true);
+      }
+    });
   }, []);
 
   return (
