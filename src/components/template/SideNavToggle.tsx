@@ -1,21 +1,20 @@
 import React from "react";
 import withHeaderItem from "utils/hoc/withHeaderItem";
-import useResponsive from "utils/hooks/useResponsive";
+import useResponsive from "hooks/useResponsive";
 import { NavToggle } from "components/shared";
-import { useThemeStore } from "../../store";
+import { useSideNav } from "../../hooks/useSideNav";
 
 export const SideNavToggle = ({ className }: { className: string }) => {
-  const themeStore = useThemeStore();
-  const sideNavCollapse = themeStore.sideNavCollapse;
+  const sideNav = useSideNav();
   const { larger } = useResponsive();
-  const onCollapse = () => {
-    themeStore.setSideNavCollapse(!sideNavCollapse);
-  };
   return (
     <>
       {larger.md && (
-        <div className={className} onClick={onCollapse}>
-          <NavToggle className="text-2xl" toggled={sideNavCollapse} />
+        <div
+          className={className}
+          onClick={() => sideNav.setCollapsed(!sideNav.collapsed)}
+        >
+          <NavToggle className="text-2xl" toggled={sideNav.collapsed} />
         </div>
       )}
     </>

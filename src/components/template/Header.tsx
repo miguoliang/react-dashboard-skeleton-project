@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import classNames from "classnames";
-import { HEADER_HEIGHT_CLASS } from "constants/theme.constant";
+import { Box, Flex } from "@chakra-ui/react";
 
 type HeaderProps = {
   headerStart?: ReactNode;
@@ -15,21 +15,12 @@ const Header = (props: HeaderProps) => {
 
   return (
     <header className={classNames("header", className)}>
-      <div
-        className={classNames(
-          "header-wrapper",
-          HEADER_HEIGHT_CLASS,
-          container && "container mx-auto",
-        )}
-      >
-        <div className="header-action header-action-start">{headerStart}</div>
-        {headerMiddle && (
-          <div className="header-action header-action-middle">
-            {headerMiddle}
-          </div>
-        )}
+      <Flex>
+        <Box>{headerStart}</Box>
+
+        {headerMiddle && <Box>{headerMiddle}</Box>}
         <div className="header-action header-action-end">{headerEnd}</div>
-      </div>
+      </Flex>
     </header>
   );
 };

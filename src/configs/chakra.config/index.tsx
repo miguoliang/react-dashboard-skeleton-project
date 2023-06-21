@@ -17,6 +17,9 @@ export const chakraTheme = extendTheme({
       "900": "#111827",
     },
   },
+  sizes: {
+    "9xl": "96rem",
+  },
   components: {
     Avatar,
     Menu: menuTheme,

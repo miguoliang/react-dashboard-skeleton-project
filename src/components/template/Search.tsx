@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import withHeaderItem from "utils/hoc/withHeaderItem";
-import useThemeClass from "utils/hooks/useThemeClass";
+import useThemeClass from "hooks/useThemeClass";
 import navigationIcon from "configs/navigation-icon.config";
 import debounce from "lodash/debounce";
 import { HiChevronRight, HiOutlineSearch } from "react-icons/hi";

@@ -57,8 +57,8 @@ export default defineConfig({
         replacement: resolve(__dirname, "src/services/") + "$1",
       },
       {
-        find: /^store(\/(.+)|$)/,
-        replacement: resolve(__dirname, "src/store/") + "$1",
+        find: /^hooks(\/(.+)|$)/,
+        replacement: resolve(__dirname, "src/hooks/") + "$1",
       },
       {
         find: /^utils(\/(.+)|$)/,

@@ -1,13 +1,11 @@
 import React, { useMemo } from "react";
 import {
-  Circle,
+  Avatar,
   Image,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  Spinner,
-  useBoolean,
 } from "@chakra-ui/react";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { dateLocales } from "locales";
@@ -16,7 +14,7 @@ import i18n from "i18next";
 
 import { HiCheck } from "react-icons/hi";
 import { noop } from "../ui/utils/constant";
-import useLocale from "../../utils/hooks/useLocale";
+import useLocale from "../../hooks/useLocale";
 
 const languageList = [
   { label: "English", value: "en", flag: "us" },
@@ -26,26 +24,17 @@ const languageList = [
 ];
 
 export const LanguageSelector = () => {
-  const [loading, setLoading] = useBoolean();
   const locale = useLocale((state) => state.currentLang);
   const selectLangFlag = useMemo(() => {
     return languageList.find((lang) => lang.value === locale)?.flag;
   }, [locale]);
 
-  const selectedLanguage = loading ? (
-    <Spinner size={"sm"} />
-  ) : (
-    <Image boxSize="24px" src={`/img/countries/${selectLangFlag}.png`} />
-  );
-
   const onLanguageSelect = (lang: string) => {
     const formattedLang = lang.replace(/-([a-z])/g, function (g) {
       return g[1].toUpperCase();
     });
-    setLoading.on();
     const dispatchLang = () => {
       i18n.changeLanguage(formattedLang).then(() => noop());
-      setLoading.off();
     };
 
     dateLocales[formattedLang]()
@@ -60,11 +49,15 @@ export const LanguageSelector = () => {
 
   return (
     <Menu placement="bottom-end">
-      <MenuButton>
-        <Circle size="40px" p={1} _hover={{ bg: "gray.100" }}>
-          {selectedLanguage}
-        </Circle>
-      </MenuButton>
+      <MenuButton
+        as={Avatar}
+        width={"40px"}
+        height={"40px"}
+        rounded={"full"}
+        padding={"8px"}
+        _hover={{ bg: "gray.100" }}
+        src={`/img/countries/${selectLangFlag}.png`}
+      ></MenuButton>
       <MenuList>
         {languageList.map((lang) => (
           <MenuItem

@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode } from "react";
 import classNames from "classnames";
-import useThemeClass from "utils/hooks/useThemeClass";
+import useThemeClass from "hooks/useThemeClass";
 import { HiCheckCircle } from "react-icons/hi";
 
 export type SegmentItemOptionProps = Partial<{

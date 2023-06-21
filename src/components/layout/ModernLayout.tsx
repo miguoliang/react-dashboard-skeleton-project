@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "components/template/Header";
 import UserDropdown from "components/template/UserDropdown";
 import LanguageSelector from "components/template/LanguageSelector";
 import SideNavToggle from "components/template/SideNavToggle";
@@ -7,31 +6,37 @@ import MobileNav from "components/template/MobileNav";
 import Search from "components/template/Search";
 import SideNav from "components/template/SideNav";
 import View from "views";
-import classNames from "classnames";
-import { useAuth } from "utils/hooks/useAuth";
+import { useAuth } from "hooks/useAuth";
+import { Button, HStack, VStack } from "@chakra-ui/react";
 
-export const SignInAndSignUp = ({ className }: { className?: string }) => {
+export const SignInAndSignUp = () => {
   const auth = useAuth();
   return (
-    <div
-      className={classNames(
-        className,
-        "flex items-center leading-10 gap-2 font-bold capitalize cursor-pointer",
-      )}
-    >
-      <div
-        className="border-2 border-transparent px-5 rounded-lg hover:bg-gray-100 hover:border-gray-100"
+    <HStack spacing={4}>
+      <Button
+        rounded={"full"}
+        className={"capitalize"}
+        borderWidth={2}
+        borderColor={"white"}
+        bg={"white"}
+        _hover={{ bg: "gray.100", borderColor: "gray.100" }}
         onClick={() => auth.userManager.signinRedirect()}
       >
         sign in
-      </div>
-      <div
-        className="border-2 px-5 rounded-lg hover:bg-gray-100"
+      </Button>
+      <Button
+        rounded={"full"}
+        className={"capitalize"}
+        borderWidth={2}
+        color={"white"}
+        borderColor={"purple.600"}
+        bg={"purple.600"}
+        _hover={{ bg: "purple.500" }}
         onClick={() => auth.signOut()}
       >
         sign up
-      </div>
-    </div>
+      </Button>
+    </HStack>
   );
 };
 
@@ -61,19 +66,16 @@ const HeaderActionsEnd = () => {
 
 const ModernLayout = (props: Record<string, any>) => {
   return (
-    <div className="app-layout-modern flex flex-auto flex-col">
-      <div className="flex flex-auto min-w-0">
-        <SideNav />
-        <div className="flex flex-col flex-auto min-h-screen min-w-0 relative w-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700">
-          <Header
-            className="border-b border-gray-200 dark:border-gray-700"
-            headerEnd={<HeaderActionsEnd />}
-            headerStart={<HeaderActionsStart />}
-          />
-          <View {...props} />
-        </div>
-      </div>
-    </div>
+    <HStack>
+      <SideNav />
+      <VStack className="min-h-screen min-w-0 relative w-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700">
+        <HStack className="border-b border-gray-200 dark:border-gray-700">
+          <HeaderActionsStart />
+          <HeaderActionsEnd />
+        </HStack>
+        <View {...props} />
+      </VStack>
+    </HStack>
   );
 };
 

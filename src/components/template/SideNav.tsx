@@ -7,12 +7,12 @@ import {
   SIDE_NAV_CONTENT_GUTTER,
   SIDE_NAV_WIDTH,
 } from "constants/theme.constant";
-import Logo from "components/template/Logo";
 import navigationConfig from "configs/navigation.config";
 import VerticalMenuContent from "components/template/VerticalMenuContent";
-import useResponsive from "utils/hooks/useResponsive";
-import { useThemeStore } from "store";
-import { useAuth } from "../../utils/hooks/useAuth";
+import useResponsive from "hooks/useResponsive";
+import { useAuth } from "../../hooks/useAuth";
+import { useTheme } from "../../hooks/useTheme";
+import { Image } from "@chakra-ui/react";
 
 const sideNavStyle = {
   width: SIDE_NAV_WIDTH,
@@ -25,36 +25,24 @@ const sideNavCollapseStyle = {
 };
 
 const SideNav = () => {
-  const themeStore = useThemeStore();
+  const theme = useTheme();
   const scopes = useAuth((state) => state.user?.scopes ?? []);
   const { larger } = useResponsive();
   const sideNavColor = () => {
-    if (themeStore.navMode === "themed") {
-      return `bg-${themeStore.themeColor}-${themeStore.primaryColorLevel} side-nav-${themeStore.navMode}`;
+    if (theme.navMode === "themed") {
+      return `bg-${theme.themeColor}-${theme.primaryColorLevel} side-nav-${theme.navMode}`;
     }
-    return `side-nav-${themeStore.navMode}`;
-  };
-
-  const logoMode = () => {
-    if (themeStore.navMode === "themed") {
-      return "dark";
-    }
-
-    if (themeStore.navMode === "transparent") {
-      return themeStore.mode;
-    }
-
-    return themeStore.navMode;
+    return `side-nav-${theme.navMode}`;
   };
 
   const menuContent = (
     <VerticalMenuContent
-      navMode={themeStore.navMode}
-      collapsed={themeStore.sideNavCollapse}
+      navMode={theme.navMode}
+      collapsed={theme.sideNavCollapse}
       navigationTree={navigationConfig}
-      routeKey={themeStore.currentRouteKey}
+      routeKey={theme.currentRouteKey}
       userAuthority={scopes}
-      direction={themeStore.direction}
+      direction={theme.direction}
     />
   );
 
@@ -62,31 +50,28 @@ const SideNav = () => {
     <>
       {larger.md && (
         <div
-          style={
-            themeStore.sideNavCollapse ? sideNavCollapseStyle : sideNavStyle
-          }
+          style={theme.sideNavCollapse ? sideNavCollapseStyle : sideNavStyle}
           className={classNames(
             "side-nav",
             sideNavColor(),
-            !themeStore.sideNavCollapse && "side-nav-expand",
+            !theme.sideNavCollapse && "side-nav-expand",
           )}
         >
           <div className="side-nav-header">
-            <Logo
-              mode={logoMode()}
-              type={themeStore.sideNavCollapse ? "streamline" : "full"}
-              gutter={
-                themeStore.sideNavCollapse
-                  ? SIDE_NAV_CONTENT_GUTTER
-                  : LOGO_X_GUTTER
+            <Image
+              src={`/assets/img/logo-light-${
+                theme.sideNavCollapse ? "streamline" : "full"
+              }.png`}
+              className={
+                theme.sideNavCollapse ? SIDE_NAV_CONTENT_GUTTER : LOGO_X_GUTTER
               }
             />
           </div>
-          {themeStore.sideNavCollapse ? (
+          {theme.sideNavCollapse ? (
             menuContent
           ) : (
             <div className="side-nav-content">
-              <ScrollBar autoHide direction={themeStore.direction}>
+              <ScrollBar autoHide direction={theme.direction}>
                 {menuContent}
               </ScrollBar>
             </div>

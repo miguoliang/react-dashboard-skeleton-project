@@ -44,7 +44,7 @@ const initialNavMode = () => {
   return themeConfig.navMode;
 };
 
-export const useThemeStore = create<ThemeStore>((set) => ({
+export const useTheme = create<ThemeStore>((set) => ({
   themeColor: themeConfig.themeColor,
   themeColorLevel: themeConfig.primaryColorLevel,
   direction: themeConfig.direction,

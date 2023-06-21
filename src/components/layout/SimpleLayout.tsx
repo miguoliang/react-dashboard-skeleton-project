@@ -1,17 +1,16 @@
 import React from "react";
-import Header from "components/template/Header";
 import UserDropdown from "components/template/UserDropdown";
 import LanguageSelector from "components/template/LanguageSelector";
-import HeaderLogo from "components/template/HeaderLogo";
 import MobileNav from "components/template/MobileNav";
 import View from "views";
 import { SignInAndSignUp } from "./ModernLayout";
-import { useAuth } from "../../utils/hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
+import { Box, Container, Flex, HStack, Image, Spacer } from "@chakra-ui/react";
 
 const HeaderActionsStart = () => {
   return (
     <>
-      <HeaderLogo />
+      <Image src="/img/logo/logo-light-full.png" />
       <MobileNav />
     </>
   );
@@ -20,32 +19,41 @@ const HeaderActionsStart = () => {
 const HeaderActionsEnd = () => {
   const isAuthenticated = useAuth((state) => state.isAuthenticated);
   return (
-    <>
+    <HStack spacing={2}>
       <LanguageSelector />
       {isAuthenticated ? (
         <UserDropdown hoverable={false} />
       ) : (
         <SignInAndSignUp />
       )}
-    </>
+    </HStack>
   );
 };
 
 const SimpleLayout = () => {
   return (
-    <div className="app-layout-simple flex flex-auto flex-col min-h-screen">
-      <div className="flex flex-auto min-w-0">
-        <div className="flex flex-col flex-auto min-h-screen min-w-0 relative w-full">
-          <Header
-            container
-            className="shadow dark:shadow-2xl"
-            headerStart={<HeaderActionsStart />}
-            headerEnd={<HeaderActionsEnd />}
-          />
-          <View pageContainerType="contained" />
-        </div>
-      </div>
-    </div>
+    <Box>
+      <Box
+        as="header"
+        boxShadow={"md"}
+        className={"sticky"}
+        top={0}
+        bg={"white"}
+      >
+        <Container maxW={"9xl"}>
+          <Flex>
+            <HeaderActionsStart />
+            <Spacer />
+            <HeaderActionsEnd />
+          </Flex>
+        </Container>
+      </Box>
+      <Box bg={"gray.100"}>
+        <Container maxW={"9xl"} py={6} px={8}>
+          <View />
+        </Container>
+      </Box>
+    </Box>
   );
 };
 

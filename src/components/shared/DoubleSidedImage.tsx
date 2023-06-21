@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomRefElementProps } from "../ui/utils/constant";
-import { useThemeStore } from "../../store";
+import { useTheme } from "../../hooks/useTheme";
 
 type DoubleSidedImageProps = CustomRefElementProps<
   {
@@ -15,7 +15,7 @@ const DoubleSidedImage = ({
   alt,
   ...rest
 }: DoubleSidedImageProps) => {
-  const mode = useThemeStore((state) => state.mode);
+  const mode = useTheme((state) => state.mode);
   return <img src={mode === "dark" ? darkModeSrc : src} alt={alt} {...rest} />;
 };
 

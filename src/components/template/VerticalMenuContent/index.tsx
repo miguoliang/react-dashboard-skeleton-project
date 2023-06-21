@@ -7,7 +7,7 @@ import {
   NAV_ITEM_TYPE_ITEM,
   NAV_ITEM_TYPE_TITLE,
 } from "constants/navigation.constant";
-import useMenuActive from "utils/hooks/useMenuActive";
+import useMenuActive from "hooks/useMenuActive";
 import { useTranslation } from "react-i18next";
 import { NavMode } from "../../../constants/theme.constant";
 import { TextDirection } from "../../ui/utils/constant";
@@ -29,7 +29,6 @@ const VerticalMenuContent = (props: VerticalMenuContentProps) => {
     collapsed = true,
     routeKey,
     navigationTree = [],
-    userAuthority = [],
     onMenuItemClick,
     direction = useConfig().direction,
   } = props;
@@ -58,7 +57,6 @@ const VerticalMenuContent = (props: VerticalMenuContentProps) => {
           nav={nav}
           onLinkClick={handleLinkClick}
           sideCollapsed={collapsed}
-          userAuthority={userAuthority}
           direction={direction}
         />
       );
@@ -71,7 +69,6 @@ const VerticalMenuContent = (props: VerticalMenuContentProps) => {
           nav={nav}
           onLinkClick={onMenuItemClick}
           sideCollapsed={collapsed}
-          userAuthority={userAuthority}
           direction={direction}
         />
       );
@@ -88,7 +85,6 @@ const VerticalMenuContent = (props: VerticalMenuContentProps) => {
                   nav={subNav}
                   onLinkClick={onMenuItemClick}
                   sideCollapsed={collapsed}
-                  userAuthority={userAuthority}
                   direction={direction}
                 />
               ) : (
@@ -97,7 +93,6 @@ const VerticalMenuContent = (props: VerticalMenuContentProps) => {
                   nav={subNav}
                   onLinkClick={onMenuItemClick}
                   sideCollapsed={collapsed}
-                  userAuthority={userAuthority}
                   direction={direction}
                 />
               ),

@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
-import acronym from "utils/acronym";
-import useTwColorByName from "utils/hooks/useTwColorByName";
+import useTwColorByName from "hooks/useTwColorByName";
 import {
   Avatar,
   AvatarGroup,
@@ -52,10 +51,9 @@ const UsersAvatarGroup = (props: UsersAvatarGroupProps) => {
               defaultAvatarProps.className
             }`}
             src={elm[imgKey]}
+            name={elm[nameKey]}
             onClick={() => handleAvatarClick(elm)}
-          >
-            {acronym(elm.name)}
-          </Avatar>
+          />
         </Tooltip>
       ))}
     </AvatarGroup>

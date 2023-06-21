@@ -1,6 +1,12 @@
 import React from "react";
-import { Avatar } from "@chakra-ui/react";
-import { Dropdown, DropdownItem } from "components/ui";
+import {
+  Avatar,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 import withHeaderItem from "utils/hoc/withHeaderItem";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
@@ -11,9 +17,9 @@ import {
   HiOutlineLogout,
 } from "react-icons/hi";
 import { APP_PREFIX_PATH } from "../../constants/route.constant";
-import { useAuth } from "../../utils/hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 
-const dropdownItemList = [
+const menuList = [
   {
     label: "Account",
     path: `${APP_PREFIX_PATH}/account/settings/profile`,
@@ -45,33 +51,20 @@ export const UserDropdown = ({ className }: { className: string }) => {
   );
 
   return (
-    <div>
-      <Dropdown
-        menuStyle={{ minWidth: "100%" }}
-        renderTitle={UserAvatar}
-        placement="bottom-end"
-      >
-        {dropdownItemList.map((item) => (
-          <DropdownItem eventKey={item.label} key={item.label} className="mb-1">
-            <Link className="flex gap-2 items-center" to={item.path}>
-              <span className="text-xl opacity-50">{item.icon}</span>
-              <span>{item.label}</span>
-            </Link>
-          </DropdownItem>
+    <Menu autoSelect={false} placement="bottom-end">
+      <MenuButton>{UserAvatar}</MenuButton>
+      <MenuList>
+        {menuList.map((item) => (
+          <MenuItem as={Link} to={item.path} icon={<HiOutlineCog />}>
+            {item.label}
+          </MenuItem>
         ))}
-        <DropdownItem dropdownItemVariant="divider" />
-        <DropdownItem
-          onClick={() => auth.signOut()}
-          eventKey="Sign Out"
-          className="gap-2"
-        >
-          <span className="text-xl opacity-50">
-            <HiOutlineLogout />
-          </span>
-          <span>Sign Out</span>
-        </DropdownItem>
-      </Dropdown>
-    </div>
+        <MenuDivider />
+        <MenuItem icon={<HiOutlineLogout />} onClick={() => auth.signOut()}>
+          Sign Out
+        </MenuItem>
+      </MenuList>
+    </Menu>
   );
 };
 

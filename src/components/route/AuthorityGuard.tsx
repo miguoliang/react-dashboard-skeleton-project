@@ -1,22 +1,24 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { Navigate } from "react-router-dom";
-import useAuthority from "utils/hooks/useAuthority";
+import { useAuth } from "../../hooks/useAuth";
+import { intersection } from "lodash";
+import { Stack } from "@chakra-ui/react";
 
-export type AuthorityGuardType = {
-  userAuthority?: string[];
+export type AuthorityGuardType = PropsWithChildren<{
   authority?: string[];
-  children: React.ReactElement;
-};
+}>;
 
 const AuthorityGuard = (props: AuthorityGuardType) => {
-  const { userAuthority = [], authority = [], children } = props;
+  const { authority = [], children } = props;
 
-  const roleMatched = useAuthority(userAuthority, authority);
+  const scopes = useAuth((state) => state.user?.scopes ?? []);
+  const roleMatched =
+    authority.length === 0 || intersection(scopes, authority).length > 0;
 
   return (
-    <div className="h-full">
+    <Stack className="h-full">
       {roleMatched ? children : <Navigate to="/access-denied" />}
-    </div>
+    </Stack>
   );
 };
 

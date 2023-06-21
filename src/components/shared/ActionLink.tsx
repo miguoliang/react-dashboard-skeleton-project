@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import useThemeClass from "utils/hooks/useThemeClass";
+import useThemeClass from "hooks/useThemeClass";
 import { Link, LinkProps } from "react-router-dom";
 
 type ActionLinkProps = {
