@@ -1,7 +1,121 @@
-import { Box } from "@chakra-ui/react";
+import {
+  Divider,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  GridItem,
+  Heading,
+  Input,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
+import { Field, Formik } from "formik";
+import * as Yup from "yup";
+
+const ChangePasswordSchema = Yup.object().shape({
+  currentPassword: Yup.string().required("Required"),
+  newPassword: Yup.string().required("Required"),
+  confirmNewPassword: Yup.string().oneOf(
+    [Yup.ref("newPassword"), null],
+    "Passwords must match",
+  ),
+});
 
 const Password = () => {
-  return <Box>Password</Box>;
+  return (
+    <>
+      <Heading as={"h4"} size={"md"} fontWeight={"semibold"}>
+        Password
+      </Heading>
+      <Text color={"gray.500"}>
+        Enter your current & new password to reset your password
+      </Text>
+      <Formik
+        initialValues={{
+          currentPassword: "",
+          newPassword: "",
+          confirmNewPassword: "",
+        }}
+        validationSchema={ChangePasswordSchema}
+        onSubmit={(values) => {
+          alert(JSON.stringify(values, null, 2));
+        }}
+      >
+        {({ handleSubmit, errors, touched }) => (
+          <form onSubmit={handleSubmit}>
+            <FormControl
+              paddingY={8}
+              isInvalid={!!errors.currentPassword && touched.currentPassword}
+            >
+              <SimpleGrid columns={3} alignItems={"center"} gap={3}>
+                <FormLabel htmlFor={"currentPassword"}>
+                  Current Password
+                </FormLabel>
+                <GridItem colSpan={2} position={"relative"}>
+                  <Field
+                    as={Input}
+                    name={"currentPassword"}
+                    id={"currentPassword"}
+                    type={"password"}
+                    maxWidth={"700px"}
+                  />
+                  <FormErrorMessage>
+                    {errors.currentPassword ?? ""}
+                  </FormErrorMessage>
+                </GridItem>
+              </SimpleGrid>
+            </FormControl>
+            <Divider />
+            <FormControl
+              paddingY={8}
+              isInvalid={!!errors.newPassword && touched.newPassword}
+            >
+              <SimpleGrid columns={3} alignItems={"center"} gap={3}>
+                <FormLabel htmlFor={"newPassword"}>New Password</FormLabel>
+                <GridItem colSpan={2} position={"relative"}>
+                  <Field
+                    as={Input}
+                    name={"newPassword"}
+                    id={"newPassword"}
+                    type={"password"}
+                    maxWidth={"700px"}
+                  />
+                  <FormErrorMessage>
+                    {errors.newPassword ?? ""}
+                  </FormErrorMessage>
+                </GridItem>
+              </SimpleGrid>
+            </FormControl>
+            <Divider />
+            <FormControl
+              paddingY={8}
+              isInvalid={
+                !!errors.confirmNewPassword && touched.confirmNewPassword
+              }
+            >
+              <SimpleGrid columns={3} alignItems={"center"} gap={3}>
+                <FormLabel htmlFor={"confirmNewPassword"}>
+                  Confirm Password
+                </FormLabel>
+                <GridItem colSpan={2} position={"relative"}>
+                  <Field
+                    as={Input}
+                    name={"confirmNewPassword"}
+                    id={"confirmNewPassword"}
+                    type={"password"}
+                    maxWidth={"700px"}
+                  />
+                  <FormErrorMessage>
+                    {errors.confirmNewPassword ?? ""}
+                  </FormErrorMessage>
+                </GridItem>
+              </SimpleGrid>
+            </FormControl>
+          </form>
+        )}
+      </Formik>
+    </>
+  );
 };
 
 export default Password;

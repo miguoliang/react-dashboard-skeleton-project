@@ -1,6 +1,10 @@
-import { Avatar, extendTheme } from "@chakra-ui/react";
+import { Avatar, Card, extendTheme } from "@chakra-ui/react";
 import { menuTheme } from "./menu.config";
 import { tableTheme } from "./table.config";
+import { inputTheme } from "./input.config";
+import { formLabelTheme } from "./form-label.config";
+import { formErrorTheme } from "./form-error.config";
+import { cardTheme } from "./card.config";
 
 export const chakraTheme = extendTheme({
   colors: {
@@ -20,9 +24,16 @@ export const chakraTheme = extendTheme({
   sizes: {
     "9xl": "96rem",
   },
+  card: {
+    bg: "red.500",
+  },
   components: {
     Avatar,
     Menu: menuTheme,
     Table: tableTheme,
+    Input: inputTheme,
+    FormLabel: formLabelTheme,
+    FormError: formErrorTheme,
+    Card: cardTheme,
   },
 });

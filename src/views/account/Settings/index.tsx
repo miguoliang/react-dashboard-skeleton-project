@@ -24,7 +24,7 @@ const Settings = () => {
           <Tab key={index}>{it.label}</Tab>
         ))}
       </TabList>
-      <TabPanels paddingX={4} paddingY={6}>
+      <TabPanels paddingY={2}>
         <TabPanel>
           <Password />
         </TabPanel>
