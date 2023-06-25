@@ -7,7 +7,7 @@ import PublicRoute from "components/route/PublicRoute";
 import AuthorityGuard from "components/route/AuthorityGuard";
 import AppRoute from "components/route/AppRoute";
 import { APP_PREFIX_PATH } from "../constants/route.constant";
-import { Container } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 
 const AllRoutes = () => {
   return (
@@ -19,13 +19,21 @@ const AllRoutes = () => {
             path={route.path}
             element={
               <AuthorityGuard authority={route.authority}>
-                <Container {...route.meta}>
-                  <AppRoute
-                    routeKey={route.key}
-                    component={route.component}
-                    {...route.meta}
-                  />
-                </Container>
+                {route.meta?.header && (
+                  <Heading
+                    as={"h3"}
+                    size={"1.5rem"}
+                    fontWeight={"semibold"}
+                    marginBottom={4}
+                  >
+                    {route.meta.header}
+                  </Heading>
+                )}
+                <AppRoute
+                  routeKey={route.key}
+                  component={route.component}
+                  {...route.meta}
+                />
               </AuthorityGuard>
             }
           />

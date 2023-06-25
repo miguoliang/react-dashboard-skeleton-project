@@ -1,37 +1,16 @@
 import React from "react";
-import classNames from "classnames";
 import { ScrollBar } from "components/ui";
-import {
-  SIDE_NAV_COLLAPSED_WIDTH,
-  SIDE_NAV_WIDTH,
-} from "constants/theme.constant";
 import navigationConfig from "configs/navigation.config";
 import VerticalMenuContent from "components/template/VerticalMenuContent";
-import useResponsive from "hooks/useResponsive";
 import { useAuth } from "../../hooks/useAuth";
 import { useTheme } from "../../hooks/useTheme";
-import { Image, VStack } from "@chakra-ui/react";
-
-const sideNavStyle = {
-  width: SIDE_NAV_WIDTH,
-  minWidth: SIDE_NAV_WIDTH,
-};
-
-const sideNavCollapseStyle = {
-  width: SIDE_NAV_COLLAPSED_WIDTH,
-  minWidth: SIDE_NAV_COLLAPSED_WIDTH,
-};
+import { Box, Image } from "@chakra-ui/react";
+import { useSideNav } from "../../hooks/useSideNav";
 
 const SideNav = () => {
   const theme = useTheme();
+  const sideNav = useSideNav();
   const scopes = useAuth((state) => state.user?.scopes ?? []);
-  const { larger } = useResponsive();
-  const sideNavColor = () => {
-    if (theme.navMode === "themed") {
-      return `bg-${theme.themeColor}-${theme.primaryColorLevel} side-nav-${theme.navMode}`;
-    }
-    return `side-nav-${theme.navMode}`;
-  };
 
   const menuContent = (
     <VerticalMenuContent
@@ -45,35 +24,30 @@ const SideNav = () => {
   );
 
   return (
-    <VStack className={"sticky"}>
-      {larger.md && (
-        <div
-          style={theme.sideNavCollapse ? sideNavCollapseStyle : sideNavStyle}
-          className={classNames(
-            "side-nav",
-            sideNavColor(),
-            !theme.sideNavCollapse && "side-nav-expand",
-          )}
-        >
-          <div className="side-nav-header">
-            <Image
-              src={`/img/logo/logo-light-${
-                theme.sideNavCollapse ? "streamline" : "full"
-              }.png`}
-            />
-          </div>
-          {theme.sideNavCollapse ? (
-            menuContent
-          ) : (
-            <div className="side-nav-content">
-              <ScrollBar autoHide direction={theme.direction}>
-                {menuContent}
-              </ScrollBar>
-            </div>
-          )}
-        </div>
+    <Box
+      className={"sticky"}
+      height={"100vh"}
+      overflow={"hidden"}
+      width={"290px"}
+      borderRight={"1px"}
+      borderColor={"gray.200"}
+      bg={"gray.100"}
+      flexShrink={0}
+    >
+      <Image
+        src={`/img/logo/logo-light-${
+          sideNav.collapsed ? "streamline" : "full"
+        }.png`}
+        px={6}
+      />
+      {sideNav.collapsed ? (
+        menuContent
+      ) : (
+        <ScrollBar autoHide direction={theme.direction}>
+          {menuContent}
+        </ScrollBar>
       )}
-    </VStack>
+    </Box>
   );
 };
 

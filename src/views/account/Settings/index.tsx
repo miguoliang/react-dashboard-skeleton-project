@@ -1,78 +1,35 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import isEmpty from "lodash/isEmpty";
-import { apiGetAccountSettingData } from "services/AccountServices";
-import { noop } from "lodash";
-import { settingData } from "../../../mock/data/accountData";
+import React, { lazy, useState } from "react";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 
-const Profile = lazy(() => import("./components/Profile"));
-const Password = lazy(() => import("./components/Password"));
-const NotificationSetting = lazy(
-  () => import("./components/NotificationSetting"),
-);
-const Integration = lazy(() => import("./components/Integration"));
-const Billing = lazy(() => import("./components/Billing"));
+const Password = lazy(() => import("./Password"));
+const Billing = lazy(() => import("./Subscription"));
 
 const settingsMenu = [
-  { label: "Profile", path: "profile" },
   { label: "Password", path: "password" },
-  { label: "Notification", path: "notification" },
-  { label: "Integration", path: "integration" },
-  { label: "Billing", path: "billing" },
+  { label: "Subscription", path: "subscription" },
 ];
 
 const Settings = () => {
-  const [data, setData] = useState(settingData);
+  const [tabIndex, setTabIndex] = useState(0);
 
-  const navigate = useNavigate();
-  const onTabChange = (val: number) => {
-    navigate(`/app/account/settings/${settingsMenu[val].path}`);
+  const handleTabChange = (index: number) => {
+    setTabIndex(index);
+    window.history.replaceState(null, "", `${settingsMenu[index].path}`);
   };
-
-  const fetchData = async () => {
-    const response = await apiGetAccountSettingData();
-    setData(response.data);
-  };
-
-  useEffect(() => {
-    if (isEmpty(data)) {
-      fetchData().then(noop);
-    }
-  }, []);
 
   return (
-    <Tabs onChange={onTabChange}>
+    <Tabs index={tabIndex} onChange={handleTabChange}>
       <TabList>
-        {settingsMenu.map((it) => (
-          <Tab key={it.path}>{it.label}</Tab>
+        {settingsMenu.map((it, index) => (
+          <Tab key={index}>{it.label}</Tab>
         ))}
       </TabList>
-      <TabPanels className="px-4 py-6">
+      <TabPanels paddingX={4} paddingY={6}>
         <TabPanel>
-          <Suspense fallback={<></>}>
-            <Profile data={data.profile} />
-          </Suspense>
+          <Password />
         </TabPanel>
         <TabPanel>
-          <Suspense fallback={<></>}>
-            <Password data={data.loginHistory} />
-          </Suspense>
-        </TabPanel>
-        <TabPanel>
-          <Suspense fallback={<></>}>
-            <NotificationSetting data={data.notification} />
-          </Suspense>
-        </TabPanel>
-        <TabPanel>
-          <Suspense fallback={<></>}>
-            <Integration />
-          </Suspense>
-        </TabPanel>
-        <TabPanel>
-          <Suspense fallback={<></>}>
-            <Billing />
-          </Suspense>
+          <Billing />
         </TabPanel>
       </TabPanels>
     </Tabs>

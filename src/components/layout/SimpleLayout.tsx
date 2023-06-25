@@ -1,5 +1,5 @@
 import React from "react";
-import UserDropdown from "components/template/UserMenu";
+import UserMenu from "components/template/UserMenu";
 import LanguageSelector from "components/template/LanguageSelector";
 import MobileNav from "components/template/MobileNav";
 import View from "views";
@@ -21,11 +21,7 @@ const HeaderActionsEnd = () => {
   return (
     <HStack spacing={2}>
       <LanguageSelector />
-      {isAuthenticated ? (
-        <UserDropdown hoverable={false} />
-      ) : (
-        <SignInAndSignUp />
-      )}
+      {isAuthenticated ? <UserMenu /> : <SignInAndSignUp />}
     </HStack>
   );
 };

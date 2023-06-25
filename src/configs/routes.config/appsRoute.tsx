@@ -11,7 +11,6 @@ const appsRoute: Routes = [
     authority: [USER],
     meta: {
       header: "Data Source",
-      headerContainer: true,
     },
   },
   {
@@ -21,23 +20,12 @@ const appsRoute: Routes = [
     authority: [USER],
   },
   {
-    key: "account.settings.profile",
-    path: `${APP_PREFIX_PATH}/account/settings/profile`,
+    key: "account.settings.password",
+    path: `${APP_PREFIX_PATH}/account/settings/password`,
     component: React.lazy(() => import("views/account/Settings")),
     authority: [USER],
     meta: {
       header: "Settings",
-      headerContainer: true,
-    },
-  },
-  {
-    key: "account.settings.billing",
-    path: `${APP_PREFIX_PATH}/account/settings/billing`,
-    component: React.lazy(() => import("views/account/Settings")),
-    authority: [USER],
-    meta: {
-      header: "Settings",
-      headerContainer: true,
     },
   },
   {
@@ -47,7 +35,6 @@ const appsRoute: Routes = [
     authority: [USER],
     meta: {
       header: "Settings",
-      headerContainer: true,
     },
   },
 ];

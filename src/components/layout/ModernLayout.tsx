@@ -7,7 +7,7 @@ import Search from "components/template/Search";
 import SideNav from "components/template/SideNav";
 import View from "views";
 import { useAuth } from "hooks/useAuth";
-import { Button, Flex, HStack, VStack } from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, Spacer } from "@chakra-ui/react";
 
 export const SignInAndSignUp = () => {
   const auth = useAuth();
@@ -53,10 +53,10 @@ const HeaderActionsStart = () => {
 const HeaderActionsEnd = () => {
   const isAuthenticated = useAuth((state) => state.isAuthenticated);
   return (
-    <>
+    <HStack spacing={2}>
       <LanguageSelector />
-      {isAuthenticated ? <UserMenu hoverable={false} /> : <SignInAndSignUp />}
-    </>
+      {isAuthenticated ? <UserMenu /> : <SignInAndSignUp />}
+    </HStack>
   );
 };
 
@@ -64,13 +64,34 @@ const ModernLayout = (props: Record<string, any>) => {
   return (
     <Flex>
       <SideNav />
-      <VStack className="min-h-screen min-w-0 relative w-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700">
-        <HStack className="border-b border-gray-200 dark:border-gray-700">
+      <Box width={"full"} height={"100vh"} position={"relative"}>
+        <Flex
+          borderBottom={"1px"}
+          alignItems={"center"}
+          borderColor={"gray.200"}
+          height={16}
+          className={"sticky"}
+          paddingX={4}
+          as={"header"}
+          zIndex={"sticky"}
+        >
           <HeaderActionsStart />
+          <Spacer />
           <HeaderActionsEnd />
-        </HStack>
-        <View {...props} />
-      </VStack>
+        </Flex>
+        <Box
+          position={"absolute"}
+          left={0}
+          bottom={0}
+          right={0}
+          top={16}
+          overflow={"auto"}
+          paddingX={8}
+          paddingY={6}
+        >
+          <View {...props} />
+        </Box>
+      </Box>
     </Flex>
   );
 };

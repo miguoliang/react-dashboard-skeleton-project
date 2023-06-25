@@ -1,34 +1,25 @@
 import React from "react";
 import {
   Avatar,
+  Flex,
+  HStack,
   Menu,
   MenuButton,
   MenuDivider,
   MenuItem,
   MenuList,
+  Text,
 } from "@chakra-ui/react";
-import withHeaderItem from "utils/hoc/withHeaderItem";
 import { Link } from "react-router-dom";
-import classNames from "classnames";
-import {
-  HiOutlineClock,
-  HiOutlineCog,
-  HiOutlineCurrencyDollar,
-  HiOutlineLogout,
-} from "react-icons/hi";
+import { HiOutlineClock, HiOutlineCog, HiOutlineLogout } from "react-icons/hi";
 import { APP_PREFIX_PATH } from "../../constants/route.constant";
 import { useAuth } from "../../hooks/useAuth";
 
 const menuList = [
   {
-    label: "Account",
-    path: `${APP_PREFIX_PATH}/account/settings/profile`,
+    label: "Password",
+    path: `${APP_PREFIX_PATH}/account/settings/password`,
     icon: <HiOutlineCog />,
-  },
-  {
-    label: "Billing",
-    path: `${APP_PREFIX_PATH}/account/settings/billing`,
-    icon: <HiOutlineCurrencyDollar />,
   },
   {
     label: "Subscription",
@@ -37,17 +28,19 @@ const menuList = [
   },
 ];
 
-export const UserMenu = ({ className }: { className: string }) => {
+export const UserMenu = () => {
   const auth = useAuth();
 
   const UserAvatar = (
-    <div className={classNames(className, "flex items-center gap-2")}>
+    <HStack gap={2}>
       <Avatar size="sm" src="/img/avatars/thumb-1.jpg" />
-      <div className="hidden md:block">
-        <div className="text-xs capitalize">user</div>
-        <div className="font-bold">{auth.user?.profile.email}</div>
-      </div>
-    </div>
+      <Flex direction={"column"} alignItems={"start"}>
+        <Text fontSize={"sm"} casing={"capitalize"}>
+          user
+        </Text>
+        <Text fontWeight={"bold"}>{auth.user?.profile.email}</Text>
+      </Flex>
+    </HStack>
   );
 
   return (
@@ -73,4 +66,4 @@ export const UserMenu = ({ className }: { className: string }) => {
   );
 };
 
-export default withHeaderItem(UserMenu);
+export default UserMenu;
