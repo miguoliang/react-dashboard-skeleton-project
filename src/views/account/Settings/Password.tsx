@@ -1,12 +1,15 @@
 import {
+  Button,
   Divider,
   FormControl,
   FormErrorMessage,
   FormLabel,
   GridItem,
   Heading,
+  HStack,
   Input,
   SimpleGrid,
+  Spacer,
   Text,
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
@@ -41,8 +44,8 @@ const Password = () => {
           alert(JSON.stringify(values, null, 2));
         }}
       >
-        {({ handleSubmit, errors, touched }) => (
-          <form onSubmit={handleSubmit}>
+        {({ handleSubmit, handleReset, errors, touched }) => (
+          <form onSubmit={handleSubmit} onReset={handleReset}>
             <FormControl
               paddingY={8}
               isInvalid={!!errors.currentPassword && touched.currentPassword}
@@ -111,6 +114,16 @@ const Password = () => {
                 </GridItem>
               </SimpleGrid>
             </FormControl>
+            <Divider />
+            <HStack mt={4}>
+              <Spacer />
+              <Button type={"reset"} variant={"outline"}>
+                Reset
+              </Button>
+              <Button type={"submit"} colorScheme={"blue"}>
+                Save Changes
+              </Button>
+            </HStack>
           </form>
         )}
       </Formik>
