@@ -5,7 +5,7 @@ export async function apiPostChangePassword(
   proposedPassword: string,
 ) {
   return ApiService.fetchData({
-    url: "/account/setting",
+    url: "/account/change-password",
     method: "post",
     data: {
       previousPassword,

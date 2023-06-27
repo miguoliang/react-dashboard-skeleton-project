@@ -2,7 +2,7 @@ import React, { lazy, useState } from "react";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 
 const Password = lazy(() => import("./Password"));
-const Billing = lazy(() => import("./Subscription"));
+const Subscription = lazy(() => import("./Subscription"));
 
 const settingsMenu = [
   { label: "Password", path: "password" },
@@ -11,7 +11,6 @@ const settingsMenu = [
 
 const Settings = () => {
   const [tabIndex, setTabIndex] = useState(0);
-
   const handleTabChange = (index: number) => {
     setTabIndex(index);
     window.history.replaceState(null, "", `${settingsMenu[index].path}`);
@@ -29,7 +28,7 @@ const Settings = () => {
           <Password />
         </TabPanel>
         <TabPanel>
-          <Billing />
+          <Subscription />
         </TabPanel>
       </TabPanels>
     </Tabs>

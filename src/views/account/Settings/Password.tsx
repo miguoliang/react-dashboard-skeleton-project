@@ -15,6 +15,8 @@ import {
 import { Field, Formik } from "formik";
 import * as Yup from "yup";
 import { apiPostChangePassword } from "../../../services/AccountServices";
+import { useAuth } from "../../../hooks/useAuth";
+import { find } from "lodash";
 
 const ChangePasswordSchema = Yup.object().shape({
   currentPassword: Yup.string().required("Required"),
@@ -26,6 +28,19 @@ const ChangePasswordSchema = Yup.object().shape({
 });
 
 const Password = () => {
+  const user = useAuth((state) => state.user);
+  const userPrimaryIdentity = find(
+    user?.profile.identities as Array<any>,
+    (value) => value.primary === "true",
+  );
+  if (userPrimaryIdentity?.providerType === "Google") {
+    return (
+      <Text>
+        Users who log in through a third party cannot change their passwords
+      </Text>
+    );
+  }
+
   return (
     <>
       <Heading as={"h4"} size={"md"} fontWeight={"semibold"}>
