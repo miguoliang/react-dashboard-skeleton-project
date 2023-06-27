@@ -5,8 +5,10 @@ import {
   OIDC_AUTHORITY,
   OIDC_CLIENT_ID,
   OIDC_REDIRECT_URI,
-} from "../constants/oidc.constant";
-import { User, UserManager } from "oidc-client-ts";
+} from "constants/oidc.constant";
+import { UserManager } from "oidc-client-ts";
+import { useAuth } from "../hooks/useAuth";
+import { toast } from "../hooks/useToast";
 
 const unauthorizedCode = [401];
 
@@ -24,12 +26,16 @@ const userManager = new UserManager({
 });
 
 BaseService.interceptors.request.use(
-  (config) => {
-    const user = getUser();
-    const accessToken = user?.access_token;
-    if (accessToken) {
-      config.headers[REQUEST_HEADER_AUTH_KEY] = `${TOKEN_TYPE}${accessToken}`;
+  async (config) => {
+    const { userManager } = useAuth.getState();
+    const user = await userManager.getUser();
+    if (!user || user.expired) {
+      toastAndRedirectToLogin();
+      return Promise.reject();
     }
+    config.headers[
+      REQUEST_HEADER_AUTH_KEY
+    ] = `${TOKEN_TYPE}${user.access_token}`;
     return config;
   },
   (error) => {
@@ -42,17 +48,25 @@ BaseService.interceptors.response.use(
   (error) => {
     const { response } = error;
     if (response && unauthorizedCode.includes(response.status)) {
-      userManager.signoutRedirect();
+      toastAndRedirectToLogin();
+    } else {
+      toast({
+        status: "error",
+        title: error.message,
+      });
     }
     return Promise.reject(error);
   },
 );
 
-function getUser() {
-  const oidcStorage = localStorage.getItem(
-    `oidc.user:${OIDC_AUTHORITY}:${OIDC_CLIENT_ID}`,
-  );
-  return oidcStorage ? User.fromStorageString(oidcStorage) : null;
-}
+const toastAndRedirectToLogin = () => {
+  toast({
+    status: "error",
+    title: "Please login to continue",
+    onCloseComplete: () => {
+      userManager.signinRedirect();
+    },
+  });
+};
 
 export default BaseService;

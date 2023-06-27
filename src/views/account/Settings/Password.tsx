@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import * as Yup from "yup";
+import { apiPostChangePassword } from "../../../services/AccountServices";
 
 const ChangePasswordSchema = Yup.object().shape({
   currentPassword: Yup.string().required("Required"),
@@ -40,8 +41,11 @@ const Password = () => {
           confirmNewPassword: "",
         }}
         validationSchema={ChangePasswordSchema}
-        onSubmit={(values) => {
-          alert(JSON.stringify(values, null, 2));
+        onSubmit={async (values) => {
+          await apiPostChangePassword(
+            values.currentPassword,
+            values.newPassword,
+          );
         }}
       >
         {({ handleSubmit, handleReset, errors, touched }) => (

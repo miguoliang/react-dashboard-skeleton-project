@@ -29,7 +29,7 @@ const Layout = () => {
     }
 
     auth.userManager.getUser().then((user) => {
-      if (user) {
+      if (user && !user.expired) {
         auth.setUser(user);
         auth.setAuthenticated(true);
       }
