@@ -100,7 +100,10 @@ function updateGraph(chart: echarts.ECharts, graph: Graph) {
 const composeGraph = async (dataSourceId: string) => {
   const vertices = await apiGetDataSourceVertices(dataSourceId);
   const vertexIds = vertices.data.map((v) => v.id);
-  const edge = await apiGetEdgesByVertices(vertexIds);
+  const edge =
+    vertexIds.length > 0
+      ? await apiGetEdgesByVertices(vertexIds)
+      : { data: [] };
   return { vertices: vertices.data, edges: edge.data };
 };
 
