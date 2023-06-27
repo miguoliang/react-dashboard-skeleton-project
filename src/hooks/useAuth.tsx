@@ -8,11 +8,12 @@ import {
   OIDC_REDIRECT_URI,
 } from "constants/oidc.constant";
 
+export const SCOPES = "openid email aws.cognito.signin.user.admin";
 // Create cognito sign-up & sign-out url
 const query = new URLSearchParams();
 query.append("client_id", OIDC_CLIENT_ID);
 query.append("response_type", "code");
-query.append("scope", "openid email");
+query.append("scope", SCOPES);
 query.append("redirect_uri", OIDC_REDIRECT_URI);
 export const SIGN_UP_URL = `${OIDC_HOST}/signup?${query.toString()}`;
 export const SIGN_OUT_URL = SIGN_UP_URL.replace("signup", "logout");
@@ -38,6 +39,7 @@ const userManager = new UserManager({
   revokeTokenTypes: ["refresh_token"],
   automaticSilentRenew: false,
   client_secret: OIDC_CLIENT_SECRET,
+  scope: SCOPES,
   userStore: new WebStorageStateStore({ store: window.localStorage }),
 });
 

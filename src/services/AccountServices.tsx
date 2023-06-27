@@ -1,4 +1,5 @@
 import ApiService from "./ApiService";
+import { Subscription } from "../models/subscription";
 
 export async function apiPostChangePassword(
   previousPassword: string,
@@ -11,5 +12,12 @@ export async function apiPostChangePassword(
       previousPassword,
       proposedPassword,
     },
+  });
+}
+
+export async function apiGetSubscriptionList() {
+  return ApiService.fetchData<Subscription[]>({
+    url: "/account/subscriptions",
+    method: "get",
   });
 }
