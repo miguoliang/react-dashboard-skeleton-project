@@ -1,7 +1,5 @@
 import React from "react";
 import UserMenu from "components/template/UserMenu";
-import LanguageSelector from "components/template/LanguageSelector";
-import MobileNav from "components/template/MobileNav";
 import View from "views";
 import { SignInAndSignUp } from "./ModernLayout";
 import { useAuth } from "../../hooks/useAuth";
@@ -11,7 +9,6 @@ const HeaderActionsStart = () => {
   return (
     <>
       <Image src="/img/logo/logo-light-full.png" />
-      <MobileNav />
     </>
   );
 };
@@ -20,7 +17,6 @@ const HeaderActionsEnd = () => {
   const isAuthenticated = useAuth((state) => state.isAuthenticated);
   return (
     <HStack spacing={2}>
-      <LanguageSelector />
       {isAuthenticated ? <UserMenu /> : <SignInAndSignUp />}
     </HStack>
   );

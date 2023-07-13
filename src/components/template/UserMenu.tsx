@@ -11,20 +11,15 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { HiOutlineClock, HiOutlineCog, HiOutlineLogout } from "react-icons/hi";
-import { APP_PREFIX_PATH } from "../../constants/route.constant";
-import { useAuth } from "../../hooks/useAuth";
+import { HiOutlineCog, HiOutlineLogout } from "react-icons/hi";
+import { useAuth } from "hooks/useAuth";
+import appConfig from "configs/app.config";
 
 const menuList = [
   {
-    label: "Password",
-    path: `${APP_PREFIX_PATH}/account/settings/password`,
+    label: "Dashboard",
+    path: `/dashboard`,
     icon: <HiOutlineCog />,
-  },
-  {
-    label: "Subscription",
-    path: `${APP_PREFIX_PATH}/account/settings/subscription`,
-    icon: <HiOutlineClock />,
   },
 ];
 

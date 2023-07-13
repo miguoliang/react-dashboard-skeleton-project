@@ -1,26 +1,6 @@
 import { create } from "zustand";
-import { Log, User, UserManager, WebStorageStateStore } from "oidc-client-ts";
-import {
-  OIDC_AUTHORITY,
-  OIDC_CLIENT_ID,
-  OIDC_CLIENT_SECRET,
-  OIDC_HOST,
-  OIDC_REDIRECT_URI,
-} from "constants/oidc.constant";
-
-export const SCOPES = "openid email aws.cognito.signin.user.admin";
-// Create cognito sign-up & sign-out url
-const query = new URLSearchParams();
-query.append("client_id", OIDC_CLIENT_ID);
-query.append("response_type", "code");
-query.append("scope", SCOPES);
-query.append("redirect_uri", OIDC_REDIRECT_URI);
-export const SIGN_UP_URL = `${OIDC_HOST}/signup?${query.toString()}`;
-export const SIGN_OUT_URL = SIGN_UP_URL.replace("signup", "logout");
-
-// Set oidc-client-ts log level
-Log.setLogger(console);
-Log.setLevel(Log.DEBUG);
+import { User, UserManager } from "oidc-client-ts";
+import { SIGN_OUT_URL, userManager } from "../configs/oidc.config";
 
 interface UseAuth {
   isAuthenticated: boolean;
@@ -30,18 +10,6 @@ interface UseAuth {
   setUser: (user?: User) => void;
   signOut: () => void;
 }
-
-const userManager = new UserManager({
-  authority: OIDC_AUTHORITY,
-  client_id: OIDC_CLIENT_ID,
-  redirect_uri: OIDC_REDIRECT_URI,
-  // ...
-  revokeTokenTypes: ["refresh_token"],
-  automaticSilentRenew: false,
-  client_secret: OIDC_CLIENT_SECRET,
-  scope: SCOPES,
-  userStore: new WebStorageStateStore({ store: window.localStorage }),
-});
 
 export const useAuth = create<UseAuth>((set) => ({
   isAuthenticated: false,

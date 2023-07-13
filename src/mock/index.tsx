@@ -1,44 +1,23 @@
 import { createServer } from "miragejs";
 import appConfig from "configs/app.config";
-import { notificationListData, searchQueryPoolData } from "./data/commonData";
-import {
-  accountFormData,
-  invoiceData,
-  logData,
-  settingBillingData,
-  settingData,
-  settingIntegrationData,
-} from "./data/accountData";
-import { signInUserData } from "./data/authData";
 
-import { accountFakeApi } from "./fakeApi";
+import { personFakeApi } from "./api";
+import { Persons } from "./seed";
 
 const { apiPrefix } = appConfig;
 
-export default function mockServer({ environment = "test" }) {
+export default function mockServer({ environment = "development" }) {
   const server = createServer({
     environment,
     routes() {
-      this.urlPrefix = "";
-      this.namespace = "";
-      this.passthrough((request) => {
-        const isExternal = request.url.startsWith("http");
-        return isExternal;
-      });
-      this.passthrough();
-      accountFakeApi(this, apiPrefix);
+      this.urlPrefix = window.location.origin;
+      this.namespace = apiPrefix;
+      this.passthrough((request) => request.url.startsWith("https://"));
+      personFakeApi(this, apiPrefix);
     },
   });
   server.db.loadData({
-    notificationListData,
-    searchQueryPoolData,
-    settingData,
-    settingIntegrationData,
-    settingBillingData,
-    invoiceData,
-    logData,
-    accountFormData,
-    signInUserData,
+    Persons,
   });
   return server;
 }

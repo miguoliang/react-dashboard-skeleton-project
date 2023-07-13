@@ -1,14 +1,14 @@
 import React from "react";
-import { APP_NAME } from "constants/app.constant";
 import { Flex } from "@chakra-ui/react";
+import appConfig from "configs/app.config";
 
 const FooterContent = () => {
   return (
     <div className="flex items-center justify-between flex-auto w-full">
       <span>
         Copyright &copy; {`${new Date().getFullYear()}`}{" "}
-        <span className="font-semibold">{`${APP_NAME}`}</span> All rights
-        reserved.
+        <span className="font-semibold">{`${appConfig.appName}`}</span> All
+        rights reserved.
       </span>
       <div className="">
         <a className="text-gray" href="/#" onClick={(e) => e.preventDefault()}>

@@ -1,9 +1,5 @@
 import React from "react";
 import UserMenu from "components/template/UserMenu";
-import LanguageSelector from "components/template/LanguageSelector";
-import SideNavToggle from "components/template/SideNavToggle";
-import MobileNav from "components/template/MobileNav";
-import Search from "components/template/Search";
 import SideNav from "components/template/SideNav";
 import View from "views";
 import { useAuth } from "hooks/useAuth";
@@ -41,20 +37,13 @@ export const SignInAndSignUp = () => {
 };
 
 const HeaderActionsStart = () => {
-  return (
-    <>
-      <MobileNav />
-      <SideNavToggle />
-      <Search />
-    </>
-  );
+  return <></>;
 };
 
 const HeaderActionsEnd = () => {
   const isAuthenticated = useAuth((state) => state.isAuthenticated);
   return (
     <HStack spacing={2}>
-      <LanguageSelector />
       {isAuthenticated ? <UserMenu /> : <SignInAndSignUp />}
     </HStack>
   );
