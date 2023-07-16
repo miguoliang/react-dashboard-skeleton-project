@@ -5,11 +5,12 @@ import Loading from "components/ui/Loading";
 
 const Layout = () => {
   const location = useLocation();
+
   const AppLayout = useMemo(() => {
     return location.pathname.startsWith("/dashboard")
       ? lazy(() => import("./ModernLayout"))
       : lazy(() => import("./SimpleLayout"));
-  }, [location.pathname]);
+  }, [location.pathname.startsWith("/dashboard")]);
 
   const auth = useAuth();
   useEffect(() => {

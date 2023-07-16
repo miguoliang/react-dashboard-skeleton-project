@@ -40,7 +40,7 @@ const navigationMenu: NavigationMenuItem[] = [
     subMenu: [
       {
         key: "persons.list",
-        path: "/persons",
+        path: "/dashboard/persons",
         title: "List",
         type: "item",
         authority: [USER_SCOPE],
@@ -48,5 +48,22 @@ const navigationMenu: NavigationMenuItem[] = [
     ],
   },
 ];
+
+export const findExpandedKeys = (
+  start: NavigationMenuItem,
+  key: string,
+): string[] => {
+  if (start.key === key) {
+    return [start.key];
+  } else if (start.type === "collapse") {
+    for (const item of start.subMenu ?? []) {
+      const expandedKeys = findExpandedKeys(item, key);
+      if (expandedKeys.length > 0) {
+        return [start.key, ...expandedKeys];
+      }
+    }
+  }
+  return [];
+};
 
 export default navigationMenu;

@@ -1,5 +1,13 @@
-import React from "react";
-import { Box, Flex, Image, Spacer, Text, useBoolean } from "@chakra-ui/react";
+import React, { cloneElement, useMemo } from "react";
+import {
+  Box,
+  HStack,
+  Image,
+  Spacer,
+  Text,
+  useBoolean,
+  VStack,
+} from "@chakra-ui/react";
 import { useSideNav } from "hooks/useSideNav";
 import navigationMenu, { NavigationMenuItem } from "configs/navigation.config";
 import { Link } from "react-router-dom";
@@ -10,61 +18,89 @@ const SideNav = () => {
   const sideNav = useSideNav();
 
   return (
-    <Box
-      as={motion.div}
-      position={"sticky"}
-      height={"100vh"}
-      overflow={"hidden"}
-      borderRight={"1px"}
-      borderColor={"gray.200"}
-      bg={"gray.100"}
-      flexShrink={0}
-      fontWeight={"semibold"}
-      animate={{ width: sideNav.collapsed ? 60 : 290 }}
+    <motion.div
+      className={
+        "sticky h-screen overflow-x-hidden border-r-[1px] border-gray-200 bg-gray-100 flex-shrink-0 font-semibold"
+      }
+      animate={{ width: sideNav.collapsed ? 80 : 290 }}
+      transition={{ type: "spring", bounce: 0, duration: 0.5 }}
     >
       <Image
         src={`/img/logo/logo-light-${
           sideNav.collapsed ? "streamline" : "full"
         }.png`}
-        px={6}
+        mx={"auto"}
+        height={"64px"}
+        animation={{
+          px: sideNav.collapsed ? 0 : 6,
+          width: sideNav.collapsed ? "48px" : "auto",
+        }}
       />
-      <Flex flexDirection={"column"} px={4}>
+      <VStack
+        flexDirection={"column"}
+        alignItems={"stretch"}
+        px={4}
+        gap={2}
+        mt={2}
+      >
         {navigationMenu.map((item) => NavMenuItem(item))}
-      </Flex>
-    </Box>
+      </VStack>
+    </motion.div>
   );
 };
 
 const NavMenuItem = (item: NavigationMenuItem) => {
   const sideNav = useSideNav();
+  const iconStyles = useMemo(() => {
+    return {
+      flexGrow: 0,
+      flexShrink: 0,
+      width: "28px",
+      height: "28px",
+      marginLeft: sideNav.collapsed ? "auto" : 0,
+      marginRight: sideNav.collapsed ? "auto" : 0,
+    };
+  }, [sideNav.collapsed]);
 
   switch (item.type) {
     case "item":
       return (
         <Link key={item.key} to={item.path}>
-          <Flex
+          <HStack
+            height={"40px"}
             alignItems={"center"}
             px={2}
             borderRadius={"md"}
             _hover={{ bg: "gray.300" }}
+            gap={2}
           >
-            {item.icon && <Box mr={2}>{item.icon}</Box>}
-            <Text lineHeight={"40px"}>{item.title}</Text>
-          </Flex>
+            {item.icon && cloneElement(item.icon, { style: iconStyles })}
+            {!sideNav.collapsed && <Text>{item.title}</Text>}
+          </HStack>
         </Link>
       );
     case "collapse":
       const [expanded, setExpanded] = useBoolean(
         sideNav.expandedKeys.has(item.key),
       );
+      const literal = (
+        <HStack flexGrow={1}>
+          <Text>{item.title}</Text>
+          <Spacer />
+          <motion.div animate={{ rotate: expanded ? 90 : 0 }}>
+            <HiChevronRight />
+          </motion.div>
+        </HStack>
+      );
       return (
         <Box key={item.key}>
-          <Flex
-            alignItems={"center"}
+          <HStack
+            height={"40px"}
             cursor={"pointer"}
             borderRadius={"md"}
             _hover={{ bg: "gray.300" }}
             px={2}
+            gap={2}
             onClick={() => {
               setExpanded.toggle();
               expanded
@@ -72,13 +108,9 @@ const NavMenuItem = (item: NavigationMenuItem) => {
                 : sideNav.removeExpandedKey(item.key);
             }}
           >
-            {item.icon && <Box mr={2}>{item.icon}</Box>}
-            <Text lineHeight={"40px"}>{item.title}</Text>
-            <Spacer />
-            <motion.div animate={{ rotate: expanded ? 90 : 0 }}>
-              <HiChevronRight />
-            </motion.div>
-          </Flex>
+            {item.icon && cloneElement(item.icon, { style: iconStyles })}
+            {!sideNav.collapsed && literal}
+          </HStack>
           <motion.div
             className={"flex flex-col pl-5 overflow-hidden"}
             animate={{
@@ -92,9 +124,11 @@ const NavMenuItem = (item: NavigationMenuItem) => {
     case "title":
     default:
       return (
-        <Text key={item.key} mt={4} mb={2} px={2} textColor={"gray.600"}>
-          {item.title}
-        </Text>
+        !sideNav.collapsed && (
+          <Text key={item.key} mt={4} mb={2} px={2} textColor={"gray.600"}>
+            {item.title}
+          </Text>
+        )
       );
   }
 };

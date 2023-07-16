@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserMenu from "components/template/UserMenu";
 import SideNav from "components/template/SideNav";
 import View from "views";
 import { useAuth } from "hooks/useAuth";
-import { Box, Button, Flex, HStack, Spacer } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  IconButton,
+  Spacer,
+} from "@chakra-ui/react";
+import { HiMenu } from "react-icons/all";
+import { useSideNav } from "../../hooks/useSideNav";
+import useCurrentRoute from "../../hooks/useCurrentRoute";
 
 export const SignInAndSignUp = () => {
   const auth = useAuth();
@@ -37,7 +47,16 @@ export const SignInAndSignUp = () => {
 };
 
 const HeaderActionsStart = () => {
-  return <></>;
+  const sideNav = useSideNav();
+  return (
+    <IconButton
+      bg={"transparent"}
+      borderRadius={"full"}
+      aria-label={"menu"}
+      icon={<HiMenu size={"20px"} />}
+      onClick={() => sideNav.setCollapsed(!sideNav.collapsed)}
+    />
+  );
 };
 
 const HeaderActionsEnd = () => {
@@ -50,6 +69,10 @@ const HeaderActionsEnd = () => {
 };
 
 const ModernLayout = (props: Record<string, any>) => {
+  const currentRoute = useCurrentRoute();
+
+  useEffect(() => {}, [currentRoute.key]);
+
   return (
     <Flex>
       <SideNav />
