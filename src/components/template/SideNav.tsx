@@ -2,7 +2,6 @@ import React, { cloneElement, useMemo } from "react";
 import {
   Box,
   HStack,
-  Image,
   Spacer,
   Text,
   useBoolean,
@@ -22,19 +21,20 @@ const SideNav = () => {
       className={
         "sticky h-screen overflow-x-hidden border-r-[1px] border-gray-200 bg-gray-100 flex-shrink-0 font-semibold"
       }
-      animate={{ width: sideNav.collapsed ? 80 : 290 }}
+      animate={{ width: sideNav.collapsed ? 77 : 290 }}
       transition={{ type: "spring", bounce: 0, duration: 0.5 }}
     >
-      <Image
-        src={`/img/logo/logo-light-${
-          sideNav.collapsed ? "streamline" : "full"
-        }.png`}
-        mx={"auto"}
+      <Box
+        backgroundImage={`/img/logo/logo-light-full.png`}
+        backgroundRepeat={"no-repeat"}
         height={"64px"}
+        ml={"21px"}
+        mr={"auto"}
         animation={{
           px: sideNav.collapsed ? 0 : 6,
-          width: sideNav.collapsed ? "48px" : "auto",
+          width: sideNav.collapsed ? "35px" : "130px",
         }}
+        transition={"all 0.5s spring"}
       />
       <VStack
         flexDirection={"column"}
@@ -69,13 +69,16 @@ const NavMenuItem = (item: NavigationMenuItem) => {
           <HStack
             height={"40px"}
             alignItems={"center"}
+            justifyContent={"start"}
             px={2}
             borderRadius={"md"}
             _hover={{ bg: "gray.300" }}
             gap={2}
           >
             {item.icon && cloneElement(item.icon, { style: iconStyles })}
-            {!sideNav.collapsed && <Text>{item.title}</Text>}
+            <Text flexGrow={1} opacity={sideNav.collapsed ? 0 : 1}>
+              {item.title}
+            </Text>
           </HStack>
         </Link>
       );
@@ -84,11 +87,14 @@ const NavMenuItem = (item: NavigationMenuItem) => {
         sideNav.expandedKeys.has(item.key),
       );
       const literal = (
-        <HStack flexGrow={1}>
+        <HStack flexGrow={1} opacity={sideNav.collapsed ? 0 : 1}>
           <Text>{item.title}</Text>
           <Spacer />
-          <motion.div animate={{ rotate: expanded ? 90 : 0 }}>
-            <HiChevronRight />
+          <motion.div
+            animate={{ rotate: expanded ? 90 : 0 }}
+            transition={{ type: "spring", bounce: 0, duration: 0.5 }}
+          >
+            <HiChevronRight size={"20px"} />
           </motion.div>
         </HStack>
       );
@@ -98,6 +104,7 @@ const NavMenuItem = (item: NavigationMenuItem) => {
             height={"40px"}
             cursor={"pointer"}
             borderRadius={"md"}
+            justifyContent={"start"}
             _hover={{ bg: "gray.300" }}
             px={2}
             gap={2}
@@ -109,13 +116,14 @@ const NavMenuItem = (item: NavigationMenuItem) => {
             }}
           >
             {item.icon && cloneElement(item.icon, { style: iconStyles })}
-            {!sideNav.collapsed && literal}
+            {literal}
           </HStack>
           <motion.div
             className={"flex flex-col pl-5 overflow-hidden"}
             animate={{
               height: expanded ? "auto" : "0px",
             }}
+            transition={{ type: "spring", bounce: 0, duration: 0.5 }}
           >
             {item.subMenu?.map((subItem) => NavMenuItem(subItem))}
           </motion.div>
