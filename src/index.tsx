@@ -7,6 +7,12 @@ import { DevSupport } from "@react-buddy/ide-toolbox";
 import { ComponentPreviews, useInitial } from "./dev";
 import { ToastContainer } from "hooks/useToast";
 
+if (import.meta.env.NODE_ENV !== "production") {
+  Object.keys(import.meta.env).forEach((key) => {
+    console.log(`${key}: ${import.meta.env[key]}`);
+  });
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <DevSupport ComponentPreviews={ComponentPreviews} useInitialHook={useInitial}>

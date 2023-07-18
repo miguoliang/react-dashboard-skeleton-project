@@ -13,6 +13,11 @@ export default function mockServer({ environment = "development" }) {
       this.urlPrefix = window.location.origin;
       this.namespace = apiPrefix;
       this.passthrough((request) => request.url.startsWith("https://"));
+      this.passthrough((request) =>
+        request.url.startsWith(
+          new URL(import.meta.env.VITE_OIDC_AUTHORITY).origin,
+        ),
+      );
       personFakeApi(this, apiPrefix);
     },
   });

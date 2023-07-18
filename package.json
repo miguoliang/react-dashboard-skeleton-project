@@ -62,7 +62,7 @@
   },
   "scripts": {
     "start": "run-p watch:css start:vite",
-    "start:vite": "vite",
+    "start:vite": "vite --mode keycloak",
     "build": "run-p build:css build:vite",
     "build:vite": "vite build",
     "serve": "vite preview",
