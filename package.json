@@ -8,7 +8,7 @@
     "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@popperjs/core": "^2.9.2",
+    "@floating-ui/react": "^0.24.8",
     "@react-icons/all-files": "^4.1.0",
     "@tanstack/match-sorter-utils": "^8.7.6",
     "@tanstack/react-table": "^8.7.9",
