@@ -1,6 +1,7 @@
 import React, { cloneElement, CSSProperties } from "react";
 import {
   Box,
+  Button,
   HStack,
   IconButton,
   Spacer,
@@ -10,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { useSideNav } from "hooks/useSideNav";
 import navigationMenu, { NavigationMenuItem } from "configs/navigation.config";
-import { Link } from "react-router-dom";
 import { HiChevronRight } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { Menu, MenuItem } from "./PopoverMenu";
@@ -66,28 +66,18 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
 
   switch (item.type) {
     case "item":
-      return (
-        <Link to={item.path}>
-          <HStack
-            height={"40px"}
-            alignItems={"center"}
-            justifyContent={"start"}
-            borderRadius={"md"}
-            _hover={{ bg: sideNav.collapsed ? "transparent" : "gray.300" }}
-          >
-            {item.icon && (
-              <IconButton
-                aria-label={item.title}
-                bg={"transparent"}
-                _hover={{ bg: sideNav.collapsed ? "gray.200" : "transparent" }}
-                icon={cloneElement(item.icon, { style: iconStyles })}
-              />
-            )}
-            {(item.parentKey || !sideNav.collapsed) && (
-              <Text flexGrow={1}>{item.title}</Text>
-            )}
-          </HStack>
-        </Link>
+      return sideNav.collapsed ? (
+        <IconButton
+          aria-label={item.title}
+          icon={item.icon && cloneElement(item.icon, { style: iconStyles })}
+        />
+      ) : (
+        <Button
+          variant={"navigationRootMenuItem"}
+          leftIcon={item.icon && cloneElement(item.icon, { style: iconStyles })}
+        >
+          {item.title}
+        </Button>
       );
     case "collapse":
       return sideNav.collapsed ? (
@@ -158,30 +148,20 @@ const ExpandableSubmenu = ({
     </HStack>
   );
   return (
-    <Box key={item.key}>
-      <HStack
-        height={"40px"}
-        cursor={"pointer"}
-        borderRadius={"md"}
-        justifyContent={"start"}
-        _hover={{ bg: "gray.300" }}
+    <VStack key={item.key} gap={1} alignItems={"stretch"}>
+      <Button
+        variant={"navigationRootMenuItem"}
+        width={"full"}
         onClick={() => {
           setExpanded.toggle();
           expanded
             ? sideNav.addExpandedKey(item.key)
             : sideNav.removeExpandedKey(item.key);
         }}
+        leftIcon={item.icon && cloneElement(item.icon, { style: iconStyles })}
       >
-        {item.icon && (
-          <IconButton
-            aria-label={item.title}
-            bg={"transparent"}
-            _hover={{ bg: "transparent" }}
-            icon={cloneElement(item.icon, { style: iconStyles })}
-          />
-        )}{" "}
         {!sideNav.collapsed && literal}
-      </HStack>
+      </Button>
       <motion.div
         className={"flex flex-col pl-5 overflow-hidden"}
         animate={{
@@ -193,7 +173,7 @@ const ExpandableSubmenu = ({
           <NavMenuItem key={item.key} item={subItem} />
         ))}
       </motion.div>
-    </Box>
+    </VStack>
   );
 };
 
