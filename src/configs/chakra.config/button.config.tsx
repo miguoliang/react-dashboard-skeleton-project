@@ -5,7 +5,9 @@ const dropdownMenuItem = defineStyle({
   _hover: { bg: "gray.200" },
   minWidth: "150px",
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "flex-start",
+  textAlign: "left",
+  px: 2,
 });
 
 const navigationRootMenuItem = defineStyle({

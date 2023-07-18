@@ -25,9 +25,10 @@ import {
 import * as React from "react";
 import { cloneElement, CSSProperties } from "react";
 import { noop } from "lodash";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, HStack, IconButton, Text } from "@chakra-ui/react";
 import { NavigationMenuItem } from "../../configs/navigation.config";
 import { HiChevronRight } from "react-icons/hi";
+import { useSideNav } from "../../hooks/useSideNav";
 
 const MenuContext = React.createContext<{
   getItemProps: (
@@ -52,6 +53,8 @@ export const MenuComponent = React.forwardRef<
     iconStyles: CSSProperties;
   } & React.HTMLProps<HTMLButtonElement>
 >(({ item: menuItem, iconStyles, children, ...props }, forwardedRef) => {
+  const sideNav = useSideNav();
+
   const [isOpen, setIsOpen] = React.useState(false);
   const [hasFocusInside, setHasFocusInside] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
@@ -134,33 +137,52 @@ export const MenuComponent = React.forwardRef<
     }
   }, [tree, isOpen, nodeId, parentId]);
 
+  const commonProps = {
+    ref: useMergeRefs([refs.setReference, item.ref, forwardedRef]),
+    tabIndex: !isNested
+      ? undefined
+      : parent.activeIndex === item.index
+      ? 0
+      : -1,
+    variant: isNested ? "dropdownMenuItem" : "navigationRootMenuItem",
+    role: isNested ? "menuitem" : undefined,
+    "data-open": isOpen ? "" : undefined,
+    "data-nested": isNested ? "" : undefined,
+    "data-focus-inside": hasFocusInside ? "" : undefined,
+    ...getReferenceProps(
+      parent.getItemProps({
+        ...props,
+        onFocus(event: React.FocusEvent<HTMLButtonElement>) {
+          props.onFocus?.(event);
+          setHasFocusInside(false);
+          parent.setHasFocusInside(true);
+        },
+      }),
+    ),
+  };
+
+  const properButton =
+    sideNav.collapsed && !isNested ? (
+      <IconButton
+        aria-label={menuItem.title}
+        icon={
+          menuItem.icon && cloneElement(menuItem.icon, { style: iconStyles })
+        }
+        {...commonProps}
+      />
+    ) : (
+      <Button {...commonProps}>
+        <HStack>
+          {menuItem.icon && cloneElement(menuItem.icon, { style: iconStyles })}
+          {isNested && <Text>{menuItem.title}</Text>}
+          {isNested && <HiChevronRight />}
+        </HStack>
+      </Button>
+    );
+
   return (
     <FloatingNode id={nodeId}>
-      <Button
-        ref={useMergeRefs([refs.setReference, item.ref, forwardedRef])}
-        tabIndex={
-          !isNested ? undefined : parent.activeIndex === item.index ? 0 : -1
-        }
-        variant={isNested ? "dropdownMenuItem" : "solid"}
-        role={isNested ? "menuitem" : undefined}
-        data-open={isOpen ? "" : undefined}
-        data-nested={isNested ? "" : undefined}
-        data-focus-inside={hasFocusInside ? "" : undefined}
-        {...getReferenceProps(
-          parent.getItemProps({
-            ...props,
-            onFocus(event: React.FocusEvent<HTMLButtonElement>) {
-              props.onFocus?.(event);
-              setHasFocusInside(false);
-              parent.setHasFocusInside(true);
-            },
-          }),
-        )}
-        rightIcon={isNested ? <HiChevronRight /> : undefined}
-      >
-        {menuItem.icon && cloneElement(menuItem.icon, { style: iconStyles })}
-        {isNested && menuItem.title}
-      </Button>
+      {properButton}
       <MenuContext.Provider
         value={{
           activeIndex,

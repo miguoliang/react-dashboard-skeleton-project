@@ -69,6 +69,7 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
       return sideNav.collapsed ? (
         <IconButton
           aria-label={item.title}
+          variant={"navigationRootMenuItem"}
           icon={item.icon && cloneElement(item.icon, { style: iconStyles })}
         />
       ) : (
