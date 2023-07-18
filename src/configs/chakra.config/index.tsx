@@ -6,6 +6,7 @@ import { formLabelTheme } from "./form-label.config";
 import { formErrorTheme } from "./form-error.config";
 import { cardTheme } from "./card.config";
 import { buttonTheme } from "./button.config";
+import { tooltipTheme } from "./tooltip.config";
 
 export const chakraTheme = extendTheme({
   colors: {
@@ -37,5 +38,6 @@ export const chakraTheme = extendTheme({
     FormError: formErrorTheme,
     Card: cardTheme,
     Button: buttonTheme,
+    Tooltip: tooltipTheme,
   },
 });

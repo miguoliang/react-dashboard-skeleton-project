@@ -18,12 +18,14 @@ export const useSideNav = create<SideNavStore>((set) => ({
     set((state) => {
       const expandedKeys = new Set(state.expandedKeys);
       expandedKeys.add(expandedKey);
+      console.log("after add: ", expandedKeys);
       return { expandedKeys };
     }),
   removeExpandedKey: (expandedKey: string) =>
     set((state) => {
       const expandedKeys = new Set(state.expandedKeys);
       expandedKeys.delete(expandedKey);
+      console.log("after delete: ", expandedKeys);
       return { expandedKeys };
     }),
 }));

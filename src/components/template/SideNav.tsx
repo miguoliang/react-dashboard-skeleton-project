@@ -6,6 +6,7 @@ import {
   IconButton,
   Spacer,
   Text,
+  Tooltip,
   useBoolean,
   VStack,
 } from "@chakra-ui/react";
@@ -67,11 +68,18 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
   switch (item.type) {
     case "item":
       return sideNav.collapsed ? (
-        <IconButton
-          aria-label={item.title}
+        <Tooltip
+          hasArrow
           variant={"navigationRootMenuItem"}
-          icon={item.icon && cloneElement(item.icon, { style: iconStyles })}
-        />
+          label={item.title}
+          placement={"right"}
+        >
+          <IconButton
+            aria-label={item.title}
+            variant={"navigationRootMenuItem"}
+            icon={item.icon && cloneElement(item.icon, { style: iconStyles })}
+          />
+        </Tooltip>
       ) : (
         <Button
           variant={"navigationRootMenuItem"}
@@ -148,14 +156,24 @@ const ExpandableSubmenu = ({
       </motion.div>
     </HStack>
   );
+
   return (
-    <VStack key={item.key} gap={1} alignItems={"stretch"}>
+    <motion.div
+      key={item.key}
+      className={"flex flex-col items-stretch overflow-hidden h-[40px]"}
+      animate={{
+        height: expanded ? "auto" : "40px",
+      }}
+      transition={{ type: "spring", bounce: 0, duration: 0.5 }}
+    >
       <Button
         variant={"navigationRootMenuItem"}
+        flexShrink={0}
+        height={"40px"}
         width={"full"}
         onClick={() => {
           setExpanded.toggle();
-          expanded
+          !expanded
             ? sideNav.addExpandedKey(item.key)
             : sideNav.removeExpandedKey(item.key);
         }}
@@ -163,18 +181,12 @@ const ExpandableSubmenu = ({
       >
         {!sideNav.collapsed && literal}
       </Button>
-      <motion.div
-        className={"flex flex-col pl-5 overflow-hidden"}
-        animate={{
-          height: expanded ? "auto" : "0px",
-        }}
-        transition={{ type: "spring", bounce: 0, duration: 0.5 }}
-      >
+      <Box pl={5}>
         {item.children?.map((subItem) => (
           <NavMenuItem key={item.key} item={subItem} />
         ))}
-      </motion.div>
-    </VStack>
+      </Box>
+    </motion.div>
   );
 };
 
