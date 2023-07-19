@@ -4,7 +4,7 @@ import Layout from "components/layout";
 import mockServer from "mock";
 import appConfig from "configs/app.config";
 import { ChakraBaseProvider } from "@chakra-ui/react";
-import { chakraTheme } from "configs/chakra.config";
+import { theme } from "configs/chakra.config";
 
 /**
  * Set enableMock(Default false) to true at configs/app.config.js
@@ -17,7 +17,7 @@ if (appConfig.runtime !== "production" && appConfig.enableMock) {
 
 function App() {
   return (
-    <ChakraBaseProvider theme={chakraTheme}>
+    <ChakraBaseProvider theme={theme}>
       <BrowserRouter>
         <Layout />
       </BrowserRouter>

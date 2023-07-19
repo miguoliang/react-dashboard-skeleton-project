@@ -1,4 +1,4 @@
-import { Avatar, extendTheme } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 import { menuTheme } from "./menu.config";
 import { tableTheme } from "./table.config";
 import { inputTheme } from "./input.config";
@@ -7,30 +7,45 @@ import { formErrorTheme } from "./form-error.config";
 import { cardTheme } from "./card.config";
 import { buttonTheme } from "./button.config";
 import { tooltipTheme } from "./tooltip.config";
+import resolveConfig from "tailwindcss/resolveConfig";
 
-export const chakraTheme = extendTheme({
-  colors: {
-    gray: {
-      "50": "#F9FAFB",
-      "100": "#F3F4F6",
-      "200": "#E5E7EB",
-      "300": "#D1D5DB",
-      "400": "#9CA3AF",
-      "500": "#6B7280",
-      "600": "#4B5563",
-      "700": "#374151",
-      "800": "#1F2937",
-      "900": "#111827",
-    },
-  },
+// @ts-ignore
+import * as tailwindConfig from "../../../tailwind.config.mjs";
+import { first, join, map, mapValues } from "lodash";
+
+const tailwindTheme = resolveConfig(tailwindConfig).theme;
+
+function addMissingBaseField(obj: any, value?: any) {
+  return {
+    base: value ?? obj.DEFAULT,
+    ...obj,
+  };
+}
+
+export const theme = extendTheme({
+  blur: addMissingBaseField(tailwindTheme.blur),
+  breakpoints: addMissingBaseField(tailwindTheme.screens, "0px"),
+  colors: tailwindTheme.colors,
+  radius: addMissingBaseField(tailwindTheme.borderRadius),
+  shadows: addMissingBaseField(tailwindTheme.boxShadow),
+  space: addMissingBaseField(tailwindTheme.spacing),
   sizes: {
-    "9xl": "96rem",
+    container: tailwindTheme.container,
+    ...tailwindTheme.spacing,
+    ...tailwindTheme.maxWidth,
   },
-  card: {
-    bg: "red.500",
+  transition: {
+    duration: tailwindTheme.transitionDuration,
+    easing: tailwindTheme.transitionTimingFunction,
+    property: tailwindTheme.transitionProperty,
   },
+  letterSpacings: tailwindTheme.letterSpacing,
+  lineHeights: tailwindTheme.lineHeight,
+  fontWeights: tailwindTheme.fontWeight,
+  fonts: mapValues(tailwindTheme.fontFamily, (value) => join(value, ",")),
+  fontSizes: map(tailwindTheme.fontSize, first),
+  zIndices: tailwindTheme.zIndex,
   components: {
-    Avatar,
     Menu: menuTheme,
     Table: tableTheme,
     Input: inputTheme,

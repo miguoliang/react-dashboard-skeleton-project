@@ -17,6 +17,7 @@ const navigationRootMenuItem = defineStyle({
   justifyContent: "flex-start",
   textAlign: "left",
   px: 2,
+  width: "full",
 });
 
 export const buttonTheme = defineStyleConfig({

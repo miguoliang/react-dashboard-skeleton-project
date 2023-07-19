@@ -181,11 +181,11 @@ const ExpandableSubmenu = ({
       >
         {!sideNav.collapsed && literal}
       </Button>
-      <Box pl={5}>
+      <VStack pl={5} pt={1} gap={1} alignItems={"stretch"}>
         {item.children?.map((subItem) => (
           <NavMenuItem key={item.key} item={subItem} />
         ))}
-      </Box>
+      </VStack>
     </motion.div>
   );
 };
