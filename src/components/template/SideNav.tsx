@@ -66,7 +66,12 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
           label={item.title}
           placement={"right"}
         >
-          <IconButton fontSize={5} aria-label={item.title} icon={item.icon} />
+          <IconButton
+            fontSize={5}
+            aria-label={item.title}
+            icon={item.icon}
+            bg={"transparent"}
+          />
         </Tooltip>
       ) : (
         <Button variant={"navigationRootMenuItem"} leftIcon={item.icon}>

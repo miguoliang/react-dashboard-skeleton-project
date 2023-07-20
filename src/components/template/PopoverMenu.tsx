@@ -142,7 +142,7 @@ export const MenuComponent = React.forwardRef<
       : parent.activeIndex === item.index
       ? 0
       : -1,
-    variant: isNested ? "dropdownMenuItem" : "solid",
+    variant: isNested ? "dropdownMenuItem" : "unstyled",
     role: isNested ? "menuitem" : undefined,
     "data-open": isOpen ? "" : undefined,
     "data-nested": isNested ? "" : undefined,
@@ -165,10 +165,11 @@ export const MenuComponent = React.forwardRef<
         aria-label={menuItem.title}
         fontSize={5}
         icon={menuItem.icon}
+        bg={"transparent"}
         {...commonProps}
       />
     ) : (
-      <Button {...commonProps}>
+      <Button {...commonProps} size={"sm"}>
         <HStack>
           {menuItem.icon}
           {isNested && <Text>{menuItem.title}</Text>}
@@ -237,6 +238,7 @@ export const MenuItem = React.forwardRef<
       type="button"
       role="menuitem"
       variant={"dropdownMenuItem"}
+      size={"sm"}
       tabIndex={isActive ? 0 : -1}
       disabled={disabled}
       {...menu.getItemProps({
