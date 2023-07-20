@@ -1,8 +1,9 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import {
   Avatar,
   Flex,
   HStack,
+  Icon,
   Menu,
   MenuButton,
   MenuDivider,
@@ -11,14 +12,14 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { HiOutlineCog, HiOutlineLogout } from "react-icons/hi";
 import { useAuth } from "hooks/useAuth";
+import { HiOutlineCog, HiOutlineLogout } from "react-icons/hi";
 
 const menuList = [
   {
     label: "Dashboard",
     path: `/dashboard`,
-    icon: <HiOutlineCog />,
+    icon: <Icon as={HiOutlineCog} fontSize={2} color={"gray.500"} />,
   },
 ];
 
@@ -47,7 +48,10 @@ export const UserMenu = () => {
           </MenuItem>
         ))}
         <MenuDivider />
-        <MenuItem icon={<HiOutlineLogout />} onClick={() => auth.signOut()}>
+        <MenuItem
+          icon={<Icon as={HiOutlineLogout} fontSize={2} color={"gray.500"} />}
+          onClick={() => auth.signOut()}
+        >
           Sign Out
         </MenuItem>
       </MenuList>

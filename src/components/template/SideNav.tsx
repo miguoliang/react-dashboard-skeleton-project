@@ -83,7 +83,7 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
     case "title":
     default:
       return !sideNav.collapsed ? (
-        <Text mt={4} mb={2} px={2} textColor={"gray.600"}>
+        <Text mt={4} mb={2} px={2} textColor={"gray.500"} fontSize={1}>
           {item.title}
         </Text>
       ) : (

@@ -8,11 +8,12 @@ import {
   Button,
   Flex,
   HStack,
+  Icon,
   IconButton,
   Spacer,
 } from "@chakra-ui/react";
 import { useSideNav } from "../../hooks/useSideNav";
-import { HiMenu } from "react-icons/hi";
+import { HiOutlineMenu } from "react-icons/hi";
 
 export const SignInAndSignUp = () => {
   const auth = useAuth();
@@ -50,9 +51,10 @@ const HeaderActionsStart = () => {
   return (
     <IconButton
       bg={"transparent"}
-      borderRadius={"full"}
+      isRound={true}
       aria-label={"menu"}
-      icon={<HiMenu size={"20px"} />}
+      fontSize={4}
+      icon={<Icon as={HiOutlineMenu} />}
       onClick={() => sideNav.setCollapsed(!sideNav.collapsed)}
     />
   );
