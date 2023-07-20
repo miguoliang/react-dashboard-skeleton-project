@@ -16,7 +16,7 @@ import navigationMenu, { NavigationMenuItem } from "configs/navigation.config";
 import { motion } from "framer-motion";
 import { Menu, MenuItem } from "./PopoverMenu";
 import { HiChevronRight } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SideNav = () => {
   const sideNav = useSideNav();
@@ -58,6 +58,7 @@ const SideNav = () => {
 
 const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
   const sideNav = useSideNav();
+  const navigate = useNavigate();
   switch (item.type) {
     case "item":
       return sideNav.collapsed ? (
@@ -78,10 +79,9 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
         </Tooltip>
       ) : (
         <Button
-          as={Link}
-          to={item.path}
           variant={"navigationRootMenuItem"}
           leftIcon={item.icon}
+          onClick={() => item.path && navigate(item.path)}
         >
           {item.title}
         </Button>

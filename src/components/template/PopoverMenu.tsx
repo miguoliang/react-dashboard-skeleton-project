@@ -28,7 +28,7 @@ import { Box, Button, HStack, Icon, IconButton, Text } from "@chakra-ui/react";
 import { NavigationMenuItem } from "configs/navigation.config";
 import { HiChevronRight } from "react-icons/hi";
 import { useSideNav } from "hooks/useSideNav";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MenuContext = React.createContext<{
   getItemProps: (
@@ -53,6 +53,7 @@ export const MenuComponent = React.forwardRef<
   } & React.HTMLProps<HTMLButtonElement>
 >(({ item: menuItem, children, ...props }, forwardedRef) => {
   const sideNav = useSideNav();
+  const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [hasFocusInside, setHasFocusInside] = React.useState(false);
@@ -167,14 +168,19 @@ export const MenuComponent = React.forwardRef<
         fontSize={5}
         icon={menuItem.icon}
         bg={"transparent"}
-        _hover={{ bg: "gray.200" }}
-        display={"inline-flex"}
-        as={Link}
-        to={menuItem.path}
+        onClick={() =>
+          menuItem.type === "item" && menuItem.path && navigate(menuItem.path)
+        }
         {...commonProps}
       />
     ) : (
-      <Button {...commonProps} size={"sm"} as={Link} to={menuItem.path}>
+      <Button
+        {...commonProps}
+        size={"sm"}
+        onClick={() =>
+          menuItem.type === "item" && menuItem.path && navigate(menuItem.path)
+        }
+      >
         <HStack w={"full"}>
           {menuItem.icon}
           {isNested && <Text flexGrow={1}>{menuItem.title}</Text>}
@@ -235,6 +241,7 @@ export const MenuItem = React.forwardRef<
   const item = useListItem({ label: disabled ? null : menuItem.title });
   const tree = useFloatingTree();
   const isActive = item.index === menu.activeIndex;
+  const navigate = useNavigate();
 
   return (
     <Button
@@ -250,6 +257,7 @@ export const MenuItem = React.forwardRef<
         onClick(event: React.MouseEvent<HTMLButtonElement>) {
           props.onClick?.(event);
           tree?.events.emit("click");
+          menuItem.type === "item" && menuItem.path && navigate(menuItem.path);
         },
         onFocus(event: React.FocusEvent<HTMLButtonElement>) {
           props.onFocus?.(event);

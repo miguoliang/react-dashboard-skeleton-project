@@ -8,7 +8,7 @@ import { HiOutlineUsers } from "react-icons/hi";
 
 export type NavigationMenuItem = {
   key: string;
-  path: string;
+  path?: string;
   title: string;
   translateKey?: string;
   icon?: React.ReactElement;
@@ -21,7 +21,6 @@ export type NavigationMenuItem = {
 const navigationMenu: NavigationMenuItem[] = [
   {
     key: "apps",
-    path: "",
     title: "APPS",
     type: "title",
     authority: [USER_SCOPE],
@@ -36,7 +35,6 @@ const navigationMenu: NavigationMenuItem[] = [
   },
   {
     key: "persons",
-    path: "",
     title: "Persons",
     icon: <Icon as={HiOutlineUsers} />,
     type: "collapse",
@@ -54,7 +52,6 @@ const navigationMenu: NavigationMenuItem[] = [
   },
   {
     key: "root",
-    path: "",
     title: "Root",
     icon: <Icon as={HiOutlineWrenchScrewdriver} />,
     type: "collapse",
