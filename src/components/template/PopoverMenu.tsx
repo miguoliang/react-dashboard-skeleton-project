@@ -170,9 +170,9 @@ export const MenuComponent = React.forwardRef<
       />
     ) : (
       <Button {...commonProps} size={"sm"}>
-        <HStack>
+        <HStack w={"full"}>
           {menuItem.icon}
-          {isNested && <Text>{menuItem.title}</Text>}
+          {isNested && <Text flexGrow={1}>{menuItem.title}</Text>}
           {isNested && <Icon as={HiChevronRight} />}
         </HStack>
       </Button>

@@ -11,6 +11,7 @@ const baseStyle = definePartsStyle({
     // this will style the MenuList component
     p: 2,
     borderRadius: "lg",
+    minW: "5xs",
   },
   item: {
     borderRadius: "lg",

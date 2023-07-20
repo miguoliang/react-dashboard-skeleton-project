@@ -719,8 +719,10 @@ module.exports = {
       // The following content is used by Chakra UI
       "8xl": "90rem",
       "9xl": "96rem",
-      "3xs": "14rem",
       "2xs": "16rem",
+      "3xs": "14rem",
+      "4xs": "12rem",
+      "5xs": "10rem",
     }),
     minHeight: {
       0: "0px",
