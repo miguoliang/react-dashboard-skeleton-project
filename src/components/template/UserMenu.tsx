@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import {
   Avatar,
   Flex,
@@ -13,7 +13,6 @@ import {
 import { Link } from "react-router-dom";
 import { HiOutlineCog, HiOutlineLogout } from "react-icons/hi";
 import { useAuth } from "hooks/useAuth";
-import appConfig from "configs/app.config";
 
 const menuList = [
   {
@@ -43,12 +42,7 @@ export const UserMenu = () => {
       <MenuButton>{UserAvatar}</MenuButton>
       <MenuList>
         {menuList.map((item) => (
-          <MenuItem
-            as={Link}
-            to={item.path}
-            key={item.label}
-            icon={<HiOutlineCog />}
-          >
+          <MenuItem as={Link} to={item.path} key={item.label} icon={item.icon}>
             {item.label}
           </MenuItem>
         ))}

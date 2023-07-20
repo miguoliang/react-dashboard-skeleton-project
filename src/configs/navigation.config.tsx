@@ -1,5 +1,10 @@
 import { USER_SCOPE } from "./oidc.config";
-import { HiDatabase } from "react-icons/all";
+import { Icon } from "@chakra-ui/react";
+import {
+  HiOutlineComputerDesktop,
+  HiOutlineWrenchScrewdriver,
+} from "react-icons/hi2";
+import { HiOutlineUsers } from "react-icons/hi";
 
 export type NavigationMenuItem = {
   key: string;
@@ -18,7 +23,6 @@ const navigationMenu: NavigationMenuItem[] = [
     key: "apps",
     path: "",
     title: "APPS",
-    icon: <HiDatabase />,
     type: "title",
     authority: [USER_SCOPE],
   },
@@ -26,7 +30,7 @@ const navigationMenu: NavigationMenuItem[] = [
     key: "dashboard",
     path: "/dashboard",
     title: "Dashboard",
-    icon: <HiDatabase />,
+    icon: <Icon as={HiOutlineComputerDesktop} />,
     type: "item",
     authority: [USER_SCOPE],
   },
@@ -34,7 +38,7 @@ const navigationMenu: NavigationMenuItem[] = [
     key: "persons",
     path: "",
     title: "Persons",
-    icon: <HiDatabase />,
+    icon: <Icon as={HiOutlineUsers} />,
     type: "collapse",
     authority: [USER_SCOPE],
     children: [
@@ -52,7 +56,7 @@ const navigationMenu: NavigationMenuItem[] = [
     key: "root",
     path: "",
     title: "Root",
-    icon: <HiDatabase />,
+    icon: <Icon as={HiOutlineWrenchScrewdriver} />,
     type: "collapse",
     authority: [USER_SCOPE],
     children: [

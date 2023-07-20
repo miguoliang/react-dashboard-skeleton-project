@@ -30,8 +30,8 @@ const HeaderActionsEnd = () => {
 };
 
 const SimpleLayout = ({
-  maxW = "8xl",
-  maxWidth = "8xl",
+  maxW = "9xl",
+  maxWidth = "9xl",
 }: HTMLChakraProps<"header">) => {
   return (
     <>

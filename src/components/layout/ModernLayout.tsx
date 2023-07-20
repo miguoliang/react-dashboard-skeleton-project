@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import UserMenu from "components/template/UserMenu";
 import SideNav from "components/template/SideNav";
 import View from "views";
@@ -11,9 +11,8 @@ import {
   IconButton,
   Spacer,
 } from "@chakra-ui/react";
-import { HiMenu } from "react-icons/all";
 import { useSideNav } from "../../hooks/useSideNav";
-import useCurrentRoute from "../../hooks/useCurrentRoute";
+import { HiMenu } from "react-icons/hi";
 
 export const SignInAndSignUp = () => {
   const auth = useAuth();
@@ -69,10 +68,6 @@ const HeaderActionsEnd = () => {
 };
 
 const ModernLayout = (props: Record<string, any>) => {
-  const currentRoute = useCurrentRoute();
-
-  useEffect(() => {}, [currentRoute.key]);
-
   return (
     <Flex>
       <SideNav />

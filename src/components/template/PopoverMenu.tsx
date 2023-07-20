@@ -23,12 +23,11 @@ import {
   useTypeahead,
 } from "@floating-ui/react";
 import * as React from "react";
-import { cloneElement, CSSProperties } from "react";
 import { noop } from "lodash";
-import { Box, Button, HStack, IconButton, Text } from "@chakra-ui/react";
-import { NavigationMenuItem } from "../../configs/navigation.config";
+import { Box, Button, HStack, Icon, IconButton, Text } from "@chakra-ui/react";
+import { NavigationMenuItem } from "configs/navigation.config";
 import { HiChevronRight } from "react-icons/hi";
-import { useSideNav } from "../../hooks/useSideNav";
+import { useSideNav } from "hooks/useSideNav";
 
 const MenuContext = React.createContext<{
   getItemProps: (
@@ -50,9 +49,8 @@ export const MenuComponent = React.forwardRef<
   HTMLButtonElement,
   {
     item: NavigationMenuItem;
-    iconStyles: CSSProperties;
   } & React.HTMLProps<HTMLButtonElement>
->(({ item: menuItem, iconStyles, children, ...props }, forwardedRef) => {
+>(({ item: menuItem, children, ...props }, forwardedRef) => {
   const sideNav = useSideNav();
 
   const [isOpen, setIsOpen] = React.useState(false);
@@ -144,7 +142,7 @@ export const MenuComponent = React.forwardRef<
       : parent.activeIndex === item.index
       ? 0
       : -1,
-    variant: isNested ? "dropdownMenuItem" : "navigationRootMenuItem",
+    variant: isNested ? "dropdownMenuItem" : "solid",
     role: isNested ? "menuitem" : undefined,
     "data-open": isOpen ? "" : undefined,
     "data-nested": isNested ? "" : undefined,
@@ -165,17 +163,16 @@ export const MenuComponent = React.forwardRef<
     sideNav.collapsed && !isNested ? (
       <IconButton
         aria-label={menuItem.title}
-        icon={
-          menuItem.icon && cloneElement(menuItem.icon, { style: iconStyles })
-        }
+        fontSize={5}
+        icon={menuItem.icon}
         {...commonProps}
       />
     ) : (
       <Button {...commonProps}>
         <HStack>
-          {menuItem.icon && cloneElement(menuItem.icon, { style: iconStyles })}
+          {menuItem.icon}
           {isNested && <Text>{menuItem.title}</Text>}
-          {isNested && <HiChevronRight />}
+          {isNested && <Icon as={HiChevronRight} />}
         </HStack>
       </Button>
     );
@@ -262,7 +259,6 @@ export const Menu = React.forwardRef<
   HTMLButtonElement,
   {
     item: NavigationMenuItem;
-    iconStyles: CSSProperties;
   } & React.HTMLProps<HTMLButtonElement>
 >((props, ref) => {
   const parentId = useFloatingParentNodeId();

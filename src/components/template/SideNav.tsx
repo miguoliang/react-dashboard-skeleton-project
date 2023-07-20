@@ -1,8 +1,9 @@
-import React, { cloneElement, CSSProperties } from "react";
+import React from "react";
 import {
   Box,
   Button,
   HStack,
+  Icon,
   IconButton,
   Spacer,
   Text,
@@ -12,9 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { useSideNav } from "hooks/useSideNav";
 import navigationMenu, { NavigationMenuItem } from "configs/navigation.config";
-import { HiChevronRight } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { Menu, MenuItem } from "./PopoverMenu";
+import { HiChevronRight } from "react-icons/hi";
 
 const SideNav = () => {
   const sideNav = useSideNav();
@@ -56,14 +57,6 @@ const SideNav = () => {
 
 const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
   const sideNav = useSideNav();
-  const iconStyles = {
-    flexGrow: 0,
-    flexShrink: 0,
-    width: "28px",
-    height: "28px",
-    marginLeft: sideNav.collapsed ? "auto" : 0,
-    marginRight: sideNav.collapsed ? "auto" : 0,
-  };
 
   switch (item.type) {
     case "item":
@@ -74,25 +67,18 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
           label={item.title}
           placement={"right"}
         >
-          <IconButton
-            aria-label={item.title}
-            variant={"navigationRootMenuItem"}
-            icon={item.icon && cloneElement(item.icon, { style: iconStyles })}
-          />
+          <IconButton fontSize={5} aria-label={item.title} icon={item.icon} />
         </Tooltip>
       ) : (
-        <Button
-          variant={"navigationRootMenuItem"}
-          leftIcon={item.icon && cloneElement(item.icon, { style: iconStyles })}
-        >
+        <Button variant={"navigationRootMenuItem"} leftIcon={item.icon}>
           {item.title}
         </Button>
       );
     case "collapse":
       return sideNav.collapsed ? (
-        <PopoverSubmenu key={item.key} item={item} iconStyles={iconStyles} />
+        <PopoverSubmenu key={item.key} item={item} />
       ) : (
-        <ExpandableSubmenu key={item.key} item={item} iconStyles={iconStyles} />
+        <ExpandableSubmenu key={item.key} item={item} />
       );
     case "title":
     default:
@@ -106,24 +92,12 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
   }
 };
 
-const PopoverSubmenu = ({
-  item,
-  iconStyles,
-}: {
-  item: NavigationMenuItem;
-  iconStyles: CSSProperties;
-}) => {
+const PopoverSubmenu = ({ item }: { item: NavigationMenuItem }) => {
   return (
-    <Menu item={item} iconStyles={iconStyles}>
+    <Menu item={item}>
       {item.children?.map((subItem) => {
         if (subItem.type === "collapse") {
-          return (
-            <PopoverSubmenu
-              key={subItem.key}
-              item={subItem}
-              iconStyles={iconStyles}
-            />
-          );
+          return <PopoverSubmenu key={subItem.key} item={subItem} />;
         } else if (subItem.type === "item") {
           return <MenuItem key={subItem.key} item={subItem} />;
         }
@@ -133,13 +107,7 @@ const PopoverSubmenu = ({
   );
 };
 
-const ExpandableSubmenu = ({
-  item,
-  iconStyles,
-}: {
-  item: NavigationMenuItem;
-  iconStyles: CSSProperties;
-}) => {
+const ExpandableSubmenu = ({ item }: { item: NavigationMenuItem }) => {
   const sideNav = useSideNav();
   const [expanded, setExpanded] = useBoolean(
     sideNav.expandedKeys.has(item.key),
@@ -152,7 +120,7 @@ const ExpandableSubmenu = ({
         animate={{ rotate: expanded ? 90 : 0 }}
         transition={{ type: "spring", bounce: 0, duration: 0.5 }}
       >
-        <HiChevronRight size={"20px"} />
+        <Icon as={HiChevronRight} />
       </motion.div>
     </HStack>
   );
@@ -177,7 +145,7 @@ const ExpandableSubmenu = ({
             ? sideNav.addExpandedKey(item.key)
             : sideNav.removeExpandedKey(item.key);
         }}
-        leftIcon={item.icon && cloneElement(item.icon, { style: iconStyles })}
+        leftIcon={item.icon}
       >
         {!sideNav.collapsed && literal}
       </Button>
