@@ -17,6 +17,10 @@ export const useAuth = create<UseAuth>((set) => ({
   setAuthenticated: (isAuthenticated: boolean) => set({ isAuthenticated }),
   setUser: (user?: User) => set({ user }),
   signOut: () => {
-    window.location.replace(SIGN_OUT_URL);
+    if (SIGN_OUT_URL) {
+      window.location.replace(SIGN_OUT_URL);
+    } else {
+      userManager.signoutRedirect();
+    }
   },
 }));
