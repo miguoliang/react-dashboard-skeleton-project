@@ -27,7 +27,7 @@ export const UserMenu = () => {
   const auth = useAuth();
 
   const UserAvatar = (
-    <HStack gap={2}>
+    <HStack gap={2} px={2}>
       <Avatar size="sm" src="/img/avatars/thumb-1.jpg" />
       <Flex direction={"column"} alignItems={"start"}>
         <Text fontSize={"sm"} casing={"capitalize"}>

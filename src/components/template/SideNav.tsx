@@ -57,7 +57,6 @@ const SideNav = () => {
 
 const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
   const sideNav = useSideNav();
-
   switch (item.type) {
     case "item":
       return sideNav.collapsed ? (
@@ -83,7 +82,7 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
     case "title":
     default:
       return !sideNav.collapsed ? (
-        <Text mt={4} mb={2} px={2} textColor={"gray.500"} fontSize={1}>
+        <Text px={2} textColor={"gray.500"} fontSize={1}>
           {item.title}
         </Text>
       ) : (
@@ -112,6 +111,7 @@ const ExpandableSubmenu = ({ item }: { item: NavigationMenuItem }) => {
   const [expanded, setExpanded] = useBoolean(
     sideNav.expandedKeys.has(item.key),
   );
+
   const literal = (
     <HStack flexGrow={1} opacity={sideNav.collapsed ? 0 : 1}>
       <Text>{item.title}</Text>
@@ -128,7 +128,8 @@ const ExpandableSubmenu = ({ item }: { item: NavigationMenuItem }) => {
   return (
     <motion.div
       key={item.key}
-      className={"flex flex-col items-stretch overflow-hidden h-[40px]"}
+      className={"flex flex-col items-stretch overflow-hidden"}
+      style={{ height: "40px" }}
       animate={{
         height: expanded ? "auto" : "40px",
       }}
