@@ -28,6 +28,7 @@ import { Box, Button, HStack, Icon, IconButton, Text } from "@chakra-ui/react";
 import { NavigationMenuItem } from "configs/navigation.config";
 import { HiChevronRight } from "react-icons/hi";
 import { useSideNav } from "hooks/useSideNav";
+import { Link } from "react-router-dom";
 
 const MenuContext = React.createContext<{
   getItemProps: (
@@ -166,10 +167,14 @@ export const MenuComponent = React.forwardRef<
         fontSize={5}
         icon={menuItem.icon}
         bg={"transparent"}
+        _hover={{ bg: "gray.200" }}
+        display={"inline-flex"}
+        as={Link}
+        to={menuItem.path}
         {...commonProps}
       />
     ) : (
-      <Button {...commonProps} size={"sm"}>
+      <Button {...commonProps} size={"sm"} as={Link} to={menuItem.path}>
         <HStack w={"full"}>
           {menuItem.icon}
           {isNested && <Text flexGrow={1}>{menuItem.title}</Text>}

@@ -16,6 +16,7 @@ import navigationMenu, { NavigationMenuItem } from "configs/navigation.config";
 import { motion } from "framer-motion";
 import { Menu, MenuItem } from "./PopoverMenu";
 import { HiChevronRight } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const SideNav = () => {
   const sideNav = useSideNav();
@@ -67,14 +68,21 @@ const NavMenuItem = ({ item }: { item: NavigationMenuItem }) => {
           placement={"right"}
         >
           <IconButton
+            as={Link}
             fontSize={5}
             aria-label={item.title}
             icon={item.icon}
             bg={"transparent"}
+            to={item.path}
           />
         </Tooltip>
       ) : (
-        <Button variant={"navigationRootMenuItem"} leftIcon={item.icon}>
+        <Button
+          as={Link}
+          to={item.path}
+          variant={"navigationRootMenuItem"}
+          leftIcon={item.icon}
+        >
           {item.title}
         </Button>
       );
