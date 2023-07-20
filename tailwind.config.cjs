@@ -1,4 +1,5 @@
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   mode: "jit",
   content: [
     "./src/**/*.html",
@@ -21,15 +22,15 @@ export default {
       bounce: "bounce 1s infinite",
     },
     aria: {
-      busy: "busy=\"true\"",
-      checked: "checked=\"true\"",
-      disabled: "disabled=\"true\"",
-      expanded: "expanded=\"true\"",
-      hidden: "hidden=\"true\"",
-      pressed: "pressed=\"true\"",
-      readonly: "readonly=\"true\"",
-      required: "required=\"true\"",
-      selected: "selected=\"true\"",
+      busy: 'busy="true"',
+      checked: 'checked="true"',
+      disabled: 'disabled="true"',
+      expanded: 'expanded="true"',
+      hidden: 'hidden="true"',
+      pressed: 'pressed="true"',
+      readonly: 'readonly="true"',
+      required: 'required="true"',
+      selected: 'selected="true"',
     },
     aspectRatio: {
       auto: "auto",
@@ -49,13 +50,17 @@ export default {
     backgroundImage: {
       none: "none",
       "gradient-to-t": "linear-gradient(to top, var(--tw-gradient-stops))",
-      "gradient-to-tr": "linear-gradient(to top right, var(--tw-gradient-stops))",
+      "gradient-to-tr":
+        "linear-gradient(to top right, var(--tw-gradient-stops))",
       "gradient-to-r": "linear-gradient(to right, var(--tw-gradient-stops))",
-      "gradient-to-br": "linear-gradient(to bottom right, var(--tw-gradient-stops))",
+      "gradient-to-br":
+        "linear-gradient(to bottom right, var(--tw-gradient-stops))",
       "gradient-to-b": "linear-gradient(to bottom, var(--tw-gradient-stops))",
-      "gradient-to-bl": "linear-gradient(to bottom left, var(--tw-gradient-stops))",
+      "gradient-to-bl":
+        "linear-gradient(to bottom left, var(--tw-gradient-stops))",
       "gradient-to-l": "linear-gradient(to left, var(--tw-gradient-stops))",
-      "gradient-to-tl": "linear-gradient(to top left, var(--tw-gradient-stops))",
+      "gradient-to-tl":
+        "linear-gradient(to top left, var(--tw-gradient-stops))",
     },
     backgroundOpacity: ({ theme }) => theme("opacity"),
     backgroundPosition: {
@@ -204,6 +209,7 @@ export default {
       md: "768px",
       lg: "1024px",
       xl: "1280px",
+      "2xl": "1536px",
     },
     content: {
       none: "none",
@@ -322,31 +328,58 @@ export default {
         "system-ui",
         "-apple-system",
         "BlinkMacSystemFont",
-        "\"Segoe UI\"",
+        '"Segoe UI"',
         "Roboto",
-        "\"Helvetica Neue\"",
+        '"Helvetica Neue"',
         "Arial",
-        "\"Noto Sans\"",
+        '"Noto Sans"',
         "sans-serif",
-        "\"Apple Color Emoji\"",
-        "\"Segoe UI Emoji\"",
-        "\"Segoe UI Symbol\"",
-        "\"Noto Color Emoji\"",
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+        '"Noto Color Emoji"',
       ],
-      serif: ["ui-serif", "Georgia", "Cambria", "\"Times New Roman\"", "Times", "serif"],
+      serif: [
+        "ui-serif",
+        "Georgia",
+        "Cambria",
+        '"Times New Roman"',
+        "Times",
+        "serif",
+      ],
       mono: [
         "ui-monospace",
         "SFMono-Regular",
         "Menlo",
         "Monaco",
         "Consolas",
-        "\"Liberation Mono\"",
-        "\"Courier New\"",
+        '"Liberation Mono"',
+        '"Courier New"',
         "monospace",
       ],
       // The following content is used by Chakra UI
-      heading: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"],
-      body: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"],
+      heading: [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Helvetica",
+        "Arial",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+      ],
+      body: [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Helvetica",
+        "Arial",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+      ],
     },
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -365,7 +398,7 @@ export default {
       // The following content is used by Chakra UI
       "3xs": ["0.45rem", { lineHeight: "0.75rem" }],
       "2xs": ["0.625rem", { lineHeight: "0.875rem" }],
-      "md": ({ theme }) => theme("fontSize.base"),
+      md: ({ theme }) => theme("fontSize.base"),
     },
     fontWeight: {
       thin: "100",
@@ -685,6 +718,7 @@ export default {
       ...breakpoints(theme("screens")),
       // The following content is used by Chakra UI
       "8xl": "90rem",
+      "9xl": "96rem",
       "3xs": "14rem",
       "2xs": "16rem",
     }),
@@ -967,7 +1001,8 @@ export default {
       all: "all",
       DEFAULT:
         "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter",
-      colors: "color, background-color, border-color, text-decoration-color, fill, stroke",
+      colors:
+        "color, background-color, border-color, text-decoration-color, fill, stroke",
       opacity: "opacity",
       shadow: "box-shadow",
       transform: "transform",
@@ -1054,7 +1089,7 @@ export default {
       50: "50",
       // The following content is used by Chakra UI
       hide: -1,
-      base: ({theme}) => theme("zIndex.0"),
+      base: ({ theme }) => theme("zIndex.0"),
       docked: 10,
       dropdown: 1000,
       sticky: 1100,

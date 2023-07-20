@@ -7,17 +7,16 @@ import { formErrorTheme } from "./form-error.config";
 import { cardTheme } from "./card.config";
 import { buttonTheme } from "./button.config";
 import { tooltipTheme } from "./tooltip.config";
-import resolveConfig from "tailwindcss/resolveConfig";
 
-// @ts-ignore
-import * as tailwindConfig from "../../../tailwind.config.mjs";
 import { first, join, map, mapValues } from "lodash";
+import { theme as twTheme } from "twin.macro";
 
-const tailwindTheme = resolveConfig(tailwindConfig).theme;
+const tailwindTheme = twTheme`` as Record<string, any>;
+console.debug("tailwindTheme", tailwindTheme);
 
-function addMissingBaseField(obj: any, value?: any) {
+function addMissingBaseField(obj?: any, value?: any) {
   return {
-    base: value ?? obj.DEFAULT,
+    base: value ?? obj?.DEFAULT,
     ...obj,
   };
 }
@@ -56,3 +55,5 @@ export const theme = extendTheme({
     Tooltip: tooltipTheme,
   },
 });
+
+console.debug("mergedChakraTheme", theme);
